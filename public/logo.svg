@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <!-- Left Prism Front Face (Blue/Indigo to Violet) -->
+    <linearGradient id="prism-front" x1="170" y1="110" x2="260" y2="340" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#818CF8" />
+      <stop offset="50%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#4F46E5" />
+    </linearGradient>
+
+    <!-- Left Prism Left Face (Ultraviolet / Purple) -->
+    <linearGradient id="prism-left" x1="120" y1="200" x2="180" y2="370" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C084FC" />
+      <stop offset="40%" stop-color="#9333EA" />
+      <stop offset="100%" stop-color="#6B21A8" />
+    </linearGradient>
+
+    <!-- Top Particle (Bright Electric Blue) -->
+    <linearGradient id="top-particle" x1="265" y1="105" x2="305" y2="155" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+
+    <!-- Right Upper Sail (Cyan / Azure) -->
+    <linearGradient id="sail-upper" x1="270" y1="190" x2="410" y2="290" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="60%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#0369A1" />
+    </linearGradient>
+
+    <!-- Right Lower Sail (Deep Electric Cyan / Blue with Glow) -->
+    <linearGradient id="sail-lower" x1="265" y1="295" x2="395" y2="410" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00F0FF" />
+      <stop offset="40%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#1E3A8A" />
+    </linearGradient>
+
+    <!-- Bottom Petal (Rich Magenta/Purple) -->
+    <linearGradient id="base-petal" x1="120" y1="340" x2="310" y2="440" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#A855F7" />
+      <stop offset="60%" stop-color="#7C3AED" />
+      <stop offset="100%" stop-color="#581C87" />
+    </linearGradient>
+
+    <filter id="node-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 1. Left Prism - Left Side (Facet) -->
+  <path d="M172 110 L122 235 C118 260 120 290 128 320 L172 370 Z" fill="url(#prism-left)" />
+
+  <!-- 2. Left Prism - Front Face -->
+  <path d="M172 110 L260 178 L260 306 L172 370 Z" fill="url(#prism-front)" />
+  <path d="M172 110 L260 178 L260 306" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none" stroke-linecap="round" />
+
+  <!-- 3. Top Floating Rounded Square Particle -->
+  <rect x="268" y="108" width="40" height="40" rx="11" fill="url(#top-particle)" />
+  <rect x="268" y="108" width="40" height="40" rx="11" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none" />
+
+  <!-- 4. Right Upper Wing / Sail -->
+  <path d="M276 268 L340 184 C380 215 402 250 410 296 L276 268 Z" fill="url(#sail-upper)" />
+  <path d="M276 268 L340 184 C370 205 395 240 410 296" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none" />
+
+  <!-- 5. Right Lower Wing / Sector Arc -->
+  <path d="M266 295 L392 322 C380 370 345 408 296 426 L266 295 Z" fill="url(#sail-lower)" />
+
+  <!-- 6. Bottom Swept Petal -->
+  <path d="M125 348 C160 325 220 325 292 342 C315 385 290 430 230 445 C165 458 120 405 125 348 Z" fill="url(#base-petal)" />
+  <path d="M125 348 C180 328 240 330 292 342" stroke="rgba(255,255,255,0.35)" stroke-width="2" fill="none" stroke-linecap="round" />
+
+  <!-- 7. Glowing Vertex Quantum Nodes -->
+  <!-- Node on Left Prism -->
+  <circle cx="152" cy="295" r="4" fill="#FFFFFF" filter="url(#node-glow)" />
+  <circle cx="152" cy="295" r="14" fill="#E879F9" opacity="0.65" filter="url(#node-glow)" />
+
+  <!-- Node on Right Sail -->
+  <circle cx="368" cy="342" r="3.5" fill="#FFFFFF" filter="url(#node-glow)" />
+  <circle cx="368" cy="342" r="13" fill="#38BDF8" opacity="0.7" filter="url(#node-glow)" />
+
+  <!-- Orbiting Satellites -->
+  <circle cx="160" cy="55" r="5.5" fill="#38BDF8" />
+  <circle cx="160" cy="55" r="2.5" fill="#FFFFFF" />
+
+  <circle cx="415" cy="85" r="5" fill="#C084FC" />
+  <circle cx="415" cy="85" r="2" fill="#FFFFFF" />
+</svg>
