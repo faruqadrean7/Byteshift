@@ -86,7 +86,7 @@ export default function PortfolioSection({ items = [] }: { items?: Portfolio[] }
             <div className="text-xs sm:text-sm font-bold uppercase tracking-widest text-blue-600">
               Rekam Jejak Implementasi
             </div>
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-[#06152D]">
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-[#13203A]">
               Our Case Study
             </h2>
           </div>
@@ -127,7 +127,7 @@ export default function PortfolioSection({ items = [] }: { items?: Portfolio[] }
                       {p.title.slice(0, 2).toUpperCase()}
                     </div>
                   )}
-                  <div className="absolute top-3 left-3 lg:top-4 lg:left-4 rounded-full bg-slate-900/80 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md">
+                  <div className="absolute top-3 left-3 lg:top-4 lg:left-4 rounded-full bg-slate-900/80 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-slate-100 backdrop-blur-md">
                     {p.category}
                   </div>
                 </div>
@@ -141,7 +141,7 @@ export default function PortfolioSection({ items = [] }: { items?: Portfolio[] }
                         <span>{p.client_name}</span>
                       </div>
                     )}
-                    <h3 className="font-display text-lg lg:text-xl xl:text-2xl font-bold leading-snug text-[#06152D] group-hover:text-blue-600 transition-colors">
+                    <h3 className="font-display text-lg lg:text-xl xl:text-2xl font-bold leading-snug text-[#13203A] group-hover:text-blue-600 transition-colors">
                       {p.title}
                     </h3>
                     <p className="mt-3.5 line-clamp-3 text-sm sm:text-base leading-relaxed text-slate-600">

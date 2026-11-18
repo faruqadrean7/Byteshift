@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { query } from "@/lib/db";
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser, requireAdmin } from "@/lib/auth";
 import {
   getArray,
   getBool,
@@ -14,6 +14,8 @@ import { revalidateForTable } from "@/lib/admin/revalidate";
 import { slugify } from "@/lib/utils";
 
 export async function saveBlogPost(formData: FormData) {
+  if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
+
   const id = getOptionalString(formData, "id");
   const title = getString(formData, "title");
   const slug = getString(formData, "slug") || slugify(title);
@@ -81,6 +83,7 @@ export async function saveBlogPost(formData: FormData) {
 }
 
 export async function deleteBlogPost(id: string) {
+  if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
   try {
     await query("DELETE FROM blog_posts WHERE id = $1", [id]);
     revalidateForTable("blog_posts");

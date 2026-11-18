@@ -82,7 +82,7 @@ export default function Testimonials({
           <div className="text-xs sm:text-sm font-bold uppercase tracking-widest text-blue-600">
             Pengakuan Klien Kami
           </div>
-          <h2 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-[#06152D]">
+          <h2 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-[#13203A]">
             Client Testimonials
           </h2>
           <p className="mt-3.5 text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed">
@@ -97,7 +97,7 @@ export default function Testimonials({
           <button
             onClick={prev}
             aria-label="Testimonial sebelumnya"
-            className="absolute -left-3 sm:-left-5 lg:-left-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 items-center justify-center rounded-xl bg-[#00A3FF] hover:bg-[#008FE0] text-white shadow-lg transition-all hover:scale-105 active:scale-95"
+            className="absolute -left-3 sm:-left-5 lg:-left-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 items-center justify-center rounded-xl bg-[#4C9AED] hover:bg-[#3E85D8] text-slate-100 shadow-lg transition-all hover:scale-105 active:scale-95"
           >
             <ChevronLeft className="h-6 w-6 lg:h-7 lg:w-7" />
           </button>
@@ -106,7 +106,7 @@ export default function Testimonials({
           <button
             onClick={next}
             aria-label="Testimonial selanjutnya"
-            className="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 items-center justify-center rounded-xl bg-[#00A3FF] hover:bg-[#008FE0] text-white shadow-lg transition-all hover:scale-105 active:scale-95"
+            className="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 items-center justify-center rounded-xl bg-[#4C9AED] hover:bg-[#3E85D8] text-slate-100 shadow-lg transition-all hover:scale-105 active:scale-95"
           >
             <ChevronRight className="h-6 w-6 lg:h-7 lg:w-7" />
           </button>
@@ -146,7 +146,7 @@ export default function Testimonials({
                     )}
                   </div>
                   <div>
-                    <div className="font-display text-sm sm:text-base font-bold text-[#06152D] flex items-center gap-1.5">
+                    <div className="font-display text-sm sm:text-base font-bold text-[#13203A] flex items-center gap-1.5">
                       <span>{t.name}</span>
                       <CheckCircle2 className="h-4 w-4 text-blue-600" />
                     </div>
@@ -164,7 +164,7 @@ export default function Testimonials({
         <div className="mt-12 lg:mt-16 text-center">
           <Button
             asChild
-            className="h-13 sm:h-14 lg:h-16 rounded-full bg-[#00A3FF] hover:bg-[#008FE0] text-white font-bold px-8 sm:px-10 lg:px-12 text-sm sm:text-base lg:text-lg shadow-lg shadow-blue-500/25 transition-all hover:scale-105"
+            className="h-13 sm:h-14 lg:h-16 rounded-full bg-[#4C9AED] hover:bg-[#3E85D8] text-slate-100 font-bold px-8 sm:px-10 lg:px-12 text-sm sm:text-base lg:text-lg shadow-lg shadow-blue-500/25 transition-all hover:scale-105"
           >
             <Link href="/kontak" className="flex items-center gap-2.5">
               <span>Konsultasikan Kebutuhan Anda</span>

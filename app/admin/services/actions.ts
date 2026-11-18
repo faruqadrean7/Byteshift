@@ -1,6 +1,7 @@
 "use server";
 
-import { query, queryOne } from "@/lib/db";
+import { query } from "@/lib/db";
+import { requireAdmin } from "@/lib/auth";
 import {
   getArray,
   getBool,
@@ -12,6 +13,8 @@ import { revalidateForTable } from "@/lib/admin/revalidate";
 import { slugify } from "@/lib/utils";
 
 export async function saveService(formData: FormData) {
+  if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
+
   const id = getOptionalString(formData, "id");
   const title = getString(formData, "title");
   const slug = getString(formData, "slug") || slugify(title);
@@ -45,6 +48,7 @@ export async function saveService(formData: FormData) {
 }
 
 export async function deleteService(id: string) {
+  if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
   try {
     await query("DELETE FROM services WHERE id = $1", [id]);
     revalidateForTable("services");

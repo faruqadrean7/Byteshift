@@ -13,7 +13,7 @@ export default function Hero({ settings }: { settings: SiteSettings | null }) {
   )}`;
 
   return (
-    <section className="relative overflow-hidden bg-[#030718] pt-32 pb-24 sm:pt-40 sm:pb-32 lg:pt-52 lg:pb-44 text-white min-h-[92vh] lg:min-h-[96vh] flex items-center justify-center">
+    <section className="relative overflow-hidden bg-[#0B1324] pt-32 pb-24 sm:pt-40 sm:pb-32 lg:pt-52 lg:pb-44 text-slate-100 min-h-[92vh] lg:min-h-[96vh] flex items-center justify-center">
       {/* 1. Full-Bleed Ambient Video Background */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden select-none">
         <video
@@ -29,11 +29,11 @@ export default function Hero({ settings }: { settings: SiteSettings | null }) {
         </video>
 
         {/* Seamless Navy Vignettes & Atmosphere */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#030718] via-[#030718]/50 to-[#030718]/70" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#030718]/85 via-transparent to-[#030718]/85" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1324] via-[#0B1324]/50 to-[#0B1324]/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1324]/85 via-transparent to-[#0B1324]/85" />
         
         {/* Soft Ambient Royal Glow */}
-        <div className="absolute left-1/2 top-1/4 h-[350px] sm:h-[550px] lg:h-[700px] w-[350px] sm:w-[550px] lg:w-[700px] -translate-x-1/2 rounded-full bg-blue-600/20 blur-[120px] sm:blur-[160px]" />
+        <div className="absolute left-1/2 top-1/4 h-[350px] sm:h-[550px] lg:h-[700px] w-[350px] sm:w-[550px] lg:w-[700px] -translate-x-1/2 rounded-full bg-blue-500/20 blur-[120px] sm:blur-[160px]" />
         <div className="absolute inset-0 grid-pattern opacity-25" />
       </div>
 
@@ -45,10 +45,10 @@ export default function Hero({ settings }: { settings: SiteSettings | null }) {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[4.75rem] xl:text-[5.5rem] font-extrabold leading-[1.08] tracking-tight text-white"
+            className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[4.75rem] xl:text-[5.5rem] font-extrabold leading-[1.08] tracking-tight text-slate-100"
           >
             Tuntaskan Kendala Sistem.{" "}
-            <span className="text-[#00A3FF]">
+            <span className="text-[#4C9AED]">
               Wujudkan Solusi Nyata.
             </span>
           </motion.h1>
@@ -73,7 +73,7 @@ export default function Hero({ settings }: { settings: SiteSettings | null }) {
             <Button
               asChild
               size="lg"
-              className="w-full sm:w-auto rounded-full bg-[#00A3FF] hover:bg-[#008FE0] font-bold text-white text-base lg:text-lg shadow-xl shadow-blue-500/30 transition-all hover:scale-105 h-14 lg:h-16 px-8 sm:px-10 lg:px-12"
+              className="w-full sm:w-auto rounded-full bg-[#4C9AED] hover:bg-[#3E85D8] font-bold text-slate-100 text-base lg:text-lg shadow-xl shadow-blue-500/30 transition-all hover:scale-105 h-14 lg:h-16 px-8 sm:px-10 lg:px-12"
             >
               <a
                 href={waLink}
@@ -89,7 +89,7 @@ export default function Hero({ settings }: { settings: SiteSettings | null }) {
               asChild
               size="lg"
               variant="outline"
-              className="w-full sm:w-auto rounded-full border-slate-600 bg-white/10 text-white text-base lg:text-lg font-semibold backdrop-blur-md hover:bg-white/20 hover:border-white transition-all h-14 lg:h-16 px-8 sm:px-10 lg:px-12"
+              className="w-full sm:w-auto rounded-full border-slate-600 bg-white/10 text-slate-100 text-base lg:text-lg font-semibold backdrop-blur-md hover:bg-white/20 hover:border-white transition-all h-14 lg:h-16 px-8 sm:px-10 lg:px-12"
             >
               <Link href="/portfolio">Lihat Studi Kasus</Link>
             </Button>
@@ -103,7 +103,7 @@ export default function Hero({ settings }: { settings: SiteSettings | null }) {
           viewBox="0 0 1440 80"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-8 sm:h-12 md:h-20 text-[#030718] preserve-3d"
+          className="w-full h-8 sm:h-12 md:h-20 text-[#0B1324] preserve-3d"
           preserveAspectRatio="none"
         >
           <path

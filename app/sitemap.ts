@@ -5,13 +5,27 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const revalidate = 3600;
 
+/** Run a query but never let a DB error break sitemap/static generation. */
+async function safe<T>(fn: () => Promise<T[]>): Promise<T[]> {
+  try {
+    return await fn();
+  } catch (e) {
+    console.error("Sitemap query failed, falling back to static paths:", e);
+    return [];
+  }
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [portfolio, blog] = await Promise.all([
-    query<{ slug: string; updated_at: string }>(
-      "SELECT slug, updated_at FROM portfolio WHERE is_published = true"
+    safe(() =>
+      query<{ slug: string; updated_at: string }>(
+        "SELECT slug, updated_at FROM portfolio WHERE is_published = true"
+      )
     ),
-    query<{ slug: string; updated_at: string; published_at: string }>(
-      "SELECT slug, updated_at, published_at FROM blog_posts WHERE is_published = true"
+    safe(() =>
+      query<{ slug: string; updated_at: string; published_at: string }>(
+        "SELECT slug, updated_at, published_at FROM blog_posts WHERE is_published = true"
+      )
     ),
   ]);
 

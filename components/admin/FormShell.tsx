@@ -88,7 +88,7 @@ export default function FormShell({
       </Link>
       <div className="mt-3 mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="font-display text-3xl font-extrabold text-white">{title}</h1>
+          <h1 className="font-display text-3xl font-extrabold text-slate-100">{title}</h1>
           {subtitle && (
             <p className="mt-1 text-sm text-slate-400">{subtitle}</p>
           )}
@@ -107,7 +107,7 @@ export default function FormShell({
           {pending ? "Menyimpan..." : submitLabel}
         </Button>
       </div>
-      <div className="space-y-6 rounded-2xl border border-slate-800/90 bg-[#0B1530]/90 p-6 sm:p-8 shadow-xl shadow-black/20 text-slate-100">
+      <div className="space-y-6 rounded-2xl border border-slate-800/90 bg-[#152340]/90 p-6 sm:p-8 shadow-xl shadow-black/20 text-slate-100">
         {children}
       </div>
 
@@ -156,7 +156,7 @@ export function FormSection({
   return (
     <div className="border-b border-slate-800 pb-6 last:border-0 last:pb-0">
       <div className="mb-4">
-        <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+        <h3 className="font-display text-sm font-bold uppercase tracking-wider text-slate-100">
           {title}
         </h3>
         {description && (

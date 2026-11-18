@@ -92,7 +92,7 @@ export default async function AdminDashboardPage() {
     <div className="container max-w-6xl py-10">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="font-display text-3xl font-extrabold text-white">
+          <h1 className="font-display text-3xl font-extrabold text-slate-100">
             Dashboard
           </h1>
           <p className="mt-1 text-sm text-slate-400">
@@ -153,7 +153,7 @@ export default async function AdminDashboardPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="font-display text-lg font-bold text-white">
+                <h2 className="font-display text-lg font-bold text-slate-100">
                   Leads Terbaru
                 </h2>
                 <p className="mt-0.5 text-xs text-slate-400">
@@ -183,7 +183,7 @@ export default async function AdminDashboardPage() {
                   className="-mx-2 flex flex-wrap items-center justify-between gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-slate-800/50"
                 >
                   <div className="min-w-0">
-                    <div className="truncate font-semibold text-white">
+                    <div className="truncate font-semibold text-slate-100">
                       {l.name}
                     </div>
                     <div className="text-xs text-slate-400">
@@ -209,7 +209,7 @@ export default async function AdminDashboardPage() {
             <CardContent className="p-6">
               <div className="flex items-center gap-2.5">
                 <Sparkles className="h-5 w-5 text-blue-400" />
-                <h2 className="font-display text-base font-bold text-white">
+                <h2 className="font-display text-base font-bold text-slate-100">
                   Quick Actions
                 </h2>
               </div>
@@ -230,7 +230,7 @@ export default async function AdminDashboardPage() {
             <CardContent className="p-6">
               <div className="flex items-center gap-2.5">
                 <MessageSquare className="h-5 w-5 text-blue-400" />
-                <h2 className="font-display text-base font-bold text-white">
+                <h2 className="font-display text-base font-bold text-slate-100">
                   Tips Praktis Studio
                 </h2>
               </div>
@@ -238,19 +238,19 @@ export default async function AdminDashboardPage() {
                 <li className="flex items-start gap-2.5">
                   <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" />
                   <span>
-                    Update <strong className="text-white">portfolio</strong> secara rutin dengan multi-screenshot bukti implementasi nyata.
+                    Update <strong className="text-slate-100">portfolio</strong> secara rutin dengan multi-screenshot bukti implementasi nyata.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" />
                   <span>
-                    Tulis <strong className="text-white">1 artikel insight/minggu</strong> untuk menaikkan SEO &amp; kredibilitas teknis.
+                    Tulis <strong className="text-slate-100">1 artikel insight/minggu</strong> untuk menaikkan SEO &amp; kredibilitas teknis.
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" />
                   <span>
-                    Cantumkan <strong className="text-white">metrik hasil riil</strong> pada studi kasus untuk meyakinkan calon klien enterprise.
+                    Cantumkan <strong className="text-slate-100">metrik hasil riil</strong> pada studi kasus untuk meyakinkan calon klien enterprise.
                   </span>
                 </li>
               </ul>
@@ -310,12 +310,12 @@ function StatCard({
             {icon}
           </div>
           {accent && value > 0 && (
-            <Badge variant="default" className="text-[10px] bg-blue-600">
+            <Badge variant="default" className="text-[10px] bg-blue-500">
               Action!
             </Badge>
           )}
         </div>
-        <div className="mt-4 font-display text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+        <div className="mt-4 font-display text-3xl lg:text-4xl font-extrabold text-slate-100 tracking-tight">
           {value}
           {suffix}
         </div>

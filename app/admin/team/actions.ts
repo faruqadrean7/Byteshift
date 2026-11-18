@@ -1,6 +1,7 @@
 "use server";
 
 import { query } from "@/lib/db";
+import { requireAdmin } from "@/lib/auth";
 import {
   getBool,
   getNumber,
@@ -10,6 +11,8 @@ import {
 import { revalidateForTable } from "@/lib/admin/revalidate";
 
 export async function saveTeamMember(formData: FormData) {
+  if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
+
   const id = getOptionalString(formData, "id");
   const name = getString(formData, "name");
   const role = getString(formData, "role");
@@ -49,6 +52,7 @@ export async function saveTeamMember(formData: FormData) {
 }
 
 export async function deleteTeamMember(id: string) {
+  if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
   try {
     await query("DELETE FROM team_members WHERE id = $1", [id]);
     revalidateForTable("team_members");

@@ -54,7 +54,7 @@ export default function RichTextEditor({
     editorProps: {
       attributes: {
         class:
-          "prose prose-invert prose-sm sm:prose-base max-w-none min-h-[260px] focus:outline-none [&_p]:my-3 [&_p]:text-slate-200 [&_h2]:font-display [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-6 [&_h2]:text-white [&_h3]:font-display [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-white [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_blockquote]:border-l-4 [&_blockquote]:border-blue-500 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-slate-300",
+          "prose prose-invert prose-sm sm:prose-base max-w-none min-h-[260px] focus:outline-none [&_p]:my-3 [&_p]:text-slate-200 [&_h2]:font-display [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-6 [&_h2]:text-slate-100 [&_h3]:font-display [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-slate-100 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_blockquote]:border-l-4 [&_blockquote]:border-blue-500 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-slate-300",
       },
     },
   });
@@ -103,8 +103,8 @@ export default function RichTextEditor({
   const json = JSON.stringify(editor.getJSON());
 
   return (
-    <div className="rounded-2xl border border-slate-700/80 bg-[#080E21] overflow-hidden">
-      <div className="flex flex-wrap items-center gap-1 border-b border-slate-800 bg-[#0B1530] p-2">
+    <div className="rounded-2xl border border-slate-700/80 bg-[#0F1A30] overflow-hidden">
+      <div className="flex flex-wrap items-center gap-1 border-b border-slate-800 bg-[#152340] p-2">
         <ToolbarBtn
           active={editor.isActive("bold")}
           onClick={() => editor.chain().focus().toggleBold().run()}
@@ -234,8 +234,8 @@ function ToolbarBtn({
       onClick={onClick}
       title={title}
       className={cn(
-        "grid h-8 w-8 place-items-center rounded-lg text-slate-400 transition-colors hover:bg-slate-800 hover:text-white",
-        active && "bg-blue-600 text-white hover:bg-blue-600 hover:text-white shadow-sm"
+        "grid h-8 w-8 place-items-center rounded-lg text-slate-400 transition-colors hover:bg-slate-800 hover:text-slate-100",
+        active && "bg-blue-500 text-slate-100 hover:bg-blue-500 hover:text-slate-100 shadow-sm"
       )}
     >
       {children}

@@ -106,11 +106,11 @@ export default function MultiImageUpload({
               type="button"
               onClick={() => removeImage(idx)}
               aria-label={`Hapus screenshot ${idx + 1}`}
-              className="absolute top-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-slate-950/80 text-rose-400 hover:bg-rose-600 hover:text-white transition-all shadow"
+              className="absolute top-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-slate-950/80 text-rose-400 hover:bg-rose-600 hover:text-slate-100 transition-all shadow"
             >
               <X className="h-4 w-4" />
             </button>
-            <div className="absolute bottom-1.5 left-2 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-bold text-white backdrop-blur-sm">
+            <div className="absolute bottom-1.5 left-2 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-bold text-slate-100 backdrop-blur-sm">
               #{idx + 1}
             </div>
           </div>

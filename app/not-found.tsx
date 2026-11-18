@@ -23,7 +23,7 @@ export default function NotFound() {
         </p>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-md shadow-blue-600/20">
+          <Button asChild className="bg-blue-500 hover:bg-blue-600 text-slate-100 font-bold shadow-md shadow-blue-600/20">
             <Link href="/" className="flex items-center gap-2">
               <Home className="h-4 w-4" />
               <span>Kembali ke Beranda</span>

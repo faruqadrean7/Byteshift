@@ -9,13 +9,13 @@ export default function FaqAccordion({ faqs }: { faqs: Faq[] }) {
   const [openId, setOpenId] = useState<string | null>(faqs[0]?.id ?? null);
   if (!faqs.length) return null;
   return (
-    <section id="faq" className="relative bg-[#06152D] py-20 sm:py-28 lg:py-36 text-white border-b border-slate-800">
+    <section id="faq" className="relative bg-[#13203A] py-20 sm:py-28 lg:py-36 text-slate-100 border-b border-slate-800">
       <div className="container max-w-4xl lg:max-w-5xl relative px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl lg:max-w-3xl mx-auto">
-          <div className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#00A3FF]">
+          <div className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#4C9AED]">
             Pertanyaan Umum (FAQ)
           </div>
-          <h2 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-white">
+          <h2 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-slate-100">
             Frequently Asked Questions
           </h2>
           <p className="mt-3.5 text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed">
@@ -31,8 +31,8 @@ export default function FaqAccordion({ faqs }: { faqs: Faq[] }) {
                 className={cn(
                   "rounded-2xl lg:rounded-3xl border px-5 py-4 sm:px-7 sm:py-5 lg:px-8 lg:py-6 backdrop-blur-md transition-all duration-300",
                   open
-                    ? "border-[#00A3FF]/60 bg-[#0c244d] shadow-xl shadow-blue-500/10"
-                    : "border-slate-800 bg-[#081b3a] hover:border-slate-700 hover:bg-[#0a2147]"
+                    ? "border-[#4C9AED]/60 bg-[#1D3258] shadow-xl shadow-blue-500/10"
+                    : "border-slate-800 bg-[#152340] hover:border-slate-700 hover:bg-[#1B3056]"
                 )}
               >
                 <button
@@ -41,14 +41,14 @@ export default function FaqAccordion({ faqs }: { faqs: Faq[] }) {
                   aria-expanded={open}
                   className="flex w-full items-center justify-between gap-4 text-left group"
                 >
-                  <span className="font-display text-base sm:text-lg lg:text-xl font-bold text-white group-hover:text-[#00A3FF] transition-colors">
+                  <span className="font-display text-base sm:text-lg lg:text-xl font-bold text-slate-100 group-hover:text-[#4C9AED] transition-colors">
                     {f.question}
                   </span>
                   <span
                     className={cn(
                       "grid h-8 w-8 lg:h-10 lg:w-10 shrink-0 place-items-center rounded-full transition-colors",
                       open
-                        ? "bg-[#00A3FF] text-white font-bold"
+                        ? "bg-[#4C9AED] text-slate-100 font-bold"
                         : "bg-white/10 border border-white/10 text-slate-300"
                     )}
                   >

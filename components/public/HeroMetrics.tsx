@@ -40,12 +40,12 @@ export default function HeroMetrics() {
               return (
                 <div
                   key={pillar.title}
-                  className="rounded-2xl lg:rounded-3xl bg-[#00A3FF] p-6 sm:p-7 lg:p-8 shadow-xl text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/20"
+                  className="rounded-2xl lg:rounded-3xl bg-[#4C9AED] p-6 sm:p-7 lg:p-8 shadow-xl text-slate-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/20"
                 >
-                  <div className="flex h-12 w-12 lg:h-14 lg:w-14 items-center justify-center rounded-xl lg:rounded-2xl bg-white/20 text-white mb-4 lg:mb-5">
+                  <div className="flex h-12 w-12 lg:h-14 lg:w-14 items-center justify-center rounded-xl lg:rounded-2xl bg-white/20 text-slate-100 mb-4 lg:mb-5">
                     <Icon className="h-6 w-6 lg:h-7 lg:w-7" />
                   </div>
-                  <h3 className="font-display text-base sm:text-lg lg:text-xl font-extrabold text-white">
+                  <h3 className="font-display text-base sm:text-lg lg:text-xl font-extrabold text-slate-100">
                     {pillar.title}
                   </h3>
                   <p className="mt-2.5 text-xs sm:text-sm lg:text-[15px] leading-relaxed text-blue-50">
@@ -63,7 +63,7 @@ export default function HeroMetrics() {
                 <div className="flex h-12 w-12 lg:h-14 lg:w-14 items-center justify-center rounded-xl lg:rounded-2xl bg-blue-50 text-blue-600 border border-blue-100 mb-4 lg:mb-5">
                   <Icon className="h-6 w-6 lg:h-7 lg:w-7" />
                 </div>
-                <h3 className="font-display text-base sm:text-lg lg:text-xl font-extrabold text-[#06152D]">
+                <h3 className="font-display text-base sm:text-lg lg:text-xl font-extrabold text-[#13203A]">
                   {pillar.title}
                 </h3>
                 <p className="mt-2.5 text-xs sm:text-sm lg:text-[15px] leading-relaxed text-slate-600">

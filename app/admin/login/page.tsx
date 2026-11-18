@@ -91,7 +91,7 @@ function LoginForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="admin@byteshift.id"
-            className="pl-10 h-12 bg-[#080E21] border-slate-700 text-white placeholder:text-slate-500 focus:border-blue-500 font-medium text-sm"
+            className="pl-10 h-12 bg-[#0F1A30] border-slate-700 text-slate-100 placeholder:text-slate-500 focus:border-blue-500 font-medium text-sm"
             disabled={loading}
           />
         </div>
@@ -111,13 +111,13 @@ function LoginForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="••••••••"
-            className="pl-10 pr-10 h-12 bg-[#080E21] border-slate-700 text-white placeholder:text-slate-500 focus:border-blue-500 font-medium text-sm"
+            className="pl-10 pr-10 h-12 bg-[#0F1A30] border-slate-700 text-slate-100 placeholder:text-slate-500 focus:border-blue-500 font-medium text-sm"
             disabled={loading}
           />
           <button
             type="button"
             onClick={() => setShowPassword((v) => !v)}
-            className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-slate-400 hover:text-white"
+            className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-slate-400 hover:text-slate-100"
             aria-label={showPassword ? "Sembunyikan password" : "Tampilkan password"}
             tabIndex={-1}
           >
@@ -133,7 +133,7 @@ function LoginForm() {
       <Button
         type="submit"
         disabled={loading}
-        className="w-full h-12 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base shadow-lg shadow-blue-600/30 transition-all hover:scale-[1.01]"
+        className="w-full h-12 rounded-xl bg-blue-500 hover:bg-blue-500 text-slate-100 font-bold text-base shadow-lg shadow-blue-600/30 transition-all hover:scale-[1.01]"
         size="lg"
       >
         {loading ? (
@@ -164,7 +164,7 @@ export default function LoginPage() {
         />
         <div
           aria-hidden
-          className="absolute -right-32 -top-32 h-80 w-80 rounded-full bg-blue-600/20 blur-3xl"
+          className="absolute -right-32 -top-32 h-80 w-80 rounded-full bg-blue-500/20 blur-3xl"
         />
         <div
           aria-hidden
@@ -173,7 +173,7 @@ export default function LoginPage() {
 
         <Link
           href="/"
-          className="relative z-10 flex items-center gap-2.5 text-white"
+          className="relative z-10 flex items-center gap-2.5 text-slate-100"
         >
           <Image
             src={logoImg}
@@ -188,7 +188,7 @@ export default function LoginPage() {
           </span>
         </Link>
 
-        <div className="relative z-10 max-w-md text-white">
+        <div className="relative z-10 max-w-md text-slate-100">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/15 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-blue-300 backdrop-blur">
             <Sparkles className="h-3 w-3" /> Admin Panel
           </div>
@@ -244,13 +244,13 @@ export default function LoginPage() {
                 className="h-9 w-9 object-contain drop-shadow-[0_0_8px_rgba(37,99,235,0.5)]"
                 priority
               />
-              <span className="font-display text-base font-extrabold tracking-tight text-white">
+              <span className="font-display text-base font-extrabold tracking-tight text-slate-100">
                 BYTESHIFT CONSULTING
               </span>
             </Link>
 
-            <div className="rounded-2xl border border-slate-800/90 bg-[#0B1530]/90 p-8 sm:p-10 shadow-2xl shadow-black/40 text-slate-100">
-              <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-white">
+            <div className="rounded-2xl border border-slate-800/90 bg-[#152340]/90 p-8 sm:p-10 shadow-2xl shadow-black/40 text-slate-100">
+              <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-100">
                 Selamat datang kembali 👋
               </h1>
               <p className="mt-2 text-sm text-slate-400">

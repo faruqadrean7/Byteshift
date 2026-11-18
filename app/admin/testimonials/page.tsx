@@ -30,7 +30,7 @@ export default async function Page() {
         ]}
         rows={items.map((t) => [
           <div key="n">
-            <div className="font-semibold text-white">{t.name}</div>
+            <div className="font-semibold text-slate-100">{t.name}</div>
             <div className="text-xs text-slate-400">
               {[t.role, t.company].filter(Boolean).join(" · ")}
             </div>

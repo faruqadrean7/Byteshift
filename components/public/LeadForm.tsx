@@ -70,17 +70,17 @@ export default function LeadForm() {
   if (done) {
     return (
       <div className="rounded-2xl border border-blue-500/30 bg-blue-950/40 p-8 text-center backdrop-blur-md">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-600/30">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-500 text-slate-100 shadow-lg shadow-blue-600/30">
           ✓
         </div>
-        <h3 className="mt-5 font-display text-xl font-bold text-white">
+        <h3 className="mt-5 font-display text-xl font-bold text-slate-100">
           Inkuiri Proyek Berhasil Terkirim!
         </h3>
         <p className="mt-2 text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
           Tim technical consultant kami akan menganalisis kebutuhan Anda dan menghubungi via WhatsApp/Email dalam 1×24 jam kerja.
         </p>
         <Button
-          className="mt-6 border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800 hover:text-white"
+          className="mt-6 border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800 hover:text-slate-100"
           variant="outline"
           onClick={() => setDone(false)}
         >
@@ -110,7 +110,7 @@ export default function LeadForm() {
           id="name"
           {...register("name")}
           placeholder="Misal: Bambang Hermawan (PT Solusi Maju)"
-          className="mt-1.5 border-slate-800 bg-slate-950/80 text-white placeholder:text-slate-500 focus:border-blue-500"
+          className="mt-1.5 border-slate-800 bg-slate-950/80 text-slate-100 placeholder:text-slate-500 focus:border-blue-500"
         />
         {errors.name && (
           <p className="mt-1 text-xs text-rose-400">{errors.name.message}</p>
@@ -127,7 +127,7 @@ export default function LeadForm() {
             {...register("phone_wa")}
             placeholder="081234567890"
             inputMode="tel"
-            className="mt-1.5 border-slate-800 bg-slate-950/80 text-white placeholder:text-slate-500 focus:border-blue-500"
+            className="mt-1.5 border-slate-800 bg-slate-950/80 text-slate-100 placeholder:text-slate-500 focus:border-blue-500"
           />
           {errors.phone_wa && (
             <p className="mt-1 text-xs text-rose-400">
@@ -144,7 +144,7 @@ export default function LeadForm() {
             type="email"
             {...register("email")}
             placeholder="nama@perusahaan.com"
-            className="mt-1.5 border-slate-800 bg-slate-950/80 text-white placeholder:text-slate-500 focus:border-blue-500"
+            className="mt-1.5 border-slate-800 bg-slate-950/80 text-slate-100 placeholder:text-slate-500 focus:border-blue-500"
           />
         </div>
       </div>
@@ -159,10 +159,10 @@ export default function LeadForm() {
               value={projectType}
               onValueChange={(v) => setValue("project_type", v)}
             >
-              <SelectTrigger className="border-slate-800 bg-slate-950/80 text-white">
+              <SelectTrigger className="border-slate-800 bg-slate-950/80 text-slate-100">
                 <SelectValue placeholder="Pilih domain solusi" />
               </SelectTrigger>
-              <SelectContent className="border-slate-800 bg-slate-950 text-white">
+              <SelectContent className="border-slate-800 bg-slate-950 text-slate-100">
                 {projectTypes.map((p) => (
                   <SelectItem key={p.value} value={p.value}>
                     {p.label}
@@ -186,10 +186,10 @@ export default function LeadForm() {
               value={budget}
               onValueChange={(v) => setValue("budget_range", v)}
             >
-              <SelectTrigger className="border-slate-800 bg-slate-950/80 text-white">
+              <SelectTrigger className="border-slate-800 bg-slate-950/80 text-slate-100">
                 <SelectValue placeholder="Pilih estimasi investasi" />
               </SelectTrigger>
-              <SelectContent className="border-slate-800 bg-slate-950 text-white">
+              <SelectContent className="border-slate-800 bg-slate-950 text-slate-100">
                 {budgetRanges.map((b) => (
                   <SelectItem key={b.value} value={b.value}>
                     {b.label}
@@ -210,7 +210,7 @@ export default function LeadForm() {
           {...register("message")}
           rows={5}
           placeholder="Jelaskan gambaran sistem yang ingin dibangun, target pengguna, integrasi hardware/API yang dibutuhkan, atau kendala sistem saat ini..."
-          className="mt-1.5 border-slate-800 bg-slate-950/80 text-white placeholder:text-slate-500 focus:border-blue-500"
+          className="mt-1.5 border-slate-800 bg-slate-950/80 text-slate-100 placeholder:text-slate-500 focus:border-blue-500"
         />
       </div>
 
@@ -218,7 +218,7 @@ export default function LeadForm() {
         type="submit"
         disabled={submitting}
         size="lg"
-        className="w-full bg-blue-600 font-semibold text-white shadow-xl shadow-blue-600/30 hover:bg-blue-500 py-6"
+        className="w-full bg-blue-500 font-semibold text-slate-100 shadow-xl shadow-blue-600/30 hover:bg-blue-500 py-6"
       >
         <Send className="h-4 w-4" />
         {submitting ? "Mengirim Inkuiri..." : "Kirim Dokumen Inkuiri Proyek"}

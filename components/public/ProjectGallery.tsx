@@ -57,7 +57,7 @@ export default function ProjectGallery({
   return (
     <div className="space-y-4">
       {/* Main Image Display */}
-      <div className="group relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-blue-500/20 bg-[#040d28] shadow-2xl">
+      <div className="group relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-blue-500/20 bg-[#0D1628] shadow-2xl">
         <Image
           src={publicMediaUrl(currentImage)}
           alt={`${title} - Screenshot ${activeIndex + 1}`}
@@ -68,10 +68,10 @@ export default function ProjectGallery({
         />
 
         {/* Ambient Dark Gradient on Hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#030718]/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1324]/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
         {/* Counter Badge */}
-        <div className="absolute top-4 left-4 z-10 flex items-center gap-2 rounded-full border border-blue-500/30 bg-[#06143c]/85 px-3.5 py-1.5 text-xs font-bold text-cyan-300 backdrop-blur-md shadow-lg">
+        <div className="absolute top-4 left-4 z-10 flex items-center gap-2 rounded-full border border-blue-500/30 bg-[#152340]/85 px-3.5 py-1.5 text-xs font-bold text-sky-300 backdrop-blur-md shadow-lg">
           <Layers className="h-3.5 w-3.5" />
           <span>
             {activeIndex + 1} / {allImages.length} Screenshot
@@ -83,7 +83,7 @@ export default function ProjectGallery({
           type="button"
           onClick={() => setLightboxOpen(true)}
           aria-label="Lihat resolusi penuh"
-          className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-blue-500/30 bg-[#06143c]/85 text-white backdrop-blur-md transition-all hover:bg-blue-600 hover:scale-110 shadow-lg"
+          className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-blue-500/30 bg-[#152340]/85 text-slate-100 backdrop-blur-md transition-all hover:bg-blue-500 hover:scale-110 shadow-lg"
         >
           <Maximize2 className="h-4 w-4" />
         </button>
@@ -95,7 +95,7 @@ export default function ProjectGallery({
               type="button"
               onClick={prev}
               aria-label="Screenshot sebelumnya"
-              className="absolute left-4 top-1/2 z-10 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[#06143c]/80 text-white backdrop-blur-md transition-all hover:bg-blue-600 hover:scale-110 active:scale-95 shadow-xl opacity-0 group-hover:opacity-100"
+              className="absolute left-4 top-1/2 z-10 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[#152340]/80 text-slate-100 backdrop-blur-md transition-all hover:bg-blue-500 hover:scale-110 active:scale-95 shadow-xl opacity-0 group-hover:opacity-100"
             >
               <ChevronLeft className="h-6 w-6" />
             </button>
@@ -103,7 +103,7 @@ export default function ProjectGallery({
               type="button"
               onClick={next}
               aria-label="Screenshot selanjutnya"
-              className="absolute right-4 top-1/2 z-10 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[#06143c]/80 text-white backdrop-blur-md transition-all hover:bg-blue-600 hover:scale-110 active:scale-95 shadow-xl opacity-0 group-hover:opacity-100"
+              className="absolute right-4 top-1/2 z-10 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[#152340]/80 text-slate-100 backdrop-blur-md transition-all hover:bg-blue-500 hover:scale-110 active:scale-95 shadow-xl opacity-0 group-hover:opacity-100"
             >
               <ChevronRight className="h-6 w-6" />
             </button>
@@ -124,7 +124,7 @@ export default function ProjectGallery({
                 className={cn(
                   "relative aspect-[16/10] w-24 sm:w-32 shrink-0 overflow-hidden rounded-xl border-2 transition-all duration-200",
                   isSelected
-                    ? "border-cyan-400 ring-2 ring-cyan-400/40 scale-105 shadow-md shadow-cyan-500/20"
+                    ? "border-sky-400/60 ring-2 ring-sky-400/30 scale-105 shadow-md shadow-sky-500/15"
                     : "border-blue-900/60 opacity-60 hover:opacity-100 hover:border-blue-500"
                 )}
               >
@@ -149,13 +149,13 @@ export default function ProjectGallery({
             type="button"
             onClick={() => setLightboxOpen(false)}
             aria-label="Tutup pratinjau penuh"
-            className="absolute top-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all hover:bg-red-600 hover:scale-110"
+            className="absolute top-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 text-slate-100 backdrop-blur-md transition-all hover:bg-red-600 hover:scale-110"
           >
             <X className="h-6 w-6" />
           </button>
 
           {/* Lightbox Counter */}
-          <div className="absolute top-6 left-6 z-50 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold text-white backdrop-blur-md">
+          <div className="absolute top-6 left-6 z-50 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold text-slate-100 backdrop-blur-md">
             {title} ({activeIndex + 1} / {allImages.length})
           </div>
 
@@ -181,7 +181,7 @@ export default function ProjectGallery({
                   prev();
                 }}
                 aria-label="Sebelumnya"
-                className="absolute left-6 top-1/2 -translate-y-1/2 flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all hover:bg-blue-600 hover:scale-110 active:scale-95"
+                className="absolute left-6 top-1/2 -translate-y-1/2 flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-white/10 text-slate-100 backdrop-blur-md transition-all hover:bg-blue-500 hover:scale-110 active:scale-95"
               >
                 <ChevronLeft className="h-8 w-8" />
               </button>
@@ -192,7 +192,7 @@ export default function ProjectGallery({
                   next();
                 }}
                 aria-label="Selanjutnya"
-                className="absolute right-6 top-1/2 -translate-y-1/2 flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all hover:bg-blue-600 hover:scale-110 active:scale-95"
+                className="absolute right-6 top-1/2 -translate-y-1/2 flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-white/10 text-slate-100 backdrop-blur-md transition-all hover:bg-blue-500 hover:scale-110 active:scale-95"
               >
                 <ChevronRight className="h-8 w-8" />
               </button>

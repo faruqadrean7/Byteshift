@@ -51,7 +51,7 @@ export default async function Page() {
           <div key="t">
             <Link
               href={`/admin/blog/${b.id}`}
-              className="font-semibold text-white hover:text-blue-400 transition-colors"
+              className="font-semibold text-slate-100 hover:text-blue-400 transition-colors"
             >
               {b.title}
             </Link>

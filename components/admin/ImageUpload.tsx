@@ -84,7 +84,7 @@ export default function ImageUpload({
                 type="button"
                 onClick={clearImage}
                 aria-label="Hapus gambar"
-                className="absolute right-1.5 top-1.5 grid h-6 w-6 place-items-center rounded-full bg-slate-950/80 text-rose-400 hover:bg-rose-600 hover:text-white shadow transition-all"
+                className="absolute right-1.5 top-1.5 grid h-6 w-6 place-items-center rounded-full bg-slate-950/80 text-rose-400 hover:bg-rose-600 hover:text-slate-100 shadow transition-all"
               >
                 <X className="h-3.5 w-3.5" />
               </button>
@@ -96,7 +96,7 @@ export default function ImageUpload({
           )}
         </div>
         <div>
-          <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-slate-700 bg-slate-800/80 px-4 py-2 text-sm font-semibold text-slate-200 hover:bg-slate-700 hover:text-white transition-colors">
+          <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-slate-700 bg-slate-800/80 px-4 py-2 text-sm font-semibold text-slate-200 hover:bg-slate-700 hover:text-slate-100 transition-colors">
             <input
               ref={inputRef}
               type="file"

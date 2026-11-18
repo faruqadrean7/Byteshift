@@ -31,7 +31,7 @@ export default function About() {
 
           {/* Right Column: Narrative & Action */}
           <Reveal className="flex flex-col items-start justify-center">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-[1.12] tracking-tight text-[#06152D]">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-[1.12] tracking-tight text-[#13203A]">
               Tentang Byteshift
               <br />
               <span className="text-blue-600">Technology Consulting</span>
@@ -64,7 +64,7 @@ export default function About() {
               <Button
                 asChild
                 size="lg"
-                className="rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 lg:px-9 py-6 text-sm sm:text-base shadow-lg shadow-blue-600/25 transition-all hover:scale-105"
+                className="rounded-full bg-blue-500 hover:bg-blue-600 text-slate-100 font-bold px-8 lg:px-9 py-6 text-sm sm:text-base shadow-lg shadow-blue-600/25 transition-all hover:scale-105"
               >
                 <Link href="/tentang" className="flex items-center gap-2">
                   <span>Pelajari Selengkapnya</span>

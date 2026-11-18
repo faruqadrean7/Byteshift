@@ -30,9 +30,9 @@ const solutions = [
 
 export default function ClientsStrip() {
   return (
-    <div className="border-y border-blue-500/20 bg-[#040b20] py-6 sm:py-8 lg:py-10">
+    <div className="border-y border-blue-500/20 bg-[#0B1324] py-6 sm:py-8 lg:py-10">
       <div className="container px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-[11px] sm:text-xs lg:text-sm font-bold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-cyan-300/80">
+        <p className="text-center text-[11px] sm:text-xs lg:text-sm font-bold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-sky-300/80">
           Solusi Teruji untuk Mengatasi Masalah Kompleks di Berbagai Industri
         </p>
 
@@ -44,11 +44,11 @@ export default function ClientsStrip() {
               return (
                 <div
                   key={`${item.label}-${idx}`}
-                  className="flex items-center gap-2.5 sm:gap-3 rounded-full border border-blue-500/20 bg-[#071538]/80 px-4 py-2 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 text-xs sm:text-sm font-bold text-slate-200 backdrop-blur-md transition-all hover:border-cyan-400/50 hover:bg-[#0a1e4e] hover:text-white cursor-default shrink-0 shadow-md"
+                  className="flex items-center gap-2.5 sm:gap-3 rounded-full border border-blue-500/20 bg-[#152340]/80 px-4 py-2 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 text-xs sm:text-sm font-bold text-slate-200 backdrop-blur-md transition-all hover:border-sky-400/40 hover:bg-[#1A2E55] hover:text-slate-100 cursor-default shrink-0 shadow-md"
                 >
-                  <Icon className="h-4 w-4 lg:h-5 lg:w-5 text-cyan-400 shrink-0" />
+                  <Icon className="h-4 w-4 lg:h-5 lg:w-5 text-sky-400 shrink-0" />
                   <span className="text-xs sm:text-sm">{item.label}</span>
-                  <span className="rounded-full bg-cyan-950/90 px-2.5 py-1 text-[10px] lg:text-xs font-bold uppercase text-cyan-300 border border-cyan-500/30">
+                  <span className="rounded-full bg-sky-950/60 px-2.5 py-1 text-[10px] lg:text-xs font-bold uppercase text-sky-300 border border-sky-500/25">
                     {item.tag}
                   </span>
                 </div>

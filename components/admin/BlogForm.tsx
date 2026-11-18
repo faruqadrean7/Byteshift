@@ -62,7 +62,7 @@ export default function BlogForm({
           storageFolder="blog"
         />
       </div>
-      <h3 className="font-display text-lg font-bold text-white">SEO &amp; Metadata</h3>
+      <h3 className="font-display text-lg font-bold text-slate-100">SEO &amp; Metadata</h3>
       <Field
         label="Meta Title"
         name="meta_title"

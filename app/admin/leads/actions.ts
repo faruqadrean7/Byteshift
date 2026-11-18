@@ -2,11 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { query } from "@/lib/db";
+import { requireAdmin } from "@/lib/auth";
 
 export async function updateLead(
   id: string,
   patch: { status?: string; notes?: string }
 ) {
+  if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
   try {
     if (patch.status !== undefined && patch.notes !== undefined) {
       await query(
@@ -32,6 +34,7 @@ export async function updateLead(
 }
 
 export async function deleteLead(id: string) {
+  if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
   try {
     await query("DELETE FROM leads WHERE id = $1", [id]);
     revalidatePath("/admin/leads");

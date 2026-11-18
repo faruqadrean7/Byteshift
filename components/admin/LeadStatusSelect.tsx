@@ -30,7 +30,7 @@ export default function LeadStatusSelect({
           else toast.success("Status diperbarui");
         })
       }
-      className="rounded-lg border border-slate-700 bg-[#080E21] px-2.5 py-1.5 text-xs text-slate-200 font-medium focus:border-blue-500 focus:outline-none cursor-pointer"
+      className="rounded-lg border border-slate-700 bg-[#0F1A30] px-2.5 py-1.5 text-xs text-slate-200 font-medium focus:border-blue-500 focus:outline-none cursor-pointer"
     >
       {options.map((o) => (
         <option key={o.value} value={o.value} className="bg-slate-900 text-slate-200">

@@ -11,17 +11,17 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-blue-600 text-white hover:bg-blue-500 hover:-translate-y-0.5 shadow-md shadow-blue-600/25 font-semibold",
+          "bg-blue-500 text-slate-100 hover:bg-blue-500 hover:-translate-y-0.5 shadow-md shadow-blue-600/25 font-semibold",
         secondary:
-          "bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 hover:text-white",
+          "bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 hover:text-slate-100",
         outline:
-          "border border-slate-700 text-slate-200 bg-slate-800/60 hover:bg-slate-700 hover:text-white hover:border-slate-600",
-        ghost: "text-slate-300 hover:bg-slate-800 hover:text-white",
+          "border border-slate-700 text-slate-200 bg-slate-800/60 hover:bg-slate-700 hover:text-slate-100 hover:border-slate-600",
+        ghost: "text-slate-300 hover:bg-slate-800 hover:text-slate-100",
         white:
           "bg-white text-slate-900 hover:-translate-y-0.5 hover:shadow-lg font-semibold",
         destructive:
-          "bg-rose-600 text-white hover:bg-rose-500 shadow-sm shadow-rose-600/20 font-semibold",
-        wa: "bg-[#25D366] text-white hover:-translate-y-0.5 hover:shadow-lg hover:bg-[#20bd5a] font-semibold",
+          "bg-rose-600 text-slate-100 hover:bg-rose-500 shadow-sm shadow-rose-600/20 font-semibold",
+        wa: "bg-[#25D366] text-slate-100 hover:-translate-y-0.5 hover:shadow-lg hover:bg-[#20bd5a] font-semibold",
       },
       size: {
         default: "h-11 px-6",

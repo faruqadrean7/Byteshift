@@ -30,7 +30,7 @@ export default async function Page() {
         ]}
         rows={items.map((f) => [
           <div key="q">
-            <div className="font-semibold text-white">{f.question}</div>
+            <div className="font-semibold text-slate-100">{f.question}</div>
             <p className="line-clamp-1 text-xs text-slate-400">{f.answer}</p>
           </div>,
           <Badge key="c" variant="secondary">

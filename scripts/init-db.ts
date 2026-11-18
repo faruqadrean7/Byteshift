@@ -2,6 +2,63 @@ import { neon } from "@neondatabase/serverless";
 import * as fs from "fs";
 import * as path from "path";
 import bcrypt from "bcryptjs";
+import { loadEnv } from "./env";
+
+loadEnv();
+
+/**
+ * Split a SQL script into individual statements, respecting dollar-quoted
+ * blocks ($$...$$ or $tag$...$tag$) so semicolons inside function bodies do
+ * not prematurely terminate a statement.
+ */
+function splitSqlStatements(input: string): string[] {
+  const statements: string[] = [];
+  let current = "";
+  let dollarTag: string | null = null;
+  let i = 0;
+
+  while (i < input.length) {
+    if (dollarTag) {
+      // Inside a dollar-quoted block: look for the matching closing tag.
+      if (input.startsWith(dollarTag, i)) {
+        current += dollarTag;
+        i += dollarTag.length;
+        dollarTag = null;
+      } else {
+        current += input[i];
+        i += 1;
+      }
+      continue;
+    }
+
+    const match = input.slice(i).match(/^\$[a-zA-Z0-9_]*\$/);
+    if (match) {
+      dollarTag = match[0];
+      current += dollarTag;
+      i += dollarTag.length;
+      continue;
+    }
+
+    if (input[i] === ";") {
+      const trimmed = current.trim();
+      if (trimmed) statements.push(trimmed);
+      current = "";
+      i += 1;
+      continue;
+    }
+
+    current += input[i];
+    i += 1;
+  }
+
+  const tail = current.trim();
+  if (tail) statements.push(tail);
+
+  // Drop pure-comment fragments.
+  return statements.filter(
+    (s) => !s.split("\n").every((line) => line.trim().startsWith("--") || line.trim() === "")
+  );
+}
 
 async function main() {
   const databaseUrl =
@@ -28,16 +85,17 @@ async function main() {
   const schemaSql = fs.readFileSync(schemaPath, "utf-8");
 
   console.log("📦 Menjalankan migrasi tabel ke Neon DB...");
-  
-  // Split by statements or run directly
-  const statements = schemaSql
-    .split(";\n")
-    .map((s) => s.trim())
-    .filter((s) => s.length > 0);
+
+  // Split into individual statements. We must NOT split on semicolons that
+  // live inside a dollar-quoted block (e.g. the body of the touch_updated_at
+  // PL/pgSQL function), otherwise the function definition is torn apart.
+  const statements = splitSqlStatements(schemaSql);
 
   for (const statement of statements) {
     try {
-      await (sql as any)(statement);
+      // Neon v1 requires `.query()` for non tagged-template execution; the
+      // HTTP driver runs one statement per call.
+      await sql.query(statement);
     } catch (err: any) {
       // Ignore already exists notices
       if (!err.message?.includes("already exists")) {

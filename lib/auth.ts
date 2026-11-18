@@ -29,10 +29,19 @@ export async function authenticateAdmin(
 ): Promise<{ user?: AdminUser; error?: string }> {
   const normalizedEmail = (email || "").trim().toLowerCase();
   const envAdminEmail = (process.env.ADMIN_EMAIL || "admin@byteshift.id").trim().toLowerCase();
-  const envAdminPassword = process.env.ADMIN_PASSWORD || "admin123";
+  // Only fall back to the well-known default password outside production.
+  // In production the env-credential login is disabled unless ADMIN_PASSWORD
+  // is explicitly configured — this prevents shipping with admin/admin123.
+  const envAdminPassword =
+    process.env.ADMIN_PASSWORD ||
+    (process.env.NODE_ENV !== "production" ? "admin123" : null);
 
   // 1. Direct match with environment credentials (.env.local)
-  if (normalizedEmail === envAdminEmail && password === envAdminPassword) {
+  if (
+    envAdminPassword &&
+    normalizedEmail === envAdminEmail &&
+    password === envAdminPassword
+  ) {
     const exp = Date.now() + 7 * 24 * 60 * 60 * 1000;
     const token = await signSession({
       id: "admin-root",
@@ -155,6 +164,19 @@ export async function getCurrentUser(): Promise<AdminUser | null> {
       avatar_url: null,
     };
   }
+}
+
+/**
+ * Guard for server actions / route handlers that mutate data.
+ * Returns the authenticated admin user, or null if there is no valid session.
+ * Server actions are reachable by direct POST, so each mutation must verify
+ * auth itself rather than relying solely on middleware (defense in depth).
+ */
+export async function requireAdmin(): Promise<AdminUser | null> {
+  const user = await getCurrentUser();
+  if (!user) return null;
+  if (!["admin", "editor"].includes(user.role)) return null;
+  return user;
 }
 
 export async function logoutAdmin(): Promise<void> {

@@ -46,7 +46,7 @@ export default async function SettingsPage() {
         <Field label="Email" name="email" defaultValue={s?.email} />
       </div>
       <Field label="Alamat" name="address" defaultValue={s?.address} />
-      <h3 className="mt-4 font-display text-lg font-bold text-white">Social Links &amp; Media</h3>
+      <h3 className="mt-4 font-display text-lg font-bold text-slate-100">Social Links &amp; Media</h3>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field
           label="Instagram URL"
@@ -69,7 +69,7 @@ export default async function SettingsPage() {
           defaultValue={social.twitter}
         />
       </div>
-      <h3 className="mt-4 font-display text-lg font-bold text-white">Hero Highlights &amp; Stats</h3>
+      <h3 className="mt-4 font-display text-lg font-bold text-slate-100">Hero Highlights &amp; Stats</h3>
       <div>
         <Label htmlFor="hero_stats_json" className="text-sm font-semibold text-slate-200">
           JSON array statistik di Hero Section

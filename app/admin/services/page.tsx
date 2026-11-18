@@ -31,7 +31,7 @@ export default async function AdminServicesPage() {
         ]}
         rows={items.map((s) => [
           <div key="t">
-            <Link href={`/admin/services/${s.id}`} className="font-semibold text-white hover:text-blue-400 transition-colors">
+            <Link href={`/admin/services/${s.id}`} className="font-semibold text-slate-100 hover:text-blue-400 transition-colors">
               {s.icon} {s.title}
             </Link>
             <div className="text-xs text-slate-400">{s.slug}</div>

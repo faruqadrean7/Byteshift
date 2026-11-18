@@ -66,7 +66,7 @@ export default function PortfolioSlider({ items }: { items: Portfolio[] }) {
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Main Slider Card Frame */}
-      <div className="overflow-hidden rounded-3xl border border-blue-500/20 bg-[#061233]/90 backdrop-blur-xl shadow-2xl shadow-black/50">
+      <div className="overflow-hidden rounded-3xl border border-blue-500/20 bg-[#131F38]/90 backdrop-blur-xl shadow-2xl shadow-black/50">
         <div className="relative min-h-[420px] p-5 sm:p-10 lg:p-14">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
@@ -82,19 +82,19 @@ export default function PortfolioSlider({ items }: { items: Portfolio[] }) {
               <div>
                 <div className="flex flex-wrap items-center gap-2">
                   {active.category && (
-                    <span className="rounded-full border border-cyan-500/30 bg-cyan-950/80 px-3 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-cyan-300 shadow-sm">
+                    <span className="rounded-full border border-sky-500/25 bg-sky-950/50 px-3 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-sky-300 shadow-sm">
                       {active.category}
                     </span>
                   )}
                   {active.client_name && (
                     <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300">
-                      <Building2 className="h-3.5 w-3.5 text-cyan-400" />
+                      <Building2 className="h-3.5 w-3.5 text-sky-400" />
                       <span>{active.client_name}</span>
                     </span>
                   )}
                 </div>
 
-                <h3 className="mt-3 sm:mt-4 font-display text-xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-white">
+                <h3 className="mt-3 sm:mt-4 font-display text-xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-slate-100">
                   {active.title}
                 </h3>
 
@@ -110,8 +110,8 @@ export default function PortfolioSlider({ items }: { items: Portfolio[] }) {
                     <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
                     <span>Solusi Tuntas &amp; Live</span>
                   </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-cyan-500/30 bg-cyan-950/50 px-3 py-1 text-[11px] sm:text-xs font-semibold text-cyan-300">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-cyan-400" />
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-500/25 bg-sky-950/50 px-3 py-1 text-[11px] sm:text-xs font-semibold text-sky-300">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-sky-400" />
                     <span>Garansi SLA 99.9%</span>
                   </span>
                 </div>
@@ -121,7 +121,7 @@ export default function PortfolioSlider({ items }: { items: Portfolio[] }) {
                   <Button
                     asChild
                     size="lg"
-                    className="w-full sm:w-auto rounded-full bg-blue-600 font-bold text-white shadow-lg shadow-blue-600/30 hover:bg-blue-500 px-7 py-5 text-sm sm:text-base"
+                    className="w-full sm:w-auto rounded-full bg-blue-500 font-bold text-slate-100 shadow-lg shadow-blue-600/30 hover:bg-blue-500 px-7 py-5 text-sm sm:text-base"
                   >
                     <Link
                       href={`/portfolio/${active.slug}`}
@@ -135,7 +135,7 @@ export default function PortfolioSlider({ items }: { items: Portfolio[] }) {
               </div>
 
               {/* Right Column: Visual Showcase */}
-              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl sm:rounded-3xl border border-blue-500/20 bg-[#03091a] shadow-lg">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl sm:rounded-3xl border border-blue-500/20 bg-[#0B1324] shadow-lg">
                 {cover ? (
                   <Image
                     src={cover}
@@ -146,20 +146,20 @@ export default function PortfolioSlider({ items }: { items: Portfolio[] }) {
                     priority
                   />
                 ) : (
-                  <div className="grid h-full w-full place-items-center bg-gradient-to-br from-[#061233] to-[#0c2466] text-white p-8">
+                  <div className="grid h-full w-full place-items-center bg-gradient-to-br from-[#131F38] to-[#20386B] text-slate-100 p-8">
                     <span className="font-display text-4xl sm:text-5xl font-extrabold opacity-25">
                       {active.title.slice(0, 2).toUpperCase()}
                     </span>
                   </div>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030718]/70 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1324]/70 via-transparent to-transparent pointer-events-none" />
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
         {/* Bottom Control Bar */}
-        <div className="flex items-center justify-between border-t border-blue-500/20 bg-[#040b1e]/90 px-5 py-3.5 sm:px-10 sm:py-4">
+        <div className="flex items-center justify-between border-t border-blue-500/20 bg-[#0B1324]/90 px-5 py-3.5 sm:px-10 sm:py-4">
           {/* Slide Indicator & Dots */}
           <div className="flex items-center gap-3">
             <span className="font-mono text-xs font-bold text-slate-300">
@@ -177,7 +177,7 @@ export default function PortfolioSlider({ items }: { items: Portfolio[] }) {
                   aria-label={`Ke slide ${idx + 1}`}
                   className={`h-2 rounded-full transition-all duration-300 ${
                     current === idx
-                      ? "w-7 bg-cyan-400 shadow-sm shadow-cyan-400/50"
+                      ? "w-7 bg-sky-400 shadow-sm shadow-sky-400/30"
                       : "w-2 bg-slate-700 hover:bg-slate-500"
                   }`}
                 />
@@ -191,7 +191,7 @@ export default function PortfolioSlider({ items }: { items: Portfolio[] }) {
               type="button"
               onClick={prevSlide}
               aria-label="Slide sebelumnya"
-              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-blue-500/30 bg-[#06143c] text-slate-200 shadow-sm transition-all hover:border-cyan-400 hover:bg-[#0c2360] hover:text-white active:scale-95"
+              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-blue-500/30 bg-[#152340] text-slate-200 shadow-sm transition-all hover:border-sky-400/60 hover:bg-[#1E3566] hover:text-slate-100 active:scale-95"
             >
               <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
@@ -199,7 +199,7 @@ export default function PortfolioSlider({ items }: { items: Portfolio[] }) {
               type="button"
               onClick={nextSlide}
               aria-label="Slide selanjutnya"
-              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-blue-500/30 bg-[#06143c] text-slate-200 shadow-sm transition-all hover:border-cyan-400 hover:bg-[#0c2360] hover:text-white active:scale-95"
+              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-blue-500/30 bg-[#152340] text-slate-200 shadow-sm transition-all hover:border-sky-400/60 hover:bg-[#1E3566] hover:text-slate-100 active:scale-95"
             >
               <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>

@@ -59,9 +59,9 @@ export default async function BlogPostPage({
   };
 
   return (
-    <article className="relative overflow-hidden bg-[#030718] pt-36 pb-28 text-white min-h-screen">
+    <article className="relative overflow-hidden bg-[#0B1324] pt-36 pb-28 text-slate-100 min-h-screen">
       <div className="absolute inset-0 grid-pattern opacity-15 pointer-events-none" />
-      <div className="absolute -top-40 right-1/3 h-[500px] w-[500px] rounded-full bg-blue-600/15 blur-[140px] pointer-events-none" />
+      <div className="absolute -top-40 right-1/3 h-[500px] w-[500px] rounded-full bg-blue-500/15 blur-[140px] pointer-events-none" />
       
       <script
         type="application/ld+json"
@@ -70,7 +70,7 @@ export default async function BlogPostPage({
       <div className="container max-w-3xl relative">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm font-medium text-slate-300 transition-colors hover:text-cyan-400"
+          className="inline-flex items-center gap-2 text-sm font-medium text-slate-300 transition-colors hover:text-sky-400"
         >
           <ArrowLeft className="h-4 w-4" /> Kembali ke Seluruh Publikasi
         </Link>
@@ -78,13 +78,13 @@ export default async function BlogPostPage({
           {post.tags.map((t) => (
             <span
               key={t}
-              className="rounded-full border border-cyan-500/30 bg-cyan-950/80 px-3 py-1 text-xs font-semibold text-cyan-300"
+              className="rounded-full border border-sky-500/25 bg-sky-950/50 px-3 py-1 text-xs font-semibold text-sky-300"
             >
               {t}
             </span>
           ))}
         </div>
-        <h1 className="mt-5 font-display text-3xl font-extrabold leading-tight tracking-tight text-white md:text-5xl">
+        <h1 className="mt-5 font-display text-3xl font-extrabold leading-tight tracking-tight text-slate-100 md:text-5xl">
           {post.title}
         </h1>
         {post.published_at && (
@@ -93,7 +93,7 @@ export default async function BlogPostPage({
           </div>
         )}
         {cover && (
-          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-3xl border border-blue-500/20 bg-[#03091a] shadow-2xl">
+          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-3xl border border-blue-500/20 bg-[#0B1324] shadow-2xl">
             <Image
               src={cover}
               alt={post.title}
@@ -104,7 +104,7 @@ export default async function BlogPostPage({
             />
           </div>
         )}
-        <div className="mt-12 text-slate-300 text-base leading-relaxed [&_p]:my-5 [&_p]:leading-relaxed [&_h2]:mt-12 [&_h2]:font-display [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-white [&_h3]:mt-8 [&_h3]:font-display [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-white [&_ul]:my-5 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ol]:my-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_blockquote]:my-8 [&_blockquote]:border-l-4 [&_blockquote]:border-cyan-500 [&_blockquote]:pl-5 [&_blockquote]:text-slate-200 [&_blockquote]:italic [&_blockquote]:bg-[#061233]/70 [&_blockquote]:p-4 [&_blockquote]:rounded-r-2xl">
+        <div className="mt-12 text-slate-300 text-base leading-relaxed [&_p]:my-5 [&_p]:leading-relaxed [&_h2]:mt-12 [&_h2]:font-display [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-100 [&_h3]:mt-8 [&_h3]:font-display [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-slate-100 [&_ul]:my-5 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ol]:my-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_blockquote]:my-8 [&_blockquote]:border-l-4 [&_blockquote]:border-sky-500/40 [&_blockquote]:pl-5 [&_blockquote]:text-slate-200 [&_blockquote]:italic [&_blockquote]:bg-[#131F38]/70 [&_blockquote]:p-4 [&_blockquote]:rounded-r-2xl">
           {post.content ? (
             <TiptapRenderer content={post.content} />
           ) : post.excerpt ? (

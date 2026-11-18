@@ -32,6 +32,7 @@ export default function LeadsFilter({
       const params = new URLSearchParams(Array.from(sp.entries()));
       if (search) params.set("q", search);
       else params.delete("q");
+      params.delete("page"); // reset to first page on new search
       startTransition(() => {
         router.replace(`?${params.toString()}`);
       });
@@ -44,6 +45,7 @@ export default function LeadsFilter({
     const params = new URLSearchParams(Array.from(sp.entries()));
     if (v === "all") params.delete("status");
     else params.set("status", v);
+    params.delete("page"); // reset to first page on status change
     startTransition(() => {
       router.replace(`?${params.toString()}`);
     });
@@ -57,7 +59,7 @@ export default function LeadsFilter({
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Cari nama, email, project..."
-          className="w-full rounded-xl border border-slate-700 bg-[#080E21] py-2 pl-10 pr-3 text-sm text-white placeholder:text-slate-500 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/40 transition-colors"
+          className="w-full rounded-xl border border-slate-700 bg-[#0F1A30] py-2 pl-10 pr-3 text-sm text-slate-100 placeholder:text-slate-500 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/40 transition-colors"
         />
       </div>
       <div className="relative">
@@ -65,7 +67,7 @@ export default function LeadsFilter({
         <select
           value={status}
           onChange={(e) => onStatus(e.target.value)}
-          className="appearance-none rounded-xl border border-slate-700 bg-[#080E21] py-2 pl-9 pr-8 text-sm text-slate-200 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/40 transition-colors cursor-pointer"
+          className="appearance-none rounded-xl border border-slate-700 bg-[#0F1A30] py-2 pl-9 pr-8 text-sm text-slate-200 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/40 transition-colors cursor-pointer"
         >
           {STATUS_OPTIONS.map((o) => (
             <option key={o.value} value={o.value} className="bg-slate-900 text-slate-200">

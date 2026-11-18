@@ -3,11 +3,11 @@ import { revalidatePath, revalidateTag } from "next/cache";
 
 export async function POST(request: Request) {
   const url = new URL(request.url);
-  const secret = url.searchParams.get("secret") ?? request.headers.get("x-secret");
-  if (
-    !process.env.REVALIDATE_SECRET ||
-    secret !== process.env.REVALIDATE_SECRET
-  ) {
+  // Accept the secret only via header — query-string secrets leak into
+  // server/proxy access logs and browser history.
+  const secret = request.headers.get("x-secret");
+  const expected = process.env.REVALIDATE_SECRET;
+  if (!expected || !secret || secret !== expected) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

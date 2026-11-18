@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 224 71% 4%;
-    --foreground: 210 40% 98%;
-    --card: 224 65% 7%;
-    --card-foreground: 210 40% 98%;
-    --popover: 224 65% 7%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 40% 13%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 220 40% 13%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 220 40% 13%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 220 35% 15%;
-    --input: 220 35% 15%;
-    --ring: 224 76% 48%;
+    --background: 221 38% 10%;
+    --foreground: 210 28% 90%;
+    --card: 220 32% 14%;
+    --card-foreground: 210 28% 90%;
+    --popover: 220 32% 14%;
+    --popover-foreground: 210 28% 90%;
+    --primary: 213 72% 60%;
+    --primary-foreground: 213 40% 98%;
+    --secondary: 220 26% 19%;
+    --secondary-foreground: 210 28% 90%;
+    --muted: 220 26% 19%;
+    --muted-foreground: 215 18% 68%;
+    --accent: 220 26% 19%;
+    --accent-foreground: 210 28% 90%;
+    --destructive: 0 52% 42%;
+    --destructive-foreground: 210 28% 95%;
+    --border: 219 22% 24%;
+    --input: 219 22% 24%;
+    --ring: 213 60% 56%;
     --radius: 0.875rem;
   }
 
@@ -34,7 +34,7 @@
     color-scheme: dark;
   }
   body {
-    @apply bg-[#030718] text-slate-100 font-sans antialiased selection:bg-blue-600 selection:text-white;
+    @apply bg-[#0B1324] text-slate-100 font-sans antialiased selection:bg-blue-500 selection:text-slate-100;
   }
 }
 

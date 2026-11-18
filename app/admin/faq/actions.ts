@@ -1,6 +1,7 @@
 "use server";
 
 import { query } from "@/lib/db";
+import { requireAdmin } from "@/lib/auth";
 import {
   getBool,
   getNumber,
@@ -10,6 +11,8 @@ import {
 import { revalidateForTable } from "@/lib/admin/revalidate";
 
 export async function saveFaq(formData: FormData) {
+  if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
+
   const id = getOptionalString(formData, "id");
   const question = getString(formData, "question");
   const answer = getString(formData, "answer");
@@ -41,6 +44,7 @@ export async function saveFaq(formData: FormData) {
 }
 
 export async function deleteFaq(id: string) {
+  if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
   try {
     await query("DELETE FROM faqs WHERE id = $1", [id]);
     revalidateForTable("faqs");

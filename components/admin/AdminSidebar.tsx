@@ -94,14 +94,14 @@ export default function AdminSidebar({ email }: { email: string | null }) {
                 className={cn(
                   "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all",
                   active
-                    ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg shadow-blue-600/25 font-semibold"
-                    : "text-slate-300 hover:bg-slate-800/80 hover:text-white"
+                    ? "bg-gradient-to-r from-blue-600 to-blue-500 text-slate-100 shadow-lg shadow-blue-600/25 font-semibold"
+                    : "text-slate-300 hover:bg-slate-800/80 hover:text-slate-100"
                 )}
               >
                 <Icon
                   className={cn(
                     "h-4 w-4 transition-colors",
-                    active ? "text-white" : "text-slate-400 group-hover:text-blue-400"
+                    active ? "text-slate-100" : "text-slate-400 group-hover:text-blue-400"
                   )}
                 />
                 <span className="flex-1">{it.label}</span>
@@ -123,7 +123,7 @@ export default function AdminSidebar({ email }: { email: string | null }) {
       <div className="sticky top-0 z-30 flex items-center justify-between border-b border-slate-800 bg-[#091124] px-4 py-3 md:hidden">
         <Link
           href="/admin"
-          className="flex items-center gap-2.5 font-display font-extrabold text-white"
+          className="flex items-center gap-2.5 font-display font-extrabold text-slate-100"
         >
           <Image
             src={logoImg}
@@ -132,11 +132,11 @@ export default function AdminSidebar({ email }: { email: string | null }) {
             height={28}
             className="h-7 w-7 object-contain drop-shadow-[0_0_8px_rgba(37,99,235,0.4)]"
           />
-          <span className="tracking-tight text-white">BYTESHIFT ADMIN</span>
+          <span className="tracking-tight text-slate-100">BYTESHIFT ADMIN</span>
         </Link>
         <button
           onClick={() => setOpen((v) => !v)}
-          className="rounded-lg border border-slate-700 bg-slate-800/80 p-2 text-slate-200 hover:text-white hover:bg-slate-700"
+          className="rounded-lg border border-slate-700 bg-slate-800/80 p-2 text-slate-200 hover:text-slate-100 hover:bg-slate-700"
           aria-label="Toggle sidebar"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -163,7 +163,7 @@ export default function AdminSidebar({ email }: { email: string | null }) {
               height={32}
               className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(37,99,235,0.5)]"
             />
-            <span className="font-display text-sm font-extrabold tracking-wider text-white">
+            <span className="font-display text-sm font-extrabold tracking-wider text-slate-100">
               BYTESHIFT ADMIN
             </span>
           </Link>

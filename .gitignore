@@ -12,3 +12,5 @@ next-env.d.ts
 .vercel
 .idea
 .vscode
+.neon
+.playwright-mcp

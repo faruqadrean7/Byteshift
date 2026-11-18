@@ -1,14 +1,27 @@
 export const SESSION_COOKIE_NAME = "byteshift_admin_session";
-const AUTH_SECRET =
-  process.env.AUTH_SECRET ||
-  process.env.JWT_SECRET ||
-  "byteshift-secret-key-change-in-production";
+
+const DEV_FALLBACK_SECRET = "byteshift-secret-key-change-in-production";
+
+function getAuthSecret(): string {
+  const secret = process.env.AUTH_SECRET || process.env.JWT_SECRET;
+  if (!secret) {
+    // Never allow the well-known fallback secret in production — a predictable
+    // key lets anyone forge a valid admin session token.
+    if (process.env.NODE_ENV === "production") {
+      throw new Error(
+        "AUTH_SECRET (or JWT_SECRET) must be set in production. Refusing to sign/verify sessions with the insecure default key."
+      );
+    }
+    return DEV_FALLBACK_SECRET;
+  }
+  return secret;
+}
 
 async function getKey(): Promise<CryptoKey> {
   const enc = new TextEncoder();
   return await crypto.subtle.importKey(
     "raw",
-    enc.encode(AUTH_SECRET),
+    enc.encode(getAuthSecret()),
     { name: "HMAC", hash: "SHA-256" },
     false,
     ["sign", "verify"]

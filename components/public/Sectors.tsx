@@ -148,7 +148,7 @@ export default function Sectors() {
         {/* Executive Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-10 border-b border-slate-200">
           <div className="max-w-3xl">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#06152D] tracking-tight">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#13203A] tracking-tight">
               Solusi Teruji di Berbagai Sektor
             </h2>
             <p className="mt-4 text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed">
@@ -158,7 +158,7 @@ export default function Sectors() {
           <Button
             asChild
             size="lg"
-            className="self-start lg:self-auto rounded-full bg-[#00A3FF] hover:bg-[#008FE0] text-white font-bold h-13 lg:h-14 px-8 py-4 text-sm sm:text-base shadow-md transition-all hover:scale-105 shrink-0"
+            className="self-start lg:self-auto rounded-full bg-[#4C9AED] hover:bg-[#3E85D8] text-slate-100 font-bold h-13 lg:h-14 px-8 py-4 text-sm sm:text-base shadow-md transition-all hover:scale-105 shrink-0"
           >
             <Link href="/kontak" className="flex items-center gap-2">
               <span>Jadwalkan Konsultasi Sektor</span>
@@ -173,8 +173,8 @@ export default function Sectors() {
             onClick={() => setActiveFilter("all")}
             className={`rounded-full px-5 lg:px-6 py-2.5 lg:py-3 text-xs sm:text-sm font-bold transition-all ${
               activeFilter === "all"
-                ? "bg-[#06152D] text-white shadow-md scale-105"
-                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-[#06152D]"
+                ? "bg-[#13203A] text-slate-100 shadow-md scale-105"
+                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-[#13203A]"
             }`}
           >
             Semua Sektor ({sectorsData.length})
@@ -183,8 +183,8 @@ export default function Sectors() {
             onClick={() => setActiveFilter("finance")}
             className={`rounded-full px-5 lg:px-6 py-2.5 lg:py-3 text-xs sm:text-sm font-bold transition-all ${
               activeFilter === "finance"
-                ? "bg-[#06152D] text-white shadow-md scale-105"
-                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-[#06152D]"
+                ? "bg-[#13203A] text-slate-100 shadow-md scale-105"
+                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-[#13203A]"
             }`}
           >
             Perbankan &amp; Enterprise
@@ -193,8 +193,8 @@ export default function Sectors() {
             onClick={() => setActiveFilter("industry")}
             className={`rounded-full px-5 lg:px-6 py-2.5 lg:py-3 text-xs sm:text-sm font-bold transition-all ${
               activeFilter === "industry"
-                ? "bg-[#06152D] text-white shadow-md scale-105"
-                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-[#06152D]"
+                ? "bg-[#13203A] text-slate-100 shadow-md scale-105"
+                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-[#13203A]"
             }`}
           >
             Manufaktur, IoT &amp; Logistik
@@ -203,8 +203,8 @@ export default function Sectors() {
             onClick={() => setActiveFilter("health")}
             className={`rounded-full px-5 lg:px-6 py-2.5 lg:py-3 text-xs sm:text-sm font-bold transition-all ${
               activeFilter === "health"
-                ? "bg-[#06152D] text-white shadow-md scale-105"
-                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-[#06152D]"
+                ? "bg-[#13203A] text-slate-100 shadow-md scale-105"
+                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-[#13203A]"
             }`}
           >
             Kesehatan &amp; SIMRS
@@ -213,8 +213,8 @@ export default function Sectors() {
             onClick={() => setActiveFilter("public")}
             className={`rounded-full px-5 lg:px-6 py-2.5 lg:py-3 text-xs sm:text-sm font-bold transition-all ${
               activeFilter === "public"
-                ? "bg-[#06152D] text-white shadow-md scale-105"
-                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-[#06152D]"
+                ? "bg-[#13203A] text-slate-100 shadow-md scale-105"
+                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-[#13203A]"
             }`}
           >
             Sektor Publik &amp; Edukasi
@@ -238,17 +238,17 @@ export default function Sectors() {
                     sizes="(max-width: 768px) 100vw, 25vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#06152D]/80 via-transparent to-black/30" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#13203A]/80 via-transparent to-black/30" />
                   
                   {/* Category Pill Tag */}
-                  <div className="absolute top-3 left-3 rounded-full bg-[#06152D]/80 border border-white/15 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-white backdrop-blur-md">
+                  <div className="absolute top-3 left-3 rounded-full bg-[#13203A]/80 border border-white/15 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-100 backdrop-blur-md">
                     {sector.categoryTag}
                   </div>
 
                   {/* Impact Metric Badge on Image Bottom */}
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 rounded-lg bg-white/95 backdrop-blur-md px-3 py-1 text-xs font-extrabold text-[#06152D] shadow-sm">
-                      <TrendingUp className="h-3.5 w-3.5 text-[#00A3FF]" />
+                    <span className="inline-flex items-center gap-1.5 rounded-lg bg-white/95 backdrop-blur-md px-3 py-1 text-xs font-extrabold text-[#13203A] shadow-sm">
+                      <TrendingUp className="h-3.5 w-3.5 text-[#4C9AED]" />
                       <span>{sector.impactMetric}</span>
                     </span>
                   </div>
@@ -256,7 +256,7 @@ export default function Sectors() {
 
                 {/* Content Area */}
                 <div className="p-6 lg:p-7">
-                  <h3 className="font-display text-lg lg:text-xl font-bold leading-snug text-[#06152D] group-hover:text-blue-600 transition-colors">
+                  <h3 className="font-display text-lg lg:text-xl font-bold leading-snug text-[#13203A] group-hover:text-blue-600 transition-colors">
                     {sector.name}
                   </h3>
 
@@ -285,7 +285,7 @@ export default function Sectors() {
                   className="flex items-center justify-between rounded-xl bg-slate-50 border border-slate-200/80 px-4 py-3 text-xs sm:text-sm font-bold text-slate-800 group-hover:bg-blue-50 group-hover:border-blue-200 group-hover:text-blue-700 transition-all"
                 >
                   <span>Konsultasi Sektor Ini</span>
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-[#00A3FF]" />
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-[#4C9AED]" />
                 </Link>
               </div>
             </div>

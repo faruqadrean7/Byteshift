@@ -16,7 +16,7 @@ export default async function AdminLayout({
     return <>{children}</>;
   }
   return (
-    <div className="min-h-screen bg-[#060B18] text-slate-100 md:grid md:grid-cols-[16rem_1fr] selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen bg-[#060B18] text-slate-100 md:grid md:grid-cols-[16rem_1fr] selection:bg-blue-500 selection:text-slate-100">
       <AdminSidebar email={user.email ?? null} />
       <div className="min-h-screen bg-[#060B18]">{children}</div>
     </div>

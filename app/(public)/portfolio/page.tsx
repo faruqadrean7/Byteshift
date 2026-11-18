@@ -14,18 +14,18 @@ export const metadata = buildMetadata({
 export default async function PortfolioPage() {
   const items = await getAllPortfolio();
   return (
-    <section className="relative overflow-hidden bg-[#030718] pt-36 pb-28 text-white min-h-screen">
+    <section className="relative overflow-hidden bg-[#0B1324] pt-36 pb-28 text-slate-100 min-h-screen">
       <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
-      <div className="absolute -top-40 right-1/4 h-[500px] w-[500px] rounded-full bg-blue-600/15 blur-[140px] pointer-events-none" />
+      <div className="absolute -top-40 right-1/4 h-[500px] w-[500px] rounded-full bg-blue-500/15 blur-[140px] pointer-events-none" />
       
       <div className="container relative">
-        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-950/60 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-cyan-300 backdrop-blur-md">
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-500/25 bg-sky-950/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-sky-300 backdrop-blur-md">
           <ShieldCheck className="h-3.5 w-3.5" />
           Rekam Jejak &amp; Studi Kasus
         </div>
-        <h1 className="font-display text-4xl font-extrabold leading-tight tracking-tight text-white md:text-6xl">
+        <h1 className="font-display text-4xl font-extrabold leading-tight tracking-tight text-slate-100 md:text-6xl">
           Implementasi Nyata,{" "}
-          <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-indigo-300 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-sky-300 via-blue-300 to-indigo-300 bg-clip-text text-transparent">
             Dampak Terukur
           </span>
         </h1>

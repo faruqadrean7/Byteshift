@@ -36,7 +36,7 @@ export default function SectionHeader({
       <h2
         className={cn(
           "font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-[1.18] tracking-tight",
-          invert ? "text-white" : "text-slate-900"
+          invert ? "text-slate-100" : "text-slate-900"
         )}
       >
         {title}

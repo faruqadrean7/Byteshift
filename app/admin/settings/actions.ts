@@ -2,10 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { query } from "@/lib/db";
+import { requireAdmin } from "@/lib/auth";
 import { getOptionalString, getString } from "@/lib/admin/parse";
 import type { Json } from "@/types/database";
 
 export async function saveSettings(formData: FormData) {
+  if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
+
   const heroStatsRaw = (formData.get("hero_stats_json") as string) ?? "[]";
   let hero_stats: Json = [];
   try {

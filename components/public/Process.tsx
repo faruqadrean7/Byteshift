@@ -50,17 +50,17 @@ export default function Process() {
 
           {/* Right Column: "Things You Didn't Know!" / Value Pillars */}
           <Reveal className="flex flex-col items-start justify-center">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight tracking-tight text-[#06152D]">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight tracking-tight text-[#13203A]">
               Things You
               <br />
-              <span className="text-[#00A3FF]">Didn&apos;t Know!</span>
+              <span className="text-[#4C9AED]">Didn&apos;t Know!</span>
             </h2>
 
             <div className="mt-8 space-y-4 lg:space-y-5 w-full">
               {differentiators.map((item) => (
                 <div key={item.title} className="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 lg:p-6 shadow-sm hover:border-blue-300 hover:shadow-md transition-all">
-                  <div className="font-display text-base sm:text-lg lg:text-xl font-bold text-[#06152D] flex items-center gap-2.5">
-                    <CheckCircle2 className="h-5 w-5 lg:h-6 lg:w-6 text-[#00A3FF] shrink-0" />
+                  <div className="font-display text-base sm:text-lg lg:text-xl font-bold text-[#13203A] flex items-center gap-2.5">
+                    <CheckCircle2 className="h-5 w-5 lg:h-6 lg:w-6 text-[#4C9AED] shrink-0" />
                     <span>{item.title}</span>
                   </div>
                   <p className="mt-2 pl-7.5 lg:pl-8.5 text-xs sm:text-sm lg:text-base text-slate-600 leading-relaxed">
@@ -73,7 +73,7 @@ export default function Process() {
             <div className="mt-8 lg:mt-10">
               <Button
                 asChild
-                className="h-13 sm:h-14 lg:h-16 rounded-full bg-[#00A3FF] hover:bg-[#008FE0] text-white font-bold px-8 sm:px-10 lg:px-12 text-sm sm:text-base lg:text-lg shadow-lg shadow-blue-500/25 transition-all hover:scale-105"
+                className="h-13 sm:h-14 lg:h-16 rounded-full bg-[#4C9AED] hover:bg-[#3E85D8] text-slate-100 font-bold px-8 sm:px-10 lg:px-12 text-sm sm:text-base lg:text-lg shadow-lg shadow-blue-500/25 transition-all hover:scale-105"
               >
                 <Link href="/kontak" className="flex items-center gap-2.5">
                   <span>Konsultasikan Kebutuhan Anda</span>
