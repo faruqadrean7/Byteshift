@@ -77,23 +77,23 @@ export default function PortfolioSection({ items = [] }: { items?: Portfolio[] }
   const displayItems = items.length > 0 ? items.slice(0, 3) : samplePortfolio;
 
   return (
-    <section id="portfolio" className="relative bg-white py-20 sm:py-28 lg:py-36 text-slate-900 border-b border-slate-200">
+    <section id="portfolio" className="relative bg-steel-light py-20 sm:py-28 lg:py-36 text-steel-ink">
       <div className="container relative px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-10 sm:pb-12 border-b border-slate-200">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-10 sm:pb-12 border-b border-slate-900/[0.08]">
           <div>
-            <div className="text-xs sm:text-sm font-bold uppercase tracking-widest text-blue-600">
+            <div className="text-xs sm:text-sm font-bold uppercase tracking-widest text-steel-accentink">
               Rekam Jejak Implementasi
             </div>
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-[#13203A]">
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-steel-ink">
               Our Case Study
             </h2>
           </div>
           <Button
             asChild
             variant="outline"
-            className="self-start sm:self-auto h-11 lg:h-12 rounded-full border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-blue-600 font-bold px-6 lg:px-8 shadow-sm transition-all text-xs sm:text-sm lg:text-base"
+            className="self-start sm:self-auto h-11 lg:h-12 rounded-full border-slate-900/15 text-steel-inkmuted hover:bg-slate-900/[0.04] hover:text-steel-accentink font-bold px-6 lg:px-8 shadow-sm transition-all text-xs sm:text-sm lg:text-base"
           >
             <Link href="/portfolio" className="flex items-center gap-2">
               <span>Lihat Semua Studi Kasus</span>
@@ -110,7 +110,7 @@ export default function PortfolioSection({ items = [] }: { items?: Portfolio[] }
               <Link
                 key={p.id || p.slug}
                 href={`/portfolio/${p.slug}`}
-                className="group flex flex-col overflow-hidden rounded-2xl lg:rounded-3xl bg-white border border-slate-200 shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-blue-300"
+                className="group flex flex-col overflow-hidden rounded-2xl lg:rounded-3xl bg-steel-lightcard border border-slate-900/[0.08] shadow-[0_10px_30px_-18px_rgba(31,42,61,0.25)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_44px_-20px_rgba(31,42,61,0.3)] hover:border-steel-accentink/30"
               >
                 {/* Cover Image */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
@@ -123,11 +123,11 @@ export default function PortfolioSection({ items = [] }: { items?: Portfolio[] }
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   ) : (
-                    <div className="grid h-full w-full place-items-center bg-blue-50 font-bold text-blue-600 text-lg">
+                    <div className="grid h-full w-full place-items-center bg-[#e4e9f1] font-bold text-steel-accentink text-lg">
                       {p.title.slice(0, 2).toUpperCase()}
                     </div>
                   )}
-                  <div className="absolute top-3 left-3 lg:top-4 lg:left-4 rounded-full bg-slate-900/80 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-slate-100 backdrop-blur-md">
+                  <div className="absolute top-3 left-3 lg:top-4 lg:left-4 rounded-full bg-steel-ink/80 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md">
                     {p.category}
                   </div>
                 </div>
@@ -136,24 +136,24 @@ export default function PortfolioSection({ items = [] }: { items?: Portfolio[] }
                 <div className="p-6 sm:p-7 lg:p-8 flex flex-1 flex-col justify-between">
                   <div>
                     {p.client_name && (
-                      <div className="flex items-center gap-1.5 text-xs lg:text-sm text-slate-500 font-semibold mb-2.5">
-                        <Building2 className="h-3.5 w-3.5 lg:h-4 lg:w-4 text-blue-600" />
+                      <div className="flex items-center gap-1.5 text-xs lg:text-sm text-steel-inkmuted font-semibold mb-2.5">
+                        <Building2 className="h-3.5 w-3.5 lg:h-4 lg:w-4 text-steel-accentink" />
                         <span>{p.client_name}</span>
                       </div>
                     )}
-                    <h3 className="font-display text-lg lg:text-xl xl:text-2xl font-bold leading-snug text-[#13203A] group-hover:text-blue-600 transition-colors">
+                    <h3 className="font-display text-lg lg:text-xl xl:text-2xl font-bold leading-snug text-steel-ink group-hover:text-steel-accentink transition-colors">
                       {p.title}
                     </h3>
-                    <p className="mt-3.5 line-clamp-3 text-sm sm:text-base leading-relaxed text-slate-600">
+                    <p className="mt-3.5 line-clamp-3 text-sm sm:text-base leading-relaxed text-steel-inkmuted">
                       {p.short_desc}
                     </p>
                   </div>
 
-                  <div className="mt-8 pt-5 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-xs sm:text-sm lg:text-base font-bold text-blue-600 group-hover:text-blue-700">
+                  <div className="mt-8 pt-5 border-t border-slate-900/[0.08] flex items-center justify-between">
+                    <span className="text-xs sm:text-sm lg:text-base font-bold text-steel-accentink group-hover:text-[#345681]">
                       Baca Studi Kasus
                     </span>
-                    <ArrowRight className="h-4 w-4 lg:h-5 lg:w-5 text-blue-600 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="h-4 w-4 lg:h-5 lg:w-5 text-steel-accentink transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
               </Link>
