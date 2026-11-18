@@ -39,6 +39,23 @@
 }
 
 @layer utilities {
+  .seam {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(148, 163, 184, 0.2),
+      transparent
+    );
+  }
+  .seam-to-light {
+    height: 80px;
+    background: linear-gradient(to bottom, #0e1420, #eef1f6);
+  }
+  .seam-to-dark {
+    height: 80px;
+    background: linear-gradient(to bottom, #eef1f6, #0e1420);
+  }
   .gradient-mask-b {
     mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   }
