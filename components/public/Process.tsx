@@ -27,14 +27,14 @@ const differentiators = [
 
 export default function Process() {
   return (
-    <section id="proses" className="relative bg-[#F8FAFC] py-20 sm:py-28 lg:py-36 text-slate-900 border-b border-slate-200 overflow-hidden">
+    <section id="proses" className="relative bg-steel-light py-20 sm:py-28 lg:py-36 text-steel-ink overflow-hidden">
       <div className="container relative px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
           
           {/* Left Column: Image with Signature Yellow Circle Accent */}
           <Reveal className="relative mx-auto w-full max-w-lg lg:max-w-none">
             {/* Signature Yellow Graphic Circle Accent */}
-            <div className="absolute -right-6 -top-6 sm:-right-8 sm:-top-8 lg:-right-10 lg:-top-10 h-44 w-44 sm:h-56 sm:w-56 lg:h-72 lg:w-72 rounded-full bg-[#FFD13B] pointer-events-none z-0" />
+            <div className="absolute -right-6 -top-6 sm:-right-8 sm:-top-8 lg:-right-10 lg:-top-10 h-44 w-44 sm:h-56 sm:w-56 lg:h-72 lg:w-72 rounded-full bg-steel-accentink/15 pointer-events-none z-0" />
             
             {/* Main Rounded Photo */}
             <div className="relative z-10 overflow-hidden rounded-3xl lg:rounded-[2.5rem] shadow-2xl border-4 lg:border-8 border-white aspect-[4/3] bg-slate-100">
@@ -50,20 +50,20 @@ export default function Process() {
 
           {/* Right Column: "Things You Didn't Know!" / Value Pillars */}
           <Reveal className="flex flex-col items-start justify-center">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight tracking-tight text-[#13203A]">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight tracking-tight text-steel-ink">
               Things You
               <br />
-              <span className="text-[#4C9AED]">Didn&apos;t Know!</span>
+              <span className="text-steel-accentink">Didn&apos;t Know!</span>
             </h2>
 
             <div className="mt-8 space-y-4 lg:space-y-5 w-full">
               {differentiators.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 lg:p-6 shadow-sm hover:border-blue-300 hover:shadow-md transition-all">
-                  <div className="font-display text-base sm:text-lg lg:text-xl font-bold text-[#13203A] flex items-center gap-2.5">
-                    <CheckCircle2 className="h-5 w-5 lg:h-6 lg:w-6 text-[#4C9AED] shrink-0" />
+                <div key={item.title} className="rounded-2xl border border-slate-900/[0.08] bg-steel-lightcard p-4 sm:p-5 lg:p-6 shadow-[0_10px_30px_-18px_rgba(31,42,61,0.25)] hover:border-steel-accentink/30 hover:shadow-[0_18px_40px_-20px_rgba(31,42,61,0.3)] transition-all">
+                  <div className="font-display text-base sm:text-lg lg:text-xl font-bold text-steel-ink flex items-center gap-2.5">
+                    <CheckCircle2 className="h-5 w-5 lg:h-6 lg:w-6 text-steel-accentink shrink-0" />
                     <span>{item.title}</span>
                   </div>
-                  <p className="mt-2 pl-7.5 lg:pl-8.5 text-xs sm:text-sm lg:text-base text-slate-600 leading-relaxed">
+                  <p className="mt-2 pl-7.5 lg:pl-8.5 text-xs sm:text-sm lg:text-base text-steel-inkmuted leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
@@ -73,7 +73,7 @@ export default function Process() {
             <div className="mt-8 lg:mt-10">
               <Button
                 asChild
-                className="h-13 sm:h-14 lg:h-16 rounded-full bg-[#4C9AED] hover:bg-[#3E85D8] text-slate-100 font-bold px-8 sm:px-10 lg:px-12 text-sm sm:text-base lg:text-lg shadow-lg shadow-blue-500/25 transition-all hover:scale-105"
+                className="h-13 sm:h-14 lg:h-16 rounded-full bg-steel-accentink hover:bg-[#345681] text-white font-bold px-8 sm:px-10 lg:px-12 text-sm sm:text-base lg:text-lg shadow-md transition-all hover:scale-105"
               >
                 <Link href="/kontak" className="flex items-center gap-2.5">
                   <span>Konsultasikan Kebutuhan Anda</span>
