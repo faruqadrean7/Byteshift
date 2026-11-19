@@ -69,18 +69,18 @@ export default function LeadForm() {
 
   if (done) {
     return (
-      <div className="rounded-2xl border border-blue-500/30 bg-blue-950/40 p-8 text-center backdrop-blur-md">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-500 text-slate-100 shadow-lg shadow-blue-600/30">
+      <div className="rounded-2xl border border-white/[0.08] bg-steel-surface2 p-8 text-center backdrop-blur-md">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-steel-accent text-[#0b1220] shadow-lg shadow-black/25">
           ✓
         </div>
-        <h3 className="mt-5 font-display text-xl font-bold text-slate-100">
+        <h3 className="mt-5 font-display text-xl font-bold text-steel-text">
           Inkuiri Proyek Berhasil Terkirim!
         </h3>
-        <p className="mt-2 text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
+        <p className="mt-2 text-sm text-steel-muted max-w-md mx-auto leading-relaxed">
           Tim technical consultant kami akan menganalisis kebutuhan Anda dan menghubungi via WhatsApp/Email dalam 1×24 jam kerja.
         </p>
         <Button
-          className="mt-6 border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800 hover:text-slate-100"
+          className="mt-6 border-white/[0.08] bg-steel-surface2 text-steel-muted hover:bg-steel-raise hover:text-steel-text"
           variant="outline"
           onClick={() => setDone(false)}
         >
@@ -103,23 +103,23 @@ export default function LeadForm() {
       />
 
       <div>
-        <Label htmlFor="name" className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+        <Label htmlFor="name" className="text-xs font-semibold uppercase tracking-wider text-steel-muted">
           Nama Lengkap / Instansi *
         </Label>
         <Input
           id="name"
           {...register("name")}
           placeholder="Misal: Bambang Hermawan (PT Solusi Maju)"
-          className="mt-1.5 border-slate-800 bg-slate-950/80 text-slate-100 placeholder:text-slate-500 focus:border-blue-500"
+          className="mt-1.5 border-white/[0.08] bg-steel-surface2 text-steel-text placeholder:text-steel-faint focus:border-steel-accent"
         />
         {errors.name && (
-          <p className="mt-1 text-xs text-rose-400">{errors.name.message}</p>
+          <p className="mt-1 text-xs text-rose-300">{errors.name.message}</p>
         )}
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <Label htmlFor="phone_wa" className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+          <Label htmlFor="phone_wa" className="text-xs font-semibold uppercase tracking-wider text-steel-muted">
             Nomor WhatsApp Aktif *
           </Label>
           <Input
@@ -127,16 +127,16 @@ export default function LeadForm() {
             {...register("phone_wa")}
             placeholder="081234567890"
             inputMode="tel"
-            className="mt-1.5 border-slate-800 bg-slate-950/80 text-slate-100 placeholder:text-slate-500 focus:border-blue-500"
+            className="mt-1.5 border-white/[0.08] bg-steel-surface2 text-steel-text placeholder:text-steel-faint focus:border-steel-accent"
           />
           {errors.phone_wa && (
-            <p className="mt-1 text-xs text-rose-400">
+            <p className="mt-1 text-xs text-rose-300">
               {errors.phone_wa.message}
             </p>
           )}
         </div>
         <div>
-          <Label htmlFor="email" className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+          <Label htmlFor="email" className="text-xs font-semibold uppercase tracking-wider text-steel-muted">
             Email Korporat / Pribadi
           </Label>
           <Input
@@ -144,14 +144,14 @@ export default function LeadForm() {
             type="email"
             {...register("email")}
             placeholder="nama@perusahaan.com"
-            className="mt-1.5 border-slate-800 bg-slate-950/80 text-slate-100 placeholder:text-slate-500 focus:border-blue-500"
+            className="mt-1.5 border-white/[0.08] bg-steel-surface2 text-steel-text placeholder:text-steel-faint focus:border-steel-accent"
           />
         </div>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <Label className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+          <Label className="text-xs font-semibold uppercase tracking-wider text-steel-muted">
             Domain &amp; Bidang Solusi *
           </Label>
           <div className="mt-1.5">
@@ -159,10 +159,10 @@ export default function LeadForm() {
               value={projectType}
               onValueChange={(v) => setValue("project_type", v)}
             >
-              <SelectTrigger className="border-slate-800 bg-slate-950/80 text-slate-100">
+              <SelectTrigger className="border-white/[0.08] bg-steel-surface2 text-steel-text">
                 <SelectValue placeholder="Pilih domain solusi" />
               </SelectTrigger>
-              <SelectContent className="border-slate-800 bg-slate-950 text-slate-100">
+              <SelectContent className="border-white/[0.08] bg-steel-base text-steel-text">
                 {projectTypes.map((p) => (
                   <SelectItem key={p.value} value={p.value}>
                     {p.label}
@@ -172,13 +172,13 @@ export default function LeadForm() {
             </Select>
           </div>
           {errors.project_type && (
-            <p className="mt-1 text-xs text-rose-400">
+            <p className="mt-1 text-xs text-rose-300">
               {errors.project_type.message}
             </p>
           )}
         </div>
         <div>
-          <Label className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+          <Label className="text-xs font-semibold uppercase tracking-wider text-steel-muted">
             Estimasi Budget Investasi
           </Label>
           <div className="mt-1.5">
@@ -186,10 +186,10 @@ export default function LeadForm() {
               value={budget}
               onValueChange={(v) => setValue("budget_range", v)}
             >
-              <SelectTrigger className="border-slate-800 bg-slate-950/80 text-slate-100">
+              <SelectTrigger className="border-white/[0.08] bg-steel-surface2 text-steel-text">
                 <SelectValue placeholder="Pilih estimasi investasi" />
               </SelectTrigger>
-              <SelectContent className="border-slate-800 bg-slate-950 text-slate-100">
+              <SelectContent className="border-white/[0.08] bg-steel-base text-steel-text">
                 {budgetRanges.map((b) => (
                   <SelectItem key={b.value} value={b.value}>
                     {b.label}
@@ -202,7 +202,7 @@ export default function LeadForm() {
       </div>
 
       <div>
-        <Label htmlFor="message" className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+        <Label htmlFor="message" className="text-xs font-semibold uppercase tracking-wider text-steel-muted">
           Uraian Kebutuhan &amp; Spesifikasi Awal
         </Label>
         <Textarea
@@ -210,7 +210,7 @@ export default function LeadForm() {
           {...register("message")}
           rows={5}
           placeholder="Jelaskan gambaran sistem yang ingin dibangun, target pengguna, integrasi hardware/API yang dibutuhkan, atau kendala sistem saat ini..."
-          className="mt-1.5 border-slate-800 bg-slate-950/80 text-slate-100 placeholder:text-slate-500 focus:border-blue-500"
+          className="mt-1.5 border-white/[0.08] bg-steel-surface2 text-steel-text placeholder:text-steel-faint focus:border-steel-accent"
         />
       </div>
 
@@ -218,14 +218,14 @@ export default function LeadForm() {
         type="submit"
         disabled={submitting}
         size="lg"
-        className="w-full bg-blue-500 font-semibold text-slate-100 shadow-xl shadow-blue-600/30 hover:bg-blue-500 py-6"
+        className="w-full bg-steel-accent font-semibold text-[#0b1220] shadow-xl shadow-black/25 hover:bg-steel-accent2 py-6"
       >
         <Send className="h-4 w-4" />
         {submitting ? "Mengirim Inkuiri..." : "Kirim Dokumen Inkuiri Proyek"}
       </Button>
 
-      <div className="flex items-center gap-2 text-xs text-slate-400">
-        <span className="h-1.5 w-1.5 rounded-full bg-blue-400 shrink-0" />
+      <div className="flex items-center gap-2 text-xs text-steel-faint">
+        <span className="h-1.5 w-1.5 rounded-full bg-steel-accent2 shrink-0" />
         <span>Informasi Anda dilindungi jaminan kerahasiaan &amp; Non-Disclosure Agreement (NDA).</span>
       </div>
     </form>
