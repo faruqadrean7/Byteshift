@@ -84,9 +84,9 @@ export default async function PortfolioDetailPage({
   };
 
   return (
-    <article className="relative overflow-hidden bg-[#0B1324] pt-36 pb-32 text-slate-100 min-h-screen">
+    <article className="relative overflow-hidden bg-[#0E1420] pt-36 pb-32 text-steel-text min-h-screen">
       <div className="absolute inset-0 grid-pattern opacity-15 pointer-events-none" />
-      <div className="absolute -top-40 right-1/3 h-[500px] w-[500px] rounded-full bg-blue-500/15 blur-[140px] pointer-events-none" />
+      <div className="absolute -top-40 right-1/3 h-[500px] w-[500px] rounded-full bg-steel-accent/12 blur-[140px] pointer-events-none" />
 
       <script
         type="application/ld+json"
@@ -99,7 +99,7 @@ export default async function PortfolioDetailPage({
         <div>
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-300 transition-colors hover:text-sky-400 group"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-steel-muted transition-colors hover:text-steel-accent2 group"
           >
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
             <span>Kembali ke Seluruh Studi Kasus</span>
@@ -108,20 +108,20 @@ export default async function PortfolioDetailPage({
 
         {/* Metadata Badges Bar */}
         <div className="mt-8 flex flex-wrap items-center gap-3">
-          <Badge className="rounded-full border-sky-500/25 bg-sky-950/60 text-sky-300 px-4 py-1.5 text-xs font-bold uppercase tracking-wider backdrop-blur-md">
+          <Badge className="rounded-full border-steel-accent/25 bg-steel-accent/15 text-steel-soft px-4 py-1.5 text-xs font-bold uppercase tracking-wider backdrop-blur-md">
             {item.category}
           </Badge>
 
           {item.client_name && (
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-[#152340]/80 px-4 py-1.5 text-xs font-semibold text-slate-200 backdrop-blur-md">
-              <Building2 className="h-3.5 w-3.5 text-sky-400" />
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-[#1A2436]/80 px-4 py-1.5 text-xs font-semibold text-steel-muted backdrop-blur-md">
+              <Building2 className="h-3.5 w-3.5 text-steel-accent2" />
               <span>{item.client_name}</span>
             </div>
           )}
 
           {item.year && (
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-[#152340]/80 px-4 py-1.5 text-xs font-semibold text-slate-200 backdrop-blur-md">
-              <Calendar className="h-3.5 w-3.5 text-sky-400" />
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-[#1A2436]/80 px-4 py-1.5 text-xs font-semibold text-steel-muted backdrop-blur-md">
+              <Calendar className="h-3.5 w-3.5 text-steel-accent2" />
               <span>Tahun {item.year}</span>
             </div>
           )}
@@ -135,12 +135,12 @@ export default async function PortfolioDetailPage({
         </div>
 
         {/* Project Title & Summary */}
-        <h1 className="mt-6 font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.15] tracking-tight text-slate-100">
+        <h1 className="mt-6 font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.15] tracking-tight text-steel-text">
           {item.title}
         </h1>
 
         {item.short_desc && (
-          <p className="mt-5 text-base sm:text-lg lg:text-xl leading-relaxed text-slate-300 max-w-4xl">
+          <p className="mt-5 text-base sm:text-lg lg:text-xl leading-relaxed text-steel-muted max-w-4xl">
             {item.short_desc}
           </p>
         )}
@@ -150,7 +150,7 @@ export default async function PortfolioDetailPage({
           {item.demo_url && (
             <Button
               asChild
-              className="h-12 lg:h-13 rounded-full bg-[#4C9AED] hover:bg-[#3E85D8] text-slate-100 font-bold px-7 shadow-lg shadow-blue-500/25 transition-all hover:scale-105 text-sm sm:text-base"
+              className="h-12 lg:h-13 rounded-full bg-steel-accent hover:bg-steel-accent2 text-[#0b1220] font-bold px-7 shadow-lg shadow-black/25 transition-all hover:scale-105 text-sm sm:text-base"
             >
               <a
                 href={item.demo_url}
@@ -167,10 +167,10 @@ export default async function PortfolioDetailPage({
           <Button
             asChild
             variant="outline"
-            className="h-12 lg:h-13 rounded-full border-slate-700 bg-[#152340]/70 text-slate-200 hover:bg-[#1E3566] hover:text-slate-100 px-7 text-sm sm:text-base font-semibold backdrop-blur-md"
+            className="h-12 lg:h-13 rounded-full border-white/[0.08] bg-[#1A2436]/70 text-steel-muted hover:bg-[#212D42] hover:text-steel-text px-7 text-sm sm:text-base font-semibold backdrop-blur-md"
           >
             <a href={wa} target="_blank" rel="noreferrer" className="flex items-center gap-2">
-              <MessageCircle className="h-4 w-4 lg:h-5 lg:w-5 text-sky-400" />
+              <MessageCircle className="h-4 w-4 lg:h-5 lg:w-5 text-steel-accent2" />
               <span>Konsultasikan Proyek Serupa</span>
             </a>
           </Button>
@@ -187,8 +187,8 @@ export default async function PortfolioDetailPage({
 
         {/* Impact Metrics Grid */}
         {metrics && Object.keys(metrics).length > 0 && (
-          <div className="mt-14 rounded-3xl border border-blue-500/20 bg-[#152340]/60 p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-300 mb-6">
+          <div className="mt-14 rounded-3xl border border-white/[0.08] bg-[#1A2436]/60 p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-steel-soft mb-6">
               <TrendingUp className="h-4 w-4" />
               <span>Hasil Nyata &amp; Dampak Implementasi</span>
             </div>
@@ -196,12 +196,12 @@ export default async function PortfolioDetailPage({
               {Object.entries(metrics).map(([k, v]) => (
                 <div
                   key={k}
-                  className="rounded-2xl border border-blue-500/20 bg-[#172748]/80 p-6 text-center backdrop-blur-md transition-all hover:border-sky-400/60/40"
+                  className="rounded-2xl border border-white/[0.08] bg-[#212D42]/80 p-6 text-center backdrop-blur-md transition-all hover:border-steel-accent/40"
                 >
-                  <div className="font-display text-3xl sm:text-4xl font-extrabold text-sky-300">
+                  <div className="font-display text-3xl sm:text-4xl font-extrabold text-steel-soft">
                     {v}
                   </div>
-                  <div className="mt-2 text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-300">
+                  <div className="mt-2 text-xs sm:text-sm font-semibold uppercase tracking-wider text-steel-muted">
                     {k.replace(/_/g, " ")}
                   </div>
                 </div>
@@ -212,8 +212,8 @@ export default async function PortfolioDetailPage({
 
         {/* Tech Stack & Architecture Badges */}
         {item.tech_stack.length > 0 && (
-          <div className="mt-10 rounded-3xl border border-blue-500/20 bg-[#152340]/60 p-6 sm:p-8 backdrop-blur-xl">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sky-300">
+          <div className="mt-10 rounded-3xl border border-white/[0.08] bg-[#1A2436]/60 p-6 sm:p-8 backdrop-blur-xl">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-steel-soft">
               <Layers className="h-4 w-4" />
               <span>Arsitektur &amp; Teknologi yang Digunakan</span>
             </div>
@@ -221,7 +221,7 @@ export default async function PortfolioDetailPage({
               {item.tech_stack.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-full border border-blue-500/30 bg-[#0B1324] px-4 py-1.5 text-xs sm:text-sm font-semibold text-slate-200 shadow-sm"
+                  className="rounded-full border border-white/[0.08] bg-[#0E1420] px-4 py-1.5 text-xs sm:text-sm font-semibold text-steel-muted shadow-sm"
                 >
                   {tech}
                 </span>
@@ -232,33 +232,33 @@ export default async function PortfolioDetailPage({
 
         {/* Full Case Study Story Narrative */}
         {item.full_content ? (
-          <div className="mt-14 rounded-3xl border border-blue-500/20 bg-[#152340]/40 p-6 sm:p-10 backdrop-blur-xl">
-            <div className="text-xs font-bold uppercase tracking-widest text-[#4C9AED] mb-6">
+          <div className="mt-14 rounded-3xl border border-white/[0.08] bg-[#1A2436]/40 p-6 sm:p-10 backdrop-blur-xl">
+            <div className="text-xs font-bold uppercase tracking-widest text-steel-accent2 mb-6">
               Studi Kasus &amp; Rekayasa Teknis Mendalam
             </div>
-            <div className="text-slate-300 text-base sm:text-lg leading-relaxed [&_p]:my-5 [&_p]:leading-relaxed [&_h2]:mt-12 [&_h2]:font-display [&_h2]:text-2xl sm:[&_h2]:text-3xl [&_h2]:font-bold [&_h2]:text-slate-100 [&_h3]:mt-8 [&_h3]:font-display [&_h3]:text-xl sm:[&_h3]:text-2xl [&_h3]:font-bold [&_h3]:text-slate-100 [&_ul]:my-5 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2.5 [&_ol]:my-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2.5 [&_blockquote]:my-8 [&_blockquote]:border-l-4 [&_blockquote]:border-sky-400/60 [&_blockquote]:pl-5 [&_blockquote]:text-slate-200 [&_blockquote]:italic [&_blockquote]:bg-[#172748]/80 [&_blockquote]:p-5 [&_blockquote]:rounded-r-2xl">
+            <div className="text-steel-muted text-base sm:text-lg leading-relaxed [&_p]:my-5 [&_p]:leading-relaxed [&_h2]:mt-12 [&_h2]:font-display [&_h2]:text-2xl sm:[&_h2]:text-3xl [&_h2]:font-bold [&_h2]:text-steel-text [&_h3]:mt-8 [&_h3]:font-display [&_h3]:text-xl sm:[&_h3]:text-2xl [&_h3]:font-bold [&_h3]:text-steel-text [&_ul]:my-5 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2.5 [&_ol]:my-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2.5 [&_blockquote]:my-8 [&_blockquote]:border-l-4 [&_blockquote]:border-steel-accent/50 [&_blockquote]:pl-5 [&_blockquote]:text-steel-muted [&_blockquote]:italic [&_blockquote]:bg-[#212D42]/80 [&_blockquote]:p-5 [&_blockquote]:rounded-r-2xl">
               <TiptapRenderer content={item.full_content} />
             </div>
           </div>
         ) : null}
 
         {/* Bottom Call to Action Card */}
-        <div className="mt-16 rounded-3xl border border-blue-500/30 bg-gradient-to-br from-[#182C52] via-[#13203A] to-[#0D1628] p-8 sm:p-12 text-center shadow-2xl relative overflow-hidden">
-          <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-sky-500/15 blur-3xl pointer-events-none" />
+        <div className="mt-16 rounded-3xl border border-white/[0.08] bg-gradient-to-br from-[#283347] via-[#151D2D] to-[#0E1420] p-8 sm:p-12 text-center shadow-2xl relative overflow-hidden">
+          <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-steel-accent/12 blur-3xl pointer-events-none" />
           <div className="relative z-10 max-w-2xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-widest text-sky-300">
+            <span className="text-xs font-bold uppercase tracking-widest text-steel-soft">
               Transformasi Sistem Perusahaan Anda
             </span>
-            <h3 className="mt-3 font-display text-2xl sm:text-4xl font-extrabold text-slate-100">
+            <h3 className="mt-3 font-display text-2xl sm:text-4xl font-extrabold text-steel-text">
               Ingin Membangun Solusi Seperti Ini?
             </h3>
-            <p className="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+            <p className="mt-4 text-sm sm:text-base text-steel-muted leading-relaxed">
               Diskusikan arsitektur sistem, integrasi API, atau kebutuhan portal web khusus perusahaan Anda bersama principal engineer Byteshift.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
               <Button
                 asChild
-                className="h-13 rounded-full bg-[#4C9AED] hover:bg-[#3E85D8] font-bold text-slate-100 shadow-xl shadow-blue-500/30 px-8 text-base"
+                className="h-13 rounded-full bg-steel-accent hover:bg-steel-accent2 font-bold text-[#0b1220] shadow-xl shadow-black/25 px-8 text-base"
               >
                 <a href={wa} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2.5">
                   <MessageCircle className="h-5 w-5" />
@@ -268,7 +268,7 @@ export default async function PortfolioDetailPage({
               <Button
                 asChild
                 variant="outline"
-                className="h-13 rounded-full border-slate-600 bg-white/5 text-slate-100 hover:bg-white/10 hover:border-white px-8 text-base font-semibold"
+                className="h-13 rounded-full border-white/20 bg-white/[0.04] text-steel-text hover:bg-white/10 hover:border-white px-8 text-base font-semibold"
               >
                 <Link href="/kontak">Kirim Permintaan Penawaran (RFP)</Link>
               </Button>
