@@ -28,6 +28,23 @@ const config: Config = {
     },
     extend: {
       colors: {
+        steel: {
+          base: "#0E1420",
+          surface: "#151D2D",
+          surface2: "#1A2436",
+          raise: "#212D42",
+          accent: "#6A8DB5",
+          accent2: "#84A6CC",
+          soft: "#B0C0D3",
+          text: "#ECEFF4",
+          muted: "#95A3B7",
+          faint: "#6B7A90",
+          light: "#EEF1F6",
+          lightcard: "#FFFFFF",
+          ink: "#1F2A3D",
+          inkmuted: "#5A6A80",
+          accentink: "#3C6193",
+        },
         brand: {
           DEFAULT: "#0B1536",
           dark: "#060C22",

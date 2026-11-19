@@ -74,18 +74,18 @@ export default function Testimonials({
       : visibleItems;
 
   return (
-    <section id="testimoni" className="relative bg-white py-20 sm:py-28 lg:py-36 text-slate-900 border-b border-slate-200">
+    <section id="testimoni" className="relative bg-steel-base py-20 sm:py-28 lg:py-36 text-steel-text">
       <div className="container relative px-4 sm:px-6 lg:px-8">
         
         {/* Centered Classic Section Heading */}
         <div className="text-center max-w-2xl lg:max-w-3xl mx-auto">
-          <div className="text-xs sm:text-sm font-bold uppercase tracking-widest text-blue-600">
+          <div className="text-xs sm:text-sm font-bold uppercase tracking-widest text-steel-accent2">
             Pengakuan Klien Kami
           </div>
-          <h2 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-[#13203A]">
+          <h2 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-steel-text">
             Client Testimonials
           </h2>
-          <p className="mt-3.5 text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed">
+          <p className="mt-3.5 text-sm sm:text-base lg:text-lg text-steel-muted leading-relaxed">
             Dengarkan langsung evaluasi para pimpinan perusahaan mengenai dampak nyata solusi teknologi bersama Byteshift.
           </p>
         </div>
@@ -97,7 +97,7 @@ export default function Testimonials({
           <button
             onClick={prev}
             aria-label="Testimonial sebelumnya"
-            className="absolute -left-3 sm:-left-5 lg:-left-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 items-center justify-center rounded-xl bg-[#4C9AED] hover:bg-[#3E85D8] text-slate-100 shadow-lg transition-all hover:scale-105 active:scale-95"
+            className="absolute -left-3 sm:-left-5 lg:-left-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 items-center justify-center rounded-xl bg-steel-accent hover:bg-steel-accent2 text-[#0b1220] shadow-lg transition-all hover:scale-105 active:scale-95"
           >
             <ChevronLeft className="h-6 w-6 lg:h-7 lg:w-7" />
           </button>
@@ -106,7 +106,7 @@ export default function Testimonials({
           <button
             onClick={next}
             aria-label="Testimonial selanjutnya"
-            className="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 items-center justify-center rounded-xl bg-[#4C9AED] hover:bg-[#3E85D8] text-slate-100 shadow-lg transition-all hover:scale-105 active:scale-95"
+            className="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 items-center justify-center rounded-xl bg-steel-accent hover:bg-steel-accent2 text-[#0b1220] shadow-lg transition-all hover:scale-105 active:scale-95"
           >
             <ChevronRight className="h-6 w-6 lg:h-7 lg:w-7" />
           </button>
@@ -116,21 +116,21 @@ export default function Testimonials({
             {displayItems.map((t, idx) => (
               <div
                 key={`${t.id || t.name}-${idx}`}
-                className="flex flex-col justify-between rounded-2xl lg:rounded-3xl bg-white border border-slate-200 p-7 lg:p-8 shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-blue-300 relative"
+                className="flex flex-col justify-between rounded-2xl lg:rounded-3xl bg-steel-surface2 border border-white/[0.08] p-7 lg:p-8 shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:border-steel-accent/40 relative"
               >
                 <div>
                   {/* Quotation Mark Icon */}
-                  <Quote className="h-10 w-10 lg:h-12 lg:w-12 text-blue-100 mb-4 lg:mb-5" />
+                  <Quote className="h-10 w-10 lg:h-12 lg:w-12 text-steel-accent/30 mb-4 lg:mb-5" />
 
                   {/* Testimonial Quote */}
-                  <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-slate-700 italic font-medium">
+                  <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-steel-muted italic font-medium">
                     &ldquo;{t.content}&rdquo;
                   </p>
                 </div>
 
                 {/* Client Avatar & Meta */}
-                <div className="mt-8 lg:mt-10 flex items-center gap-4 border-t border-slate-100 pt-5 lg:pt-6">
-                  <div className="relative h-12 w-12 lg:h-14 lg:w-14 shrink-0 overflow-hidden rounded-full border-2 border-blue-600 bg-slate-100">
+                <div className="mt-8 lg:mt-10 flex items-center gap-4 border-t border-white/[0.08] pt-5 lg:pt-6">
+                  <div className="relative h-12 w-12 lg:h-14 lg:w-14 shrink-0 overflow-hidden rounded-full border-2 border-steel-accent/50 bg-steel-raise">
                     {t.avatar_url ? (
                       <Image
                         src={publicMediaUrl(t.avatar_url)}
@@ -140,17 +140,17 @@ export default function Testimonials({
                         className="object-cover"
                       />
                     ) : (
-                      <div className="grid h-full w-full place-items-center font-bold text-sm lg:text-base text-blue-600 bg-blue-50">
+                      <div className="grid h-full w-full place-items-center font-bold text-sm lg:text-base text-steel-accent2 bg-steel-accent/15">
                         {t.name.slice(0, 2).toUpperCase()}
                       </div>
                     )}
                   </div>
                   <div>
-                    <div className="font-display text-sm sm:text-base font-bold text-[#13203A] flex items-center gap-1.5">
+                    <div className="font-display text-sm sm:text-base font-bold text-steel-text flex items-center gap-1.5">
                       <span>{t.name}</span>
-                      <CheckCircle2 className="h-4 w-4 text-blue-600" />
+                      <CheckCircle2 className="h-4 w-4 text-steel-accent2" />
                     </div>
-                    <div className="text-xs sm:text-sm text-slate-500 font-medium">
+                    <div className="text-xs sm:text-sm text-steel-faint font-medium">
                       {[t.role, t.company].filter(Boolean).join(" · ")}
                     </div>
                   </div>
@@ -164,7 +164,7 @@ export default function Testimonials({
         <div className="mt-12 lg:mt-16 text-center">
           <Button
             asChild
-            className="h-13 sm:h-14 lg:h-16 rounded-full bg-[#4C9AED] hover:bg-[#3E85D8] text-slate-100 font-bold px-8 sm:px-10 lg:px-12 text-sm sm:text-base lg:text-lg shadow-lg shadow-blue-500/25 transition-all hover:scale-105"
+            className="h-13 sm:h-14 lg:h-16 rounded-full bg-steel-accent hover:bg-steel-accent2 text-[#0b1220] font-bold px-8 sm:px-10 lg:px-12 text-sm sm:text-base lg:text-lg shadow-md shadow-black/20 transition-all hover:scale-105"
           >
             <Link href="/kontak" className="flex items-center gap-2.5">
               <span>Konsultasikan Kebutuhan Anda</span>

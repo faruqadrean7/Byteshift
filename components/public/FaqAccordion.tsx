@@ -9,16 +9,16 @@ export default function FaqAccordion({ faqs }: { faqs: Faq[] }) {
   const [openId, setOpenId] = useState<string | null>(faqs[0]?.id ?? null);
   if (!faqs.length) return null;
   return (
-    <section id="faq" className="relative bg-[#13203A] py-20 sm:py-28 lg:py-36 text-slate-100 border-b border-slate-800">
+    <section id="faq" className="relative bg-steel-base py-20 sm:py-28 lg:py-36 text-steel-text">
       <div className="container max-w-4xl lg:max-w-5xl relative px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl lg:max-w-3xl mx-auto">
-          <div className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#4C9AED]">
+          <div className="text-xs sm:text-sm font-bold uppercase tracking-widest text-steel-accent2">
             Pertanyaan Umum (FAQ)
           </div>
-          <h2 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-slate-100">
+          <h2 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-steel-text">
             Frequently Asked Questions
           </h2>
-          <p className="mt-3.5 text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed">
+          <p className="mt-3.5 text-sm sm:text-base lg:text-lg text-steel-muted leading-relaxed">
             Informasi transparan mengenai model keterlibatan konsultasi, kepemilikan kode sumber, kerahasiaan NDA, hingga garansi pemeliharaan sistem.
           </p>
         </div>
@@ -31,8 +31,8 @@ export default function FaqAccordion({ faqs }: { faqs: Faq[] }) {
                 className={cn(
                   "rounded-2xl lg:rounded-3xl border px-5 py-4 sm:px-7 sm:py-5 lg:px-8 lg:py-6 backdrop-blur-md transition-all duration-300",
                   open
-                    ? "border-[#4C9AED]/60 bg-[#1D3258] shadow-xl shadow-blue-500/10"
-                    : "border-slate-800 bg-[#152340] hover:border-slate-700 hover:bg-[#1B3056]"
+                    ? "border-steel-accent/50 bg-[#212D42] shadow-xl shadow-black/20"
+                    : "border-white/[0.08] bg-[#1A2436] hover:border-white/15 hover:bg-[#212D42]"
                 )}
               >
                 <button
@@ -41,15 +41,15 @@ export default function FaqAccordion({ faqs }: { faqs: Faq[] }) {
                   aria-expanded={open}
                   className="flex w-full items-center justify-between gap-4 text-left group"
                 >
-                  <span className="font-display text-base sm:text-lg lg:text-xl font-bold text-slate-100 group-hover:text-[#4C9AED] transition-colors">
+                  <span className="font-display text-base sm:text-lg lg:text-xl font-bold text-steel-text group-hover:text-steel-accent2 transition-colors">
                     {f.question}
                   </span>
                   <span
                     className={cn(
                       "grid h-8 w-8 lg:h-10 lg:w-10 shrink-0 place-items-center rounded-full transition-colors",
                       open
-                        ? "bg-[#4C9AED] text-slate-100 font-bold"
-                        : "bg-white/10 border border-white/10 text-slate-300"
+                        ? "bg-steel-accent text-[#0b1220] font-bold"
+                        : "bg-white/10 border border-white/10 text-steel-muted"
                     )}
                   >
                     {open ? (
@@ -68,7 +68,7 @@ export default function FaqAccordion({ faqs }: { faqs: Faq[] }) {
                   )}
                 >
                   <div className="overflow-hidden">
-                    <p className="border-t border-slate-700/60 pt-4 lg:pt-5 text-sm sm:text-base lg:text-[17px] leading-relaxed text-slate-300">
+                    <p className="border-t border-white/[0.08] pt-4 lg:pt-5 text-sm sm:text-base lg:text-[17px] leading-relaxed text-steel-muted">
                       {f.answer}
                     </p>
                   </div>

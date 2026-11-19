@@ -19,7 +19,7 @@ export default function FloatingWhatsApp({
       target="_blank"
       rel="noreferrer"
       aria-label="Chat WhatsApp"
-      className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-slate-100 shadow-xl shadow-emerald-500/30 transition-all hover:-translate-y-0.5 hover:shadow-2xl"
+      className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-black/25 transition-all hover:-translate-y-0.5 hover:shadow-xl"
     >
       <span className="relative flex h-3 w-3">
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/70 opacity-75" />

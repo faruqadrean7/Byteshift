@@ -59,9 +59,9 @@ export default async function BlogPostPage({
   };
 
   return (
-    <article className="relative overflow-hidden bg-[#0B1324] pt-36 pb-28 text-slate-100 min-h-screen">
+    <article className="relative overflow-hidden bg-[#0E1420] pt-36 pb-28 text-steel-text min-h-screen">
       <div className="absolute inset-0 grid-pattern opacity-15 pointer-events-none" />
-      <div className="absolute -top-40 right-1/3 h-[500px] w-[500px] rounded-full bg-blue-500/15 blur-[140px] pointer-events-none" />
+      <div className="absolute -top-40 right-1/3 h-[500px] w-[500px] rounded-full bg-steel-accent/12 blur-[140px] pointer-events-none" />
       
       <script
         type="application/ld+json"
@@ -70,7 +70,7 @@ export default async function BlogPostPage({
       <div className="container max-w-3xl relative">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm font-medium text-slate-300 transition-colors hover:text-sky-400"
+          className="inline-flex items-center gap-2 text-sm font-medium text-steel-muted transition-colors hover:text-steel-accent2"
         >
           <ArrowLeft className="h-4 w-4" /> Kembali ke Seluruh Publikasi
         </Link>
@@ -78,22 +78,22 @@ export default async function BlogPostPage({
           {post.tags.map((t) => (
             <span
               key={t}
-              className="rounded-full border border-sky-500/25 bg-sky-950/50 px-3 py-1 text-xs font-semibold text-sky-300"
+              className="rounded-full border border-steel-accent/25 bg-steel-accent/15 px-3 py-1 text-xs font-semibold text-steel-soft"
             >
               {t}
             </span>
           ))}
         </div>
-        <h1 className="mt-5 font-display text-3xl font-extrabold leading-tight tracking-tight text-slate-100 md:text-5xl">
+        <h1 className="mt-5 font-display text-3xl font-extrabold leading-tight tracking-tight text-steel-text md:text-5xl">
           {post.title}
         </h1>
         {post.published_at && (
-          <div className="mt-4 text-xs font-medium text-slate-300">
+          <div className="mt-4 text-xs font-medium text-steel-muted">
             Diterbitkan pada {format(new Date(post.published_at), "d MMMM yyyy", { locale: id })} · Byteshift Engineering Insights
           </div>
         )}
         {cover && (
-          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-3xl border border-blue-500/20 bg-[#0B1324] shadow-2xl">
+          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0E1420] shadow-2xl">
             <Image
               src={cover}
               alt={post.title}
@@ -104,11 +104,11 @@ export default async function BlogPostPage({
             />
           </div>
         )}
-        <div className="mt-12 text-slate-300 text-base leading-relaxed [&_p]:my-5 [&_p]:leading-relaxed [&_h2]:mt-12 [&_h2]:font-display [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-100 [&_h3]:mt-8 [&_h3]:font-display [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-slate-100 [&_ul]:my-5 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ol]:my-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_blockquote]:my-8 [&_blockquote]:border-l-4 [&_blockquote]:border-sky-500/40 [&_blockquote]:pl-5 [&_blockquote]:text-slate-200 [&_blockquote]:italic [&_blockquote]:bg-[#131F38]/70 [&_blockquote]:p-4 [&_blockquote]:rounded-r-2xl">
+        <div className="mt-12 text-steel-muted text-base leading-relaxed [&_p]:my-5 [&_p]:leading-relaxed [&_h2]:mt-12 [&_h2]:font-display [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-steel-text [&_h3]:mt-8 [&_h3]:font-display [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-steel-text [&_ul]:my-5 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ol]:my-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_blockquote]:my-8 [&_blockquote]:border-l-4 [&_blockquote]:border-steel-accent/40 [&_blockquote]:pl-5 [&_blockquote]:text-steel-muted [&_blockquote]:italic [&_blockquote]:bg-[#151D2D]/70 [&_blockquote]:p-4 [&_blockquote]:rounded-r-2xl">
           {post.content ? (
             <TiptapRenderer content={post.content} />
           ) : post.excerpt ? (
-            <p className="text-lg text-slate-300">{post.excerpt}</p>
+            <p className="text-lg text-steel-muted">{post.excerpt}</p>
           ) : null}
         </div>
       </div>

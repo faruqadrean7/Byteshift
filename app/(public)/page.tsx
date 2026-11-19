@@ -44,34 +44,42 @@ export default async function HomePage() {
         }}
       />
 
-      {/* 1. Hero — First impression, video background & solution proposition */}
+      {/* 1. Hero — dark; its own curved wave bridges into the next dark section */}
       <Hero settings={settings} />
 
-      {/* 2. About Us — Value & identity with signature yellow graphic accent */}
+      {/* 2. About Us — dark */}
       <About />
 
-      {/* 3. Sektor Industri & Solusi — 4 thumbnail cards with central play badges */}
+      <div className="seam" aria-hidden />
+      {/* 3. Sektor Industri & Solusi — dark */}
       <Sectors />
 
-      {/* 4. Testimonials — 3-card clean carousel */}
+      <div className="seam" aria-hidden />
+      {/* 4. Testimonials — dark */}
       <Testimonials testimonials={testimonials} />
 
-      {/* 5. What We Do — Deep navy section with highlighted sky-blue card */}
+      <div className="seam" aria-hidden />
+      {/* 5. What We Do — dark */}
       <Packages waNumber={settings?.whatsapp_number} />
 
-      {/* 6. Case Studies — 3-column project showcase */}
+      {/* 6. Case Studies — LIGHT interlude (smooth gradient seams on both sides) */}
+      <div className="seam-to-light" aria-hidden />
       <PortfolioSection items={portfolio} />
+      <div className="seam-to-dark" aria-hidden />
 
-      {/* 7. Still Unsure CTA + Integrated Client Logo Strip */}
+      {/* 7. Still Unsure CTA — dark */}
       <CTA waNumber={settings?.whatsapp_number} />
 
-      {/* 8. Things You Didn't Know (Process) — yellow graphic accent + enterprise guarantees */}
+      {/* 8. Things You Didn't Know (Process) — LIGHT interlude */}
+      <div className="seam-to-light" aria-hidden />
       <Process />
+      <div className="seam-to-dark" aria-hidden />
 
-      {/* 9. FAQ Accordion — Transparent answers to common questions */}
+      {/* 9. FAQ Accordion — dark */}
       <FaqAccordion faqs={faqs} />
 
-      {/* 10. Trust Pillar Cards — 4 feature boxes right above footer */}
+      <div className="seam" aria-hidden />
+      {/* 10. Trust Pillar Cards — dark, right above footer */}
       <HeroMetrics />
     </>
   );

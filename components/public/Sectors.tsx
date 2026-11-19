@@ -142,23 +142,23 @@ export default function Sectors() {
       : sectorsData.filter((s) => s.filterGroup === activeFilter);
 
   return (
-    <section id="sektor" className="relative bg-[#F8FAFC] py-20 sm:py-28 lg:py-36 text-slate-900 border-b border-slate-200">
+    <section id="sektor" className="relative bg-steel-surface py-20 sm:py-28 lg:py-36 text-steel-text">
       <div className="container relative px-4 sm:px-6">
-        
+
         {/* Executive Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-10 border-b border-slate-200">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-10 border-b border-white/[0.08]">
           <div className="max-w-3xl">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#13203A] tracking-tight">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-steel-text tracking-tight">
               Solusi Teruji di Berbagai Sektor
             </h2>
-            <p className="mt-4 text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed">
+            <p className="mt-4 text-base sm:text-lg lg:text-xl text-steel-muted leading-relaxed">
               Arsitektur rekayasa software dan konsultasi teknologi yang dirancang khusus menjawab regulasi ketat, kompleksitas data, dan target efisiensi bisnis Anda.
             </p>
           </div>
           <Button
             asChild
             size="lg"
-            className="self-start lg:self-auto rounded-full bg-[#4C9AED] hover:bg-[#3E85D8] text-slate-100 font-bold h-13 lg:h-14 px-8 py-4 text-sm sm:text-base shadow-md transition-all hover:scale-105 shrink-0"
+            className="self-start lg:self-auto rounded-full bg-steel-accent hover:bg-steel-accent2 text-[#0b1220] font-bold h-13 lg:h-14 px-8 py-4 text-sm sm:text-base shadow-md transition-all hover:scale-105 shrink-0"
           >
             <Link href="/kontak" className="flex items-center gap-2">
               <span>Jadwalkan Konsultasi Sektor</span>
@@ -173,8 +173,8 @@ export default function Sectors() {
             onClick={() => setActiveFilter("all")}
             className={`rounded-full px-5 lg:px-6 py-2.5 lg:py-3 text-xs sm:text-sm font-bold transition-all ${
               activeFilter === "all"
-                ? "bg-[#13203A] text-slate-100 shadow-md scale-105"
-                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-[#13203A]"
+                ? "bg-steel-accent text-[#0b1220] shadow-md scale-105"
+                : "bg-steel-surface2 border border-white/[0.08] text-steel-muted hover:bg-steel-raise hover:text-steel-text"
             }`}
           >
             Semua Sektor ({sectorsData.length})
@@ -183,8 +183,8 @@ export default function Sectors() {
             onClick={() => setActiveFilter("finance")}
             className={`rounded-full px-5 lg:px-6 py-2.5 lg:py-3 text-xs sm:text-sm font-bold transition-all ${
               activeFilter === "finance"
-                ? "bg-[#13203A] text-slate-100 shadow-md scale-105"
-                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-[#13203A]"
+                ? "bg-steel-accent text-[#0b1220] shadow-md scale-105"
+                : "bg-steel-surface2 border border-white/[0.08] text-steel-muted hover:bg-steel-raise hover:text-steel-text"
             }`}
           >
             Perbankan &amp; Enterprise
@@ -193,8 +193,8 @@ export default function Sectors() {
             onClick={() => setActiveFilter("industry")}
             className={`rounded-full px-5 lg:px-6 py-2.5 lg:py-3 text-xs sm:text-sm font-bold transition-all ${
               activeFilter === "industry"
-                ? "bg-[#13203A] text-slate-100 shadow-md scale-105"
-                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-[#13203A]"
+                ? "bg-steel-accent text-[#0b1220] shadow-md scale-105"
+                : "bg-steel-surface2 border border-white/[0.08] text-steel-muted hover:bg-steel-raise hover:text-steel-text"
             }`}
           >
             Manufaktur, IoT &amp; Logistik
@@ -203,8 +203,8 @@ export default function Sectors() {
             onClick={() => setActiveFilter("health")}
             className={`rounded-full px-5 lg:px-6 py-2.5 lg:py-3 text-xs sm:text-sm font-bold transition-all ${
               activeFilter === "health"
-                ? "bg-[#13203A] text-slate-100 shadow-md scale-105"
-                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-[#13203A]"
+                ? "bg-steel-accent text-[#0b1220] shadow-md scale-105"
+                : "bg-steel-surface2 border border-white/[0.08] text-steel-muted hover:bg-steel-raise hover:text-steel-text"
             }`}
           >
             Kesehatan &amp; SIMRS
@@ -213,8 +213,8 @@ export default function Sectors() {
             onClick={() => setActiveFilter("public")}
             className={`rounded-full px-5 lg:px-6 py-2.5 lg:py-3 text-xs sm:text-sm font-bold transition-all ${
               activeFilter === "public"
-                ? "bg-[#13203A] text-slate-100 shadow-md scale-105"
-                : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-[#13203A]"
+                ? "bg-steel-accent text-[#0b1220] shadow-md scale-105"
+                : "bg-steel-surface2 border border-white/[0.08] text-steel-muted hover:bg-steel-raise hover:text-steel-text"
             }`}
           >
             Sektor Publik &amp; Edukasi
@@ -226,11 +226,11 @@ export default function Sectors() {
           {filteredSectors.map((sector) => (
             <div
               key={sector.id}
-              className="group flex flex-col justify-between overflow-hidden rounded-2xl bg-white border border-slate-200/90 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-blue-300"
+              className="group flex flex-col justify-between overflow-hidden rounded-2xl bg-steel-surface2 border border-white/[0.08] shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:border-steel-accent/40"
             >
               <div>
                 {/* Image Cover with Category & Impact Pill */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                <div className="relative aspect-[16/10] overflow-hidden bg-steel-raise">
                   <Image
                     src={sector.image}
                     alt={sector.name}
@@ -238,17 +238,17 @@ export default function Sectors() {
                     sizes="(max-width: 768px) 100vw, 25vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#13203A]/80 via-transparent to-black/30" />
-                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0E1420]/85 via-transparent to-black/30" />
+
                   {/* Category Pill Tag */}
-                  <div className="absolute top-3 left-3 rounded-full bg-[#13203A]/80 border border-white/15 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-100 backdrop-blur-md">
+                  <div className="absolute top-3 left-3 rounded-full bg-steel-base/80 border border-white/15 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-steel-text backdrop-blur-md">
                     {sector.categoryTag}
                   </div>
 
                   {/* Impact Metric Badge on Image Bottom */}
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
                     <span className="inline-flex items-center gap-1.5 rounded-lg bg-white/95 backdrop-blur-md px-3 py-1 text-xs font-extrabold text-[#13203A] shadow-sm">
-                      <TrendingUp className="h-3.5 w-3.5 text-[#4C9AED]" />
+                      <TrendingUp className="h-3.5 w-3.5 text-steel-accentink" />
                       <span>{sector.impactMetric}</span>
                     </span>
                   </div>
@@ -256,19 +256,19 @@ export default function Sectors() {
 
                 {/* Content Area */}
                 <div className="p-6 lg:p-7">
-                  <h3 className="font-display text-lg lg:text-xl font-bold leading-snug text-[#13203A] group-hover:text-blue-600 transition-colors">
+                  <h3 className="font-display text-lg lg:text-xl font-bold leading-snug text-steel-text group-hover:text-steel-accent2 transition-colors">
                     {sector.name}
                   </h3>
 
-                  <p className="mt-3 text-sm lg:text-[15px] leading-relaxed text-slate-600">
+                  <p className="mt-3 text-sm lg:text-[15px] leading-relaxed text-steel-muted">
                     {sector.executiveSummary}
                   </p>
 
                   {/* Clean Executive Bullet Highlights */}
-                  <div className="mt-6 space-y-3 border-t border-slate-100 pt-5">
+                  <div className="mt-6 space-y-3 border-t border-white/[0.08] pt-5">
                     {sector.keyBenefits.map((benefit, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs lg:text-sm text-slate-700">
-                        <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600">
+                      <div key={idx} className="flex items-start gap-2.5 text-xs lg:text-sm text-steel-muted">
+                        <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-steel-accent/15 text-steel-accent2">
                           <Check className="h-2.5 w-2.5 stroke-[3]" />
                         </div>
                         <span className="leading-snug">{benefit}</span>
@@ -282,10 +282,10 @@ export default function Sectors() {
               <div className="px-6 lg:px-7 pb-6 lg:pb-7 pt-2">
                 <Link
                   href={sector.href}
-                  className="flex items-center justify-between rounded-xl bg-slate-50 border border-slate-200/80 px-4 py-3 text-xs sm:text-sm font-bold text-slate-800 group-hover:bg-blue-50 group-hover:border-blue-200 group-hover:text-blue-700 transition-all"
+                  className="flex items-center justify-between rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-3 text-xs sm:text-sm font-bold text-steel-text group-hover:bg-steel-accent/15 group-hover:border-steel-accent/30 group-hover:text-steel-text transition-all"
                 >
                   <span>Konsultasi Sektor Ini</span>
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-[#4C9AED]" />
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-steel-accent2" />
                 </Link>
               </div>
             </div>
