@@ -12,7 +12,7 @@ export default function CTA({ waNumber }: { waNumber?: string | null }) {
   );
 
   return (
-    <section className="relative overflow-hidden bg-[#151D2D] text-steel-text">
+    <section className="relative overflow-hidden bg-[#0E1420] text-steel-text">
       
       {/* Banner Container with Atmospheric Image Background */}
       <div className="relative py-24 sm:py-32 lg:py-40 px-4 sm:px-6 lg:px-8">
@@ -23,7 +23,7 @@ export default function CTA({ waNumber }: { waNumber?: string | null }) {
           sizes="100vw"
           className="object-cover opacity-20"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#151D2D] via-[#151D2D]/90 to-[#151D2D]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0E1420] via-[#0E1420]/90 to-[#0E1420]" />
 
         <div className="container relative z-10 max-w-3xl lg:max-w-4xl text-center">
           <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-steel-text">

@@ -9,7 +9,7 @@ export default function FaqAccordion({ faqs }: { faqs: Faq[] }) {
   const [openId, setOpenId] = useState<string | null>(faqs[0]?.id ?? null);
   if (!faqs.length) return null;
   return (
-    <section id="faq" className="relative bg-steel-surface py-20 sm:py-28 lg:py-36 text-steel-text border-b border-white/[0.08]">
+    <section id="faq" className="relative bg-steel-base py-20 sm:py-28 lg:py-36 text-steel-text">
       <div className="container max-w-4xl lg:max-w-5xl relative px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl lg:max-w-3xl mx-auto">
           <div className="text-xs sm:text-sm font-bold uppercase tracking-widest text-steel-accent2">
