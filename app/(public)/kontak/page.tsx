@@ -33,7 +33,7 @@ export default async function KontakPage() {
           
           <h1 className="font-display text-4xl font-extrabold leading-tight tracking-tight text-steel-text md:text-5xl lg:text-6xl">
             Inisiasi Proyek &amp;{" "}
-            <span className="bg-gradient-to-r from-sky-300 via-blue-300 to-indigo-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-steel-accent2 via-steel-soft to-steel-accent2 bg-clip-text text-transparent">
               Konsultasi Solusi
             </span>
           </h1>

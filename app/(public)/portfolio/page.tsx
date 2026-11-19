@@ -25,7 +25,7 @@ export default async function PortfolioPage() {
         </div>
         <h1 className="font-display text-4xl font-extrabold leading-tight tracking-tight text-steel-text md:text-6xl">
           Implementasi Nyata,{" "}
-          <span className="bg-gradient-to-r from-sky-300 via-blue-300 to-indigo-300 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-steel-accent2 via-steel-soft to-steel-accent2 bg-clip-text text-transparent">
             Dampak Terukur
           </span>
         </h1>
