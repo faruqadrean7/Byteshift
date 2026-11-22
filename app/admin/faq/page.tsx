@@ -1,4 +1,7 @@
+import Link from "next/link";
 import { query } from "@/lib/db";
+import { getAdminToken } from "@/lib/auth";
+import { fastApiAdminGetFaqs } from "@/lib/fastapi";
 import PageHeader from "@/components/admin/PageHeader";
 import AdminTable from "@/components/admin/AdminTable";
 import RowActions from "@/components/admin/RowActions";
@@ -9,15 +12,22 @@ import type { Faq } from "@/types/database";
 export const dynamic = "force-dynamic";
 
 export default async function Page() {
-  const items = await query<Faq>(
-    "SELECT * FROM faqs ORDER BY order_index ASC"
-  );
+  const token = await getAdminToken();
+  let items: Faq[] = [];
+
+  if (token) {
+    items = await fastApiAdminGetFaqs(token);
+  }
+
+  if (!items.length) {
+    items = await query<Faq>("SELECT * FROM faqs ORDER BY order_index ASC");
+  }
 
   return (
     <div className="container max-w-6xl py-10">
       <PageHeader
         title="FAQ"
-        subtitle="Daftar pertanyaan yang sering diajukan calon klien."
+        subtitle="Pertanyaan umum yang sering ditanyakan klien."
         newHref="/admin/faq/new"
       />
       <AdminTable
@@ -25,34 +35,37 @@ export default async function Page() {
           { key: "q", label: "Pertanyaan" },
           { key: "c", label: "Kategori", className: "w-32" },
           { key: "o", label: "Urut", className: "w-16" },
-          { key: "p", label: "Status", className: "w-20" },
+          { key: "a", label: "Status", className: "w-24" },
           { key: "x", label: "", className: "w-24 text-right" },
         ]}
         rows={items.map((f) => [
           <div key="q">
-            <div className="font-semibold text-slate-100">{f.question}</div>
-            <p className="line-clamp-1 text-xs text-slate-400">{f.answer}</p>
+            <Link
+              href={`/admin/faq/${f.id}`}
+              className="font-semibold text-slate-100 hover:text-blue-400 transition-colors"
+            >
+              {f.question}
+            </Link>
           </div>,
-          <Badge key="c" variant="secondary">
-            {f.category ?? "general"}
-          </Badge>,
-          <span key="o" className="font-mono text-xs text-slate-300">{f.order_index}</span>,
+          <span key="c" className="text-xs text-slate-300 capitalize">
+            {f.category}
+          </span>,
+          <span key="o" className="font-mono text-xs text-slate-300">
+            {f.order_index}
+          </span>,
           f.is_active ? (
-            <Badge key="p" variant="success">
+            <Badge key="a" variant="success">
               Aktif
             </Badge>
           ) : (
-            <Badge key="p" variant="muted">
+            <Badge key="a" variant="muted">
               Nonaktif
             </Badge>
           ),
           <RowActions
             key="x"
             editHref={`/admin/faq/${f.id}`}
-            onDelete={async () => {
-              "use server";
-              return await deleteFaq(f.id);
-            }}
+            onDelete={deleteFaq.bind(null, f.id)}
           />,
         ])}
       />

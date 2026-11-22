@@ -46,6 +46,28 @@ DROP TRIGGER IF EXISTS trg_services_updated ON services;
 CREATE TRIGGER trg_services_updated BEFORE UPDATE ON services
   FOR EACH ROW EXECUTE FUNCTION touch_updated_at();
 
+-- ---------- 3b. sectors -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS sectors (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  slug TEXT UNIQUE NOT NULL,
+  name TEXT NOT NULL,
+  category_tag TEXT NOT NULL,
+  filter_group TEXT NOT NULL DEFAULT 'finance',
+  image TEXT NOT NULL,
+  executive_summary TEXT NOT NULL,
+  key_benefits TEXT[] NOT NULL DEFAULT '{}',
+  impact_metric TEXT NOT NULL,
+  href TEXT NOT NULL DEFAULT '/kontak',
+  order_index INT NOT NULL DEFAULT 0,
+  is_active BOOLEAN NOT NULL DEFAULT true,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+DROP TRIGGER IF EXISTS trg_sectors_updated ON sectors;
+CREATE TRIGGER trg_sectors_updated BEFORE UPDATE ON sectors
+  FOR EACH ROW EXECUTE FUNCTION touch_updated_at();
+
 -- ---------- 4. portfolio ----------------------------------------------------
 CREATE TABLE IF NOT EXISTS portfolio (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

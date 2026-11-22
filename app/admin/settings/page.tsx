@@ -1,4 +1,5 @@
 import { queryOne } from "@/lib/db";
+import { getSiteSettings } from "@/lib/queries";
 import FormShell from "@/components/admin/FormShell";
 import { Field } from "@/components/admin/Field";
 import ImageUpload from "@/components/admin/ImageUpload";
@@ -10,9 +11,13 @@ import type { SiteSettings } from "@/types/database";
 export const dynamic = "force-dynamic";
 
 export default async function SettingsPage() {
-  const s = await queryOne<SiteSettings>(
-    "SELECT * FROM site_settings WHERE id = 1 LIMIT 1"
-  );
+  let s = await getSiteSettings();
+
+  if (!s) {
+    s = await queryOne<SiteSettings>(
+      "SELECT * FROM site_settings WHERE id = 1 LIMIT 1"
+    );
+  }
   const social = (s?.social_links as Record<string, string> | null) ?? {};
 
   return (
@@ -69,23 +74,19 @@ export default async function SettingsPage() {
           defaultValue={social.twitter}
         />
       </div>
-      <h3 className="mt-4 font-display text-lg font-bold text-slate-100">Hero Highlights &amp; Stats</h3>
-      <div>
-        <Label htmlFor="hero_stats_json" className="text-sm font-semibold text-slate-200">
-          JSON array statistik di Hero Section
+      <div className="space-y-2">
+        <Label className="text-sm font-semibold text-slate-200">
+          Hero Stats (JSON Array)
         </Label>
-        <div className="mt-1.5">
-          <Textarea
-            id="hero_stats_json"
-            name="hero_stats_json"
-            rows={6}
-            className="font-mono text-xs"
-            defaultValue={JSON.stringify(s?.hero_stats ?? [], null, 2)}
-          />
-        </div>
-        <p className="mt-1.5 text-xs text-slate-400">
-          Format: <code className="text-blue-300">[{`{`}&quot;num&quot;:&quot;50+&quot;,&quot;label&quot;:&quot;Project Selesai&quot;{`}`}]</code>
+        <p className="text-xs text-slate-400">
+          Format: <code>{`[{"num":"50+","label":"Klien Aktif","desc":"Di seluruh Asia Pasifik"}]`}</code>
         </p>
+        <Textarea
+          name="hero_stats_json"
+          rows={5}
+          defaultValue={JSON.stringify(s?.hero_stats ?? [], null, 2)}
+          className="font-mono text-xs border-slate-700 bg-[#0F1A30] text-slate-200"
+        />
       </div>
     </FormShell>
   );

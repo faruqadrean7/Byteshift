@@ -5,8 +5,16 @@ import Image from "next/image";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Reveal from "./Reveal";
+import type { SiteSettings } from "@/types/database";
 
-export default function About() {
+export default function About({
+  settings,
+}: {
+  settings?: SiteSettings | null;
+}) {
+  const siteName = settings?.site_name || "Byteshift";
+  const tagline = settings?.tagline;
+
   return (
     <section id="tentang" className="relative bg-steel-base py-20 sm:py-28 lg:py-36 text-steel-text overflow-hidden">
       <div className="container relative px-4 sm:px-6">
@@ -32,13 +40,15 @@ export default function About() {
           {/* Right Column: Narrative & Action */}
           <Reveal className="flex flex-col items-start justify-center">
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-[1.12] tracking-tight text-steel-text">
-              Tentang Byteshift
+              Tentang {siteName}
               <br />
               <span className="text-steel-accent2">Technology Consulting</span>
             </h2>
 
             <p className="mt-5 lg:mt-6 text-base sm:text-lg lg:text-xl leading-relaxed text-steel-muted font-normal">
-              Byteshift adalah konsultan teknologi dan rekayasa perangkat lunak strategis. Kami mendampingi korporasi, institusi, dan bisnis berkembang dalam mengatasi kendala sistem yang lambat, mengotomatisasi alur kerja manual, dan membangun platform digital yang siap menopang pertumbuhan jangka panjang.
+              {tagline
+                ? `${siteName} adalah ${tagline.toLowerCase().startsWith("mitra") ? tagline : `mitra rekayasa teknologi dan konsultasi strategis. ${tagline}`}. Kami mendampingi korporasi, institusi, dan bisnis berkembang dalam mengatasi kendala sistem yang lambat, mengotomatisasi alur kerja manual, dan membangun platform digital yang siap menopang pertumbuhan jangka panjang.`
+                : `${siteName} adalah konsultan teknologi dan rekayasa perangkat lunak strategis. Kami mendampingi korporasi, institusi, dan bisnis berkembang dalam mengatasi kendala sistem yang lambat, mengotomatisasi alur kerja manual, dan membangun platform digital yang siap menopang pertumbuhan jangka panjang.`}
             </p>
 
             <div className="mt-7 lg:mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">

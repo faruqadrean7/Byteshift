@@ -1,7 +1,7 @@
 "use server";
 
 import { query } from "@/lib/db";
-import { requireAdmin } from "@/lib/auth";
+import { requireAdmin, getAdminToken } from "@/lib/auth";
 import {
   getArray,
   getBool,
@@ -14,6 +14,7 @@ import {
 import { revalidateForTable } from "@/lib/admin/revalidate";
 import { revalidatePath } from "next/cache";
 import { slugify } from "@/lib/utils";
+import { fastApiAdminSavePortfolio, fastApiAdminDeletePortfolio } from "@/lib/fastapi";
 import type { Json } from "@/types/database";
 
 export async function savePortfolio(formData: FormData) {
@@ -61,6 +62,41 @@ export async function savePortfolio(formData: FormData) {
   }
 
   if (!title || !category) return { error: "Lengkapi field wajib" };
+
+  const token = await getAdminToken();
+  if (token) {
+    try {
+      const saved = await fastApiAdminSavePortfolio(
+        token,
+        {
+          slug,
+          title,
+          category,
+          client_name,
+          year,
+          cover_image,
+          gallery,
+          short_desc,
+          full_content,
+          tech_stack,
+          demo_url,
+          project_url,
+          metrics,
+          is_featured,
+          is_published,
+          order_index,
+        },
+        id || undefined
+      );
+      if (saved) {
+        revalidateForTable("portfolio");
+        if (slug) revalidatePath(`/portfolio/${slug}`);
+        return;
+      }
+    } catch {
+      // fallback to DB if API unavailable
+    }
+  }
 
   try {
     if (id) {
@@ -129,6 +165,20 @@ export async function savePortfolio(formData: FormData) {
 
 export async function deletePortfolio(id: string) {
   if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
+
+  const token = await getAdminToken();
+  if (token) {
+    try {
+      const ok = await fastApiAdminDeletePortfolio(token, id);
+      if (ok) {
+        revalidateForTable("portfolio");
+        return;
+      }
+    } catch {
+      // fallback to DB if API unavailable
+    }
+  }
+
   try {
     await query("DELETE FROM portfolio WHERE id = $1", [id]);
     revalidateForTable("portfolio");

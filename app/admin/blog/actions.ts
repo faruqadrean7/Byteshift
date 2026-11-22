@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { query } from "@/lib/db";
-import { getCurrentUser, requireAdmin } from "@/lib/auth";
+import { getCurrentUser, requireAdmin, getAdminToken } from "@/lib/auth";
 import {
   getArray,
   getBool,
@@ -12,6 +12,7 @@ import {
 } from "@/lib/admin/parse";
 import { revalidateForTable } from "@/lib/admin/revalidate";
 import { slugify } from "@/lib/utils";
+import { fastApiAdminSaveBlog, fastApiAdminDeleteBlog } from "@/lib/fastapi";
 
 export async function saveBlogPost(formData: FormData) {
   if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
@@ -31,6 +32,35 @@ export async function saveBlogPost(formData: FormData) {
   const author_id = user?.id ?? null;
 
   if (!title) return { error: "Judul wajib diisi" };
+
+  const token = await getAdminToken();
+  if (token) {
+    try {
+      const saved = await fastApiAdminSaveBlog(
+        token,
+        {
+          slug,
+          title,
+          excerpt,
+          cover_image,
+          content,
+          tags,
+          is_published: isPublished,
+          meta_title,
+          meta_description,
+          author_id: author_id && author_id !== "admin-root" ? author_id : undefined,
+        },
+        id || undefined
+      );
+      if (saved) {
+        revalidateForTable("blog_posts");
+        if (slug) revalidatePath(`/blog/${slug}`);
+        return;
+      }
+    } catch {
+      // fallback to DB if API unavailable
+    }
+  }
 
   try {
     if (id) {
@@ -84,6 +114,20 @@ export async function saveBlogPost(formData: FormData) {
 
 export async function deleteBlogPost(id: string) {
   if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
+
+  const token = await getAdminToken();
+  if (token) {
+    try {
+      const ok = await fastApiAdminDeleteBlog(token, id);
+      if (ok) {
+        revalidateForTable("blog_posts");
+        return;
+      }
+    } catch {
+      // fallback to DB if API unavailable
+    }
+  }
+
   try {
     await query("DELETE FROM blog_posts WHERE id = $1", [id]);
     revalidateForTable("blog_posts");

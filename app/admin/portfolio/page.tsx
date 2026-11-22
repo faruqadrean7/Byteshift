@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { query } from "@/lib/db";
+import { getAdminToken } from "@/lib/auth";
+import { fastApiAdminGetPortfolio } from "@/lib/fastapi";
 import PageHeader from "@/components/admin/PageHeader";
 import AdminTable from "@/components/admin/AdminTable";
 import RowActions from "@/components/admin/RowActions";
@@ -12,9 +14,18 @@ import type { Portfolio } from "@/types/database";
 export const dynamic = "force-dynamic";
 
 export default async function Page() {
-  const items = await query<Portfolio>(
-    "SELECT * FROM portfolio ORDER BY order_index ASC"
-  );
+  const token = await getAdminToken();
+  let items: Portfolio[] = [];
+
+  if (token) {
+    items = await fastApiAdminGetPortfolio(token);
+  }
+
+  if (!items.length) {
+    items = await query<Portfolio>(
+      "SELECT * FROM portfolio ORDER BY order_index ASC"
+    );
+  }
 
   return (
     <div className="container max-w-6xl py-10">
@@ -55,25 +66,35 @@ export default async function Page() {
               {p.title}
             </Link>
             <div className="text-xs text-slate-400">
-              /{p.slug} · {p.client_name ?? "-"}
+              {p.client_name ? `${p.client_name} · ` : ""}
+              {p.slug}
             </div>
           </div>,
-          <Badge key="c" variant="secondary">
+          <span key="c" className="text-xs text-slate-300">
             {p.category}
-          </Badge>,
-          p.is_featured ? <Badge key="f" variant="default">Featured</Badge> : null,
-          p.is_published ? (
-            <Badge key="p" variant="success">Live</Badge>
+          </span>,
+          p.is_featured ? (
+            <Badge key="f" variant="warning">
+              Featured
+            </Badge>
           ) : (
-            <Badge key="p" variant="muted">Draft</Badge>
+            <span key="f" className="text-xs text-slate-500">
+              —
+            </span>
+          ),
+          p.is_published ? (
+            <Badge key="p" variant="success">
+              Publish
+            </Badge>
+          ) : (
+            <Badge key="p" variant="muted">
+              Draft
+            </Badge>
           ),
           <RowActions
             key="x"
             editHref={`/admin/portfolio/${p.id}`}
-            onDelete={async () => {
-              "use server";
-              return await deletePortfolio(p.id);
-            }}
+            onDelete={deletePortfolio.bind(null, p.id)}
           />,
         ])}
       />

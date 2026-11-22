@@ -2,8 +2,9 @@
 
 import { revalidatePath } from "next/cache";
 import { query } from "@/lib/db";
-import { requireAdmin } from "@/lib/auth";
+import { requireAdmin, getAdminToken } from "@/lib/auth";
 import { getOptionalString, getString } from "@/lib/admin/parse";
+import { fastApiAdminUpdateSettings } from "@/lib/fastapi";
 import type { Json } from "@/types/database";
 
 export async function saveSettings(formData: FormData) {
@@ -30,6 +31,29 @@ export async function saveSettings(formData: FormData) {
   const whatsapp_number = getOptionalString(formData, "whatsapp_number");
   const email = getOptionalString(formData, "email");
   const address = getOptionalString(formData, "address");
+
+  const token = await getAdminToken();
+  if (token) {
+    try {
+      const updated = await fastApiAdminUpdateSettings(token, {
+        site_name,
+        tagline,
+        logo_url,
+        whatsapp_number,
+        email,
+        address,
+        social_links,
+        hero_stats,
+      });
+      if (updated) {
+        revalidatePath("/admin/settings");
+        revalidatePath("/", "layout");
+        return;
+      }
+    } catch {
+      // fallback
+    }
+  }
 
   try {
     await query(
@@ -60,6 +84,7 @@ export async function saveSettings(formData: FormData) {
       ]
     );
 
+    revalidatePath("/admin/settings");
     revalidatePath("/", "layout");
   } catch (error) {
     return { error: error instanceof Error ? error.message : "Gagal menyimpan pengaturan" };

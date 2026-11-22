@@ -3,8 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, TrendingUp } from "lucide-react";
+import { ArrowRight, Check, TrendingUp, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { buildWhatsAppLink } from "@/lib/utils";
+import type { Sector } from "@/types/database";
 
 interface SectorItem {
   id: string;
@@ -133,13 +135,40 @@ const sectorsData: SectorItem[] = [
   },
 ];
 
-export default function Sectors() {
+interface SectorsProps {
+  initialSectors?: Sector[];
+  waNumber?: string | null;
+}
+
+export default function Sectors({ initialSectors, waNumber }: SectorsProps) {
   const [activeFilter, setActiveFilter] = useState<string>("all");
+
+  const headerWaMessage =
+    "Halo Tim Konsultan Byteshift, kami ingin menjadwalkan sesi konsultasi teknologi untuk sektor industri perusahaan kami.";
+  const headerWaLink = buildWhatsAppLink(headerWaMessage, waNumber ?? undefined);
+
+  const sectors: SectorItem[] =
+    initialSectors && initialSectors.length > 0
+      ? initialSectors.map((s) => ({
+          id: s.id,
+          name: s.name,
+          categoryTag: s.category_tag,
+          filterGroup: s.filter_group as "finance" | "industry" | "health" | "public",
+          image: s.image,
+          executiveSummary: s.executive_summary,
+          keyBenefits: [
+            s.key_benefits[0] || "",
+            s.key_benefits[1] || "",
+          ] as [string, string],
+          impactMetric: s.impact_metric,
+          href: s.href || "/kontak",
+        }))
+      : sectorsData;
 
   const filteredSectors =
     activeFilter === "all"
-      ? sectorsData
-      : sectorsData.filter((s) => s.filterGroup === activeFilter);
+      ? sectors
+      : sectors.filter((s) => s.filterGroup === activeFilter);
 
   return (
     <section id="sektor" className="relative bg-steel-surface py-20 sm:py-28 lg:py-36 text-steel-text">
@@ -160,10 +189,16 @@ export default function Sectors() {
             size="lg"
             className="self-start lg:self-auto rounded-full bg-steel-accent hover:bg-steel-accent2 text-[#0b1220] font-bold h-13 lg:h-14 px-8 py-4 text-sm sm:text-base shadow-md transition-all hover:scale-105 shrink-0"
           >
-            <Link href="/kontak" className="flex items-center gap-2">
+            <a
+              href={headerWaLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+            >
+              <MessageCircle className="h-4 w-4" />
               <span>Jadwalkan Konsultasi Sektor</span>
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </a>
           </Button>
         </div>
 
@@ -177,7 +212,7 @@ export default function Sectors() {
                 : "bg-steel-surface2 border border-white/[0.08] text-steel-muted hover:bg-steel-raise hover:text-steel-text"
             }`}
           >
-            Semua Sektor ({sectorsData.length})
+            Semua Sektor ({sectors.length})
           </button>
           <button
             onClick={() => setActiveFilter("finance")}
@@ -223,73 +258,100 @@ export default function Sectors() {
 
         {/* Sectors Cards Grid - Clean Corporate Architecture */}
         <div className="mt-9 lg:mt-12 grid gap-7 lg:gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {filteredSectors.map((sector) => (
-            <div
-              key={sector.id}
-              className="group flex flex-col justify-between overflow-hidden rounded-2xl bg-steel-surface2 border border-white/[0.08] shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:border-steel-accent/40"
-            >
-              <div>
-                {/* Image Cover with Category & Impact Pill */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-steel-raise">
-                  <Image
-                    src={sector.image}
-                    alt={sector.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 25vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0E1420]/85 via-transparent to-black/30" />
+          {filteredSectors.map((sector) => {
+            const sectorWaMessage = `Halo Tim Konsultan Byteshift, kami tertarik berkonsultasi mengenai solusi arsitektur sistem pada sektor *${sector.name}* (${sector.categoryTag}). Mohon informasi ketersediaan jadwal diskusi awal.`;
+            const targetHref =
+              sector.href && sector.href !== "/kontak"
+                ? sector.href
+                : buildWhatsAppLink(sectorWaMessage, waNumber ?? undefined);
+            const isExternal = targetHref.startsWith("http");
 
-                  {/* Category Pill Tag */}
-                  <div className="absolute top-3 left-3 rounded-full bg-steel-base/80 border border-white/15 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-steel-text backdrop-blur-md">
-                    {sector.categoryTag}
+            return (
+              <div
+                key={sector.id}
+                className="group flex flex-col justify-between overflow-hidden rounded-2xl bg-steel-surface2 border border-white/[0.08] shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:border-steel-accent/40"
+              >
+                <div>
+                  {/* Image Cover with Category & Impact Pill */}
+                  <div className="relative aspect-[16/10] overflow-hidden bg-steel-raise">
+                    <Image
+                      src={sector.image}
+                      alt={sector.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 25vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E1420]/85 via-transparent to-black/30" />
+
+                    {/* Category Pill Tag */}
+                    <div className="absolute top-3 left-3 rounded-full bg-steel-base/80 border border-white/15 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-steel-text backdrop-blur-md">
+                      {sector.categoryTag}
+                    </div>
+
+                    {/* Impact Metric Badge on Image Bottom */}
+                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                      <span className="inline-flex items-center gap-1.5 rounded-lg bg-white/95 backdrop-blur-md px-3 py-1 text-xs font-extrabold text-[#13203A] shadow-sm">
+                        <TrendingUp className="h-3.5 w-3.5 text-steel-accentink" />
+                        <span>{sector.impactMetric}</span>
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Impact Metric Badge on Image Bottom */}
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 rounded-lg bg-white/95 backdrop-blur-md px-3 py-1 text-xs font-extrabold text-[#13203A] shadow-sm">
-                      <TrendingUp className="h-3.5 w-3.5 text-steel-accentink" />
-                      <span>{sector.impactMetric}</span>
-                    </span>
-                  </div>
-                </div>
+                  {/* Content Area */}
+                  <div className="p-6 lg:p-7">
+                    <h3 className="font-display text-lg lg:text-xl font-bold leading-snug text-steel-text group-hover:text-steel-accent2 transition-colors">
+                      {sector.name}
+                    </h3>
 
-                {/* Content Area */}
-                <div className="p-6 lg:p-7">
-                  <h3 className="font-display text-lg lg:text-xl font-bold leading-snug text-steel-text group-hover:text-steel-accent2 transition-colors">
-                    {sector.name}
-                  </h3>
+                    <p className="mt-3 text-sm lg:text-[15px] leading-relaxed text-steel-muted">
+                      {sector.executiveSummary}
+                    </p>
 
-                  <p className="mt-3 text-sm lg:text-[15px] leading-relaxed text-steel-muted">
-                    {sector.executiveSummary}
-                  </p>
-
-                  {/* Clean Executive Bullet Highlights */}
-                  <div className="mt-6 space-y-3 border-t border-white/[0.08] pt-5">
-                    {sector.keyBenefits.map((benefit, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs lg:text-sm text-steel-muted">
-                        <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-steel-accent/15 text-steel-accent2">
-                          <Check className="h-2.5 w-2.5 stroke-[3]" />
+                    {/* Clean Executive Bullet Highlights */}
+                    <div className="mt-6 space-y-3 border-t border-white/[0.08] pt-5">
+                      {sector.keyBenefits.map((benefit, idx) => (
+                        <div key={idx} className="flex items-start gap-2.5 text-xs lg:text-sm text-steel-muted">
+                          <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-steel-accent/15 text-steel-accent2">
+                            <Check className="h-2.5 w-2.5 stroke-[3]" />
+                          </div>
+                          <span className="leading-snug">{benefit}</span>
                         </div>
-                        <span className="leading-snug">{benefit}</span>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Card Footer Action */}
-              <div className="px-6 lg:px-7 pb-6 lg:pb-7 pt-2">
-                <Link
-                  href={sector.href}
-                  className="flex items-center justify-between rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-3 text-xs sm:text-sm font-bold text-steel-text group-hover:bg-steel-accent/15 group-hover:border-steel-accent/30 group-hover:text-steel-text transition-all"
-                >
-                  <span>Konsultasi Sektor Ini</span>
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-steel-accent2" />
-                </Link>
+                {/* Card Footer Action */}
+                <div className="px-6 lg:px-7 pb-6 lg:pb-7 pt-2">
+                  {isExternal ? (
+                    <a
+                      href={targetHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-3 text-xs sm:text-sm font-bold text-steel-text hover:bg-steel-accent hover:border-steel-accent hover:text-[#0b1220] transition-all group/btn"
+                    >
+                      <div className="flex items-center gap-2">
+                        <MessageCircle className="h-4 w-4 text-steel-accent2 group-hover/btn:text-[#0b1220] transition-colors" />
+                        <span>Konsultasi Sektor Ini</span>
+                      </div>
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1 text-steel-accent2 group-hover/btn:text-[#0b1220]" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={targetHref}
+                      className="flex items-center justify-between rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-3 text-xs sm:text-sm font-bold text-steel-text hover:bg-steel-accent hover:border-steel-accent hover:text-[#0b1220] transition-all group/btn"
+                    >
+                      <div className="flex items-center gap-2">
+                        <MessageCircle className="h-4 w-4 text-steel-accent2 group-hover/btn:text-[#0b1220] transition-colors" />
+                        <span>Konsultasi Sektor Ini</span>
+                      </div>
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1 text-steel-accent2 group-hover/btn:text-[#0b1220]" />
+                    </Link>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

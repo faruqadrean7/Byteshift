@@ -51,12 +51,15 @@ function base64UrlDecode(str: string): string {
   return atob(str);
 }
 
-export async function signSession(payload: {
+export type SessionPayload = {
   id: string;
   email: string;
   role: string;
   exp: number;
-}): Promise<string> {
+  token?: string;
+};
+
+export async function signSession(payload: SessionPayload): Promise<string> {
   const data = base64UrlEncode(JSON.stringify(payload));
   const key = await getKey();
   const signatureBuffer = await crypto.subtle.sign(
@@ -75,7 +78,7 @@ export async function signSession(payload: {
 
 export async function verifySession(
   token: string
-): Promise<{ id: string; email: string; role: string } | null> {
+): Promise<SessionPayload | null> {
   try {
     const parts = token.split(".");
     if (parts.length !== 2) return null;

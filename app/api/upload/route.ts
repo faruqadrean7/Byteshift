@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser, getAdminToken } from "@/lib/auth";
 import { isS3Configured, uploadToS3 } from "@/lib/storage/s3";
+import { fastApiUpload } from "@/lib/fastapi";
 
 export const runtime = "nodejs";
 
@@ -49,6 +50,25 @@ export async function POST(request: Request) {
         { error: "Ukuran file melebihi batas 5 MB." },
         { status: 413 }
       );
+    }
+
+    // Try FastAPI Upload First (Decoupled Flow)
+    const token = await getAdminToken();
+    if (token) {
+      try {
+        const uploadForm = new FormData();
+        uploadForm.append("file", file);
+        const fastApiResult = await fastApiUpload(token, uploadForm);
+        if (fastApiResult?.url) {
+          return NextResponse.json({
+            ok: true,
+            url: fastApiResult.url,
+            path: fastApiResult.key || fastApiResult.url,
+          });
+        }
+      } catch (e) {
+        // fallback to local S3 or filesystem
+      }
     }
 
     const bytes = await file.arrayBuffer();

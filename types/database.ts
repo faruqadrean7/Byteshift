@@ -460,3 +460,20 @@ export type TeamMember = Tables<"team_members">;
 export type BlogPost = Tables<"blog_posts">;
 export type Lead = Tables<"leads">;
 export type SiteSettings = Tables<"site_settings">;
+
+export type Sector = {
+  id: string;
+  slug: string;
+  name: string;
+  category_tag: string;
+  filter_group: string;
+  image: string;
+  executive_summary: string;
+  key_benefits: string[];
+  impact_metric: string;
+  href: string;
+  order_index: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+};

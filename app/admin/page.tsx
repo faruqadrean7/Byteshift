@@ -15,11 +15,60 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { query, queryOne } from "@/lib/db";
+import { getAdminToken } from "@/lib/auth";
+import {
+  fastApiAdminGetPortfolio,
+  fastApiAdminGetBlog,
+  fastApiAdminGetLeads,
+} from "@/lib/fastapi";
 
 export const dynamic = "force-dynamic";
 
 async function getDashboardData() {
   try {
+    const token = await getAdminToken();
+    if (token) {
+      try {
+        const [portfolioList, blogList, leadsList] = await Promise.all([
+          fastApiAdminGetPortfolio(token),
+          fastApiAdminGetBlog(token),
+          fastApiAdminGetLeads(token),
+        ]);
+
+        if (portfolioList.length || blogList.length || leadsList.length) {
+          const total = leadsList.length;
+          const converted = leadsList.filter((l) => l.status === "converted").length;
+          const conversionRate = total > 0 ? Math.round((converted / total) * 100) : 0;
+          const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+          const leads7d = leadsList.filter(
+            (l) => new Date(l.created_at).getTime() >= sevenDaysAgo
+          ).length;
+
+          return {
+            stats: {
+              portfolio: portfolioList.length,
+              blog: blogList.length,
+              leads: total,
+              newLeads: leadsList.filter((l) => l.status === "new").length,
+              converted,
+              leadsLast7d: leads7d,
+              conversionRate,
+            },
+            recentLeads: leadsList.slice(0, 6).map((l) => ({
+              id: l.id,
+              name: l.name,
+              project_type: l.project_type,
+              status: l.status,
+              created_at: String(l.created_at),
+              phone_wa: l.phone_wa,
+            })),
+          };
+        }
+      } catch {
+        // fallback
+      }
+    }
+
     const [
       portfolioRes,
       blogRes,

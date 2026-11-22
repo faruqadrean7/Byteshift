@@ -3,6 +3,8 @@ import Image from "next/image";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
 import { query } from "@/lib/db";
+import { getAdminToken } from "@/lib/auth";
+import { fastApiAdminGetBlog } from "@/lib/fastapi";
 import PageHeader from "@/components/admin/PageHeader";
 import AdminTable from "@/components/admin/AdminTable";
 import RowActions from "@/components/admin/RowActions";
@@ -14,9 +16,18 @@ import type { BlogPost } from "@/types/database";
 export const dynamic = "force-dynamic";
 
 export default async function Page() {
-  const items = await query<BlogPost>(
-    "SELECT * FROM blog_posts ORDER BY created_at DESC"
-  );
+  const token = await getAdminToken();
+  let items: BlogPost[] = [];
+
+  if (token) {
+    items = await fastApiAdminGetBlog(token);
+  }
+
+  if (!items.length) {
+    items = await query<BlogPost>(
+      "SELECT * FROM blog_posts ORDER BY created_at DESC"
+    );
+  }
 
   return (
     <div className="container max-w-6xl py-10">
@@ -55,16 +66,18 @@ export default async function Page() {
             >
               {b.title}
             </Link>
-            <div className="text-xs text-slate-400">/{b.slug}</div>
+            <div className="text-xs text-slate-400">{b.slug}</div>
           </div>,
-          <span key="d" className="text-xs font-mono text-slate-400">
+          <span key="d" className="text-xs text-slate-300">
             {b.published_at
               ? format(new Date(b.published_at), "dd MMM yyyy", { locale: id })
-              : "-"}
+              : b.created_at
+              ? format(new Date(b.created_at), "dd MMM yyyy", { locale: id })
+              : "—"}
           </span>,
           b.is_published ? (
             <Badge key="p" variant="success">
-              Live
+              Publish
             </Badge>
           ) : (
             <Badge key="p" variant="muted">
@@ -74,10 +87,7 @@ export default async function Page() {
           <RowActions
             key="x"
             editHref={`/admin/blog/${b.id}`}
-            onDelete={async () => {
-              "use server";
-              return await deleteBlogPost(b.id);
-            }}
+            onDelete={deleteBlogPost.bind(null, b.id)}
           />,
         ])}
       />

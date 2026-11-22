@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { query } from "@/lib/db";
+import { getAdminToken } from "@/lib/auth";
+import { fastApiAdminGetServices } from "@/lib/fastapi";
 import PageHeader from "@/components/admin/PageHeader";
 import AdminTable from "@/components/admin/AdminTable";
 import RowActions from "@/components/admin/RowActions";
@@ -10,9 +12,18 @@ import type { Service } from "@/types/database";
 export const dynamic = "force-dynamic";
 
 export default async function AdminServicesPage() {
-  const items = await query<Service>(
-    "SELECT * FROM services ORDER BY order_index ASC"
-  );
+  const token = await getAdminToken();
+  let items: Service[] = [];
+
+  if (token) {
+    items = await fastApiAdminGetServices(token);
+  }
+
+  if (!items.length) {
+    items = await query<Service>(
+      "SELECT * FROM services ORDER BY order_index ASC"
+    );
+  }
 
   return (
     <div className="container max-w-6xl py-10">
@@ -49,14 +60,7 @@ export default async function AdminServicesPage() {
           ) : (
             <Badge key="a" variant="muted">Nonaktif</Badge>
           ),
-          <RowActions
-            key="act"
-            editHref={`/admin/services/${s.id}`}
-            onDelete={async () => {
-              "use server";
-              return await deleteService(s.id);
-            }}
-          />,
+          <RowActions key="x" editHref={`/admin/services/${s.id}`} onDelete={deleteService.bind(null, s.id)} />,
         ])}
       />
     </div>

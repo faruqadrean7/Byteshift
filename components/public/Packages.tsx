@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { buildWhatsAppLink } from "@/lib/utils";
+import type { Service } from "@/types/database";
 
 const whatWeDoCards = [
   {
@@ -49,10 +51,39 @@ const whatWeDoCards = [
 ];
 
 export default function Packages({
+  services = [],
   waNumber,
 }: {
+  services?: Service[];
   waNumber?: string | null;
 }) {
+  const cards =
+    services.length > 0
+      ? services.map((s, idx) => {
+          const isHighlighted =
+            s.tags.includes("highlight") || s.order_index === 1;
+          const category = s.tags[0] || "Solusi Bisnis";
+          const benefitHighlight =
+            s.tags[1] || "Garansi Stabilitas & Keamanan";
+          const image =
+            s.icon && (s.icon.startsWith("http") || s.icon.startsWith("/"))
+              ? s.icon
+              : whatWeDoCards[idx % whatWeDoCards.length]?.image ||
+                "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80";
+
+          return {
+            title: s.title,
+            category,
+            image,
+            description: s.description,
+            caseHighlight: "",
+            benefitHighlight,
+            isHighlighted,
+            href: "/kontak",
+          };
+        })
+      : whatWeDoCards;
+
   return (
     <section id="layanan" className="relative bg-steel-base py-20 sm:py-28 lg:py-36 text-steel-text overflow-hidden">
       <div className="container relative px-4 sm:px-6 lg:px-8">
@@ -76,7 +107,14 @@ export default function Packages({
 
         {/* 4 Vertical Feature Cards */}
         <div className="mt-10 lg:mt-14 grid gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-4 relative">
-          {whatWeDoCards.map((card) => {
+          {cards.map((card) => {
+            const serviceWaMsg = `Halo Tim Konsultan Byteshift, kami tertarik berkonsultasi mengenai solusi *${card.title}* (${card.category}) untuk perusahaan kami. Mohon informasi ketersediaan jadwal diskusi awal.`;
+            const targetHref =
+              card.href && card.href !== "/kontak"
+                ? card.href
+                : buildWhatsAppLink(serviceWaMsg, waNumber ?? undefined);
+            const isExternal = targetHref.startsWith("http");
+
             if (card.isHighlighted) {
               // Highlighted Vibrant Sky Blue Card (Matching reference design)
               return (
@@ -109,10 +147,27 @@ export default function Packages({
                       asChild
                       className="w-full h-11 lg:h-12 rounded-full bg-steel-accent text-[#0b1220] hover:bg-steel-accent2 font-bold shadow-md hover:scale-[1.02] transition-all"
                     >
-                      <Link href="/kontak" className="flex items-center justify-center gap-2 text-xs lg:text-sm">
-                        <span>Konsultasi Solusi</span>
-                        <ArrowRight className="h-4 w-4" />
-                      </Link>
+                      {isExternal ? (
+                        <a
+                          href={targetHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 text-xs lg:text-sm"
+                        >
+                          <MessageCircle className="h-4 w-4" />
+                          <span>Konsultasi Solusi</span>
+                          <ArrowRight className="h-4 w-4" />
+                        </a>
+                      ) : (
+                        <Link
+                          href={targetHref}
+                          className="flex items-center justify-center gap-2 text-xs lg:text-sm"
+                        >
+                          <MessageCircle className="h-4 w-4" />
+                          <span>Konsultasi Solusi</span>
+                          <ArrowRight className="h-4 w-4" />
+                        </Link>
+                      )}
                     </Button>
                   </div>
                 </div>
@@ -156,13 +211,27 @@ export default function Packages({
                 </div>
 
                 <div className="relative z-10 mt-8 pt-5 border-t border-white/[0.08]">
-                  <Link
-                    href={card.href}
-                    className="inline-flex items-center gap-2 text-xs lg:text-sm font-bold text-steel-accent2 group-hover:text-steel-text transition-colors"
-                  >
-                    <span>Konsultasikan Kebutuhan Ini</span>
-                    <ArrowRight className="h-3.5 w-3.5 lg:h-4 lg:w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
+                  {isExternal ? (
+                    <a
+                      href={targetHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-xs lg:text-sm font-bold text-steel-accent2 group-hover:text-steel-text transition-colors"
+                    >
+                      <MessageCircle className="h-3.5 w-3.5" />
+                      <span>Konsultasikan Kebutuhan Ini</span>
+                      <ArrowRight className="h-3.5 w-3.5 lg:h-4 lg:w-4 transition-transform group-hover:translate-x-1" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={targetHref}
+                      className="inline-flex items-center gap-2 text-xs lg:text-sm font-bold text-steel-accent2 group-hover:text-steel-text transition-colors"
+                    >
+                      <MessageCircle className="h-3.5 w-3.5" />
+                      <span>Konsultasikan Kebutuhan Ini</span>
+                      <ArrowRight className="h-3.5 w-3.5 lg:h-4 lg:w-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  )}
                 </div>
               </div>
             );

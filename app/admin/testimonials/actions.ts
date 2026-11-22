@@ -1,7 +1,7 @@
 "use server";
 
 import { query } from "@/lib/db";
-import { requireAdmin } from "@/lib/auth";
+import { requireAdmin, getAdminToken } from "@/lib/auth";
 import {
   getBool,
   getNumber,
@@ -9,6 +9,10 @@ import {
   getString,
 } from "@/lib/admin/parse";
 import { revalidateForTable } from "@/lib/admin/revalidate";
+import {
+  fastApiAdminSaveTestimonial,
+  fastApiAdminDeleteTestimonial,
+} from "@/lib/fastapi";
 
 export async function saveTestimonial(formData: FormData) {
   if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
@@ -24,6 +28,32 @@ export async function saveTestimonial(formData: FormData) {
   const order_index = getNumber(formData, "order_index");
 
   if (!name || !content) return { error: "Lengkapi field wajib" };
+
+  const token = await getAdminToken();
+  if (token) {
+    try {
+      const saved = await fastApiAdminSaveTestimonial(
+        token,
+        {
+          name,
+          role,
+          company,
+          content,
+          rating,
+          avatar_url,
+          is_published,
+          order_index,
+        },
+        id || undefined
+      );
+      if (saved) {
+        revalidateForTable("testimonials");
+        return;
+      }
+    } catch {
+      // fallback
+    }
+  }
 
   try {
     if (id) {
@@ -49,6 +79,20 @@ export async function saveTestimonial(formData: FormData) {
 
 export async function deleteTestimonial(id: string) {
   if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
+
+  const token = await getAdminToken();
+  if (token) {
+    try {
+      const ok = await fastApiAdminDeleteTestimonial(token, id);
+      if (ok) {
+        revalidateForTable("testimonials");
+        return;
+      }
+    } catch {
+      // fallback
+    }
+  }
+
   try {
     await query("DELETE FROM testimonials WHERE id = $1", [id]);
     revalidateForTable("testimonials");

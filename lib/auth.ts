@@ -6,6 +6,7 @@ import {
   signSession,
   verifySession,
 } from "@/lib/session";
+import { fastApiAdminLogin } from "@/lib/fastapi";
 
 export type AdminUser = {
   id: string;
@@ -23,11 +24,55 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
   return await bcrypt.compare(password, hash);
 }
 
+export async function getAdminToken(): Promise<string | null> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;
+  if (!token) return null;
+  const session = await verifySession(token);
+  return session?.token ?? null;
+}
+
 export async function authenticateAdmin(
   email: string,
   password: string
 ): Promise<{ user?: AdminUser; error?: string }> {
   const normalizedEmail = (email || "").trim().toLowerCase();
+
+  // 1. Try FastAPI Auth First (Decoupled Flow)
+  try {
+    const apiResult = await fastApiAdminLogin(normalizedEmail, password);
+    if (apiResult && apiResult.access_token) {
+      const exp = Date.now() + 7 * 24 * 60 * 60 * 1000;
+      const token = await signSession({
+        id: apiResult.user.id,
+        email: apiResult.user.email,
+        role: apiResult.user.role,
+        token: apiResult.access_token,
+        exp,
+      });
+
+      const cookieStore = await cookies();
+      cookieStore.set(SESSION_COOKIE_NAME, token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: "/",
+        maxAge: 7 * 24 * 60 * 60,
+      });
+
+      return {
+        user: {
+          id: apiResult.user.id,
+          email: apiResult.user.email,
+          role: apiResult.user.role,
+          full_name: apiResult.user.full_name,
+          avatar_url: apiResult.user.avatar_url,
+        },
+      };
+    }
+  } catch (e) {
+    // FastAPI might be offline or returned error; fall back
+  }
   const envAdminEmail = (process.env.ADMIN_EMAIL || "admin@byteshift.id").trim().toLowerCase();
   // Only fall back to the well-known default password outside production.
   // In production the env-credential login is disabled unless ADMIN_PASSWORD

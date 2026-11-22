@@ -14,19 +14,21 @@ import {
   getTestimonials,
   getFaqs,
   getFeaturedPortfolio,
+  getSectors,
 } from "@/lib/queries";
 import { servicesJsonLd, faqJsonLd } from "@/lib/seo";
 
 export const revalidate = 3600;
 
 export default async function HomePage() {
-  const [settings, services, testimonials, faqs, portfolio] =
+  const [settings, services, testimonials, faqs, portfolio, sectors] =
     await Promise.all([
       getSiteSettings(),
       getServices(),
       getTestimonials(),
       getFaqs(),
       getFeaturedPortfolio(6),
+      getSectors(),
     ]);
 
   return (
@@ -48,11 +50,11 @@ export default async function HomePage() {
       <Hero settings={settings} />
 
       {/* 2. About Us — dark */}
-      <About />
+      <About settings={settings} />
 
       <div className="seam" aria-hidden />
       {/* 3. Sektor Industri & Solusi — dark */}
-      <Sectors />
+      <Sectors initialSectors={sectors} waNumber={settings?.whatsapp_number} />
 
       <div className="seam" aria-hidden />
       {/* 4. Testimonials — dark */}
@@ -60,7 +62,7 @@ export default async function HomePage() {
 
       <div className="seam" aria-hidden />
       {/* 5. What We Do — dark */}
-      <Packages waNumber={settings?.whatsapp_number} />
+      <Packages services={services} waNumber={settings?.whatsapp_number} />
 
       {/* 6. Case Studies — LIGHT interlude (smooth gradient seams on both sides) */}
       <div className="seam-to-light" aria-hidden />
@@ -80,7 +82,7 @@ export default async function HomePage() {
 
       <div className="seam" aria-hidden />
       {/* 10. Trust Pillar Cards — dark, right above footer */}
-      <HeroMetrics />
+      <HeroMetrics stats={settings?.hero_stats as any} />
     </>
   );
 }

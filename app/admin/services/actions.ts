@@ -1,7 +1,7 @@
 "use server";
 
 import { query } from "@/lib/db";
-import { requireAdmin } from "@/lib/auth";
+import { requireAdmin, getAdminToken } from "@/lib/auth";
 import {
   getArray,
   getBool,
@@ -11,6 +11,7 @@ import {
 } from "@/lib/admin/parse";
 import { revalidateForTable } from "@/lib/admin/revalidate";
 import { slugify } from "@/lib/utils";
+import { fastApiAdminSaveService, fastApiAdminDeleteService } from "@/lib/fastapi";
 
 export async function saveService(formData: FormData) {
   if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
@@ -25,6 +26,23 @@ export async function saveService(formData: FormData) {
   const is_active = getBool(formData, "is_active");
 
   if (!title || !description) return { error: "Lengkapi field wajib" };
+
+  const token = await getAdminToken();
+  if (token) {
+    try {
+      const saved = await fastApiAdminSaveService(
+        token,
+        { slug, icon, title, description, tags, order_index, is_active },
+        id || undefined
+      );
+      if (saved) {
+        revalidateForTable("services");
+        return;
+      }
+    } catch {
+      // fallback to DB if API unavailable
+    }
+  }
 
   try {
     if (id) {
@@ -49,6 +67,20 @@ export async function saveService(formData: FormData) {
 
 export async function deleteService(id: string) {
   if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
+
+  const token = await getAdminToken();
+  if (token) {
+    try {
+      const ok = await fastApiAdminDeleteService(token, id);
+      if (ok) {
+        revalidateForTable("services");
+        return;
+      }
+    } catch {
+      // fallback to DB if API unavailable
+    }
+  }
+
   try {
     await query("DELETE FROM services WHERE id = $1", [id]);
     revalidateForTable("services");

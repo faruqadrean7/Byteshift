@@ -29,12 +29,34 @@ const trustPillars = [
   },
 ];
 
-export default function HeroMetrics() {
+type StatItem = {
+  num?: string;
+  label?: string;
+  desc?: string;
+  title?: string;
+};
+
+export default function HeroMetrics({
+  stats,
+}: {
+  stats?: StatItem[] | null;
+}) {
+  const icons = [ShieldCheck, Headphones, Lock, Zap];
+  const items =
+    stats && Array.isArray(stats) && stats.length > 0
+      ? stats.map((s, idx) => ({
+          icon: icons[idx % icons.length],
+          title: s.title || s.label || s.num || "",
+          desc: s.desc || "",
+          isHighlighted: idx === 1,
+        }))
+      : trustPillars;
+
   return (
     <section className="relative bg-steel-surface py-14 sm:py-20 lg:py-24 text-steel-text">
       <div className="container relative px-4 sm:px-6 lg:px-8">
         <div className="grid gap-4 sm:gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {trustPillars.map((pillar) => {
+          {items.map((pillar) => {
             const Icon = pillar.icon;
             if (pillar.isHighlighted) {
               return (

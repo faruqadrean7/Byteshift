@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   Briefcase,
   Sparkles,
+  Building2,
   MessageSquare,
   HelpCircle,
   Users,
@@ -47,6 +48,7 @@ const groups: NavGroup[] = [
     items: [
       { href: "/admin/portfolio", label: "Portfolio", icon: Briefcase },
       { href: "/admin/services", label: "Services", icon: Sparkles },
+      { href: "/admin/sectors", label: "Sektor Solusi", icon: Building2 },
       { href: "/admin/blog", label: "Blog", icon: FileText },
       { href: "/admin/testimonials", label: "Testimoni", icon: MessageSquare },
       { href: "/admin/faq", label: "FAQ", icon: HelpCircle },

@@ -1,4 +1,7 @@
+import Link from "next/link";
 import { query } from "@/lib/db";
+import { getAdminToken } from "@/lib/auth";
+import { fastApiAdminGetTestimonials } from "@/lib/fastapi";
 import PageHeader from "@/components/admin/PageHeader";
 import AdminTable from "@/components/admin/AdminTable";
 import RowActions from "@/components/admin/RowActions";
@@ -9,41 +12,56 @@ import type { Testimonial } from "@/types/database";
 export const dynamic = "force-dynamic";
 
 export default async function Page() {
-  const items = await query<Testimonial>(
-    "SELECT * FROM testimonials ORDER BY order_index ASC"
-  );
+  const token = await getAdminToken();
+  let items: Testimonial[] = [];
+
+  if (token) {
+    items = await fastApiAdminGetTestimonials(token);
+  }
+
+  if (!items.length) {
+    items = await query<Testimonial>(
+      "SELECT * FROM testimonials ORDER BY order_index ASC"
+    );
+  }
 
   return (
     <div className="container max-w-6xl py-10">
       <PageHeader
         title="Testimoni"
-        subtitle="Review & pengakuan klien terhadap Byteshift Studio."
+        subtitle="Ulasan dari klien yang tampil di website."
         newHref="/admin/testimonials/new"
       />
       <AdminTable
         columns={[
-          { key: "n", label: "Nama & Klien" },
-          { key: "q", label: "Kutipan" },
-          { key: "r", label: "Rating", className: "w-20" },
-          { key: "p", label: "Status", className: "w-20" },
+          { key: "n", label: "Nama & Perusahaan" },
+          { key: "r", label: "Rating", className: "w-24" },
+          { key: "o", label: "Urut", className: "w-16" },
+          { key: "p", label: "Status", className: "w-24" },
           { key: "x", label: "", className: "w-24 text-right" },
         ]}
         rows={items.map((t) => [
           <div key="n">
-            <div className="font-semibold text-slate-100">{t.name}</div>
+            <Link
+              href={`/admin/testimonials/${t.id}`}
+              className="font-semibold text-slate-100 hover:text-blue-400 transition-colors"
+            >
+              {t.name}
+            </Link>
             <div className="text-xs text-slate-400">
-              {[t.role, t.company].filter(Boolean).join(" · ")}
+              {t.role ? `${t.role}` : ""}
+              {t.company ? ` · ${t.company}` : ""}
             </div>
           </div>,
-          <p key="q" className="line-clamp-2 max-w-md text-xs text-slate-300">
-            &ldquo;{t.content}&rdquo;
-          </p>,
-          <span key="r" className="font-mono text-xs text-amber-400">
-            ★ {t.rating}
+          <span key="r" className="text-xs text-amber-400">
+            {"★".repeat(t.rating)}
+          </span>,
+          <span key="o" className="font-mono text-xs text-slate-300">
+            {t.order_index}
           </span>,
           t.is_published ? (
             <Badge key="p" variant="success">
-              Live
+              Publish
             </Badge>
           ) : (
             <Badge key="p" variant="muted">
@@ -53,10 +71,7 @@ export default async function Page() {
           <RowActions
             key="x"
             editHref={`/admin/testimonials/${t.id}`}
-            onDelete={async () => {
-              "use server";
-              return await deleteTestimonial(t.id);
-            }}
+            onDelete={deleteTestimonial.bind(null, t.id)}
           />,
         ])}
       />

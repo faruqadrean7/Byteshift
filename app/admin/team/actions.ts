@@ -1,7 +1,7 @@
 "use server";
 
 import { query } from "@/lib/db";
-import { requireAdmin } from "@/lib/auth";
+import { requireAdmin, getAdminToken } from "@/lib/auth";
 import {
   getBool,
   getNumber,
@@ -9,6 +9,7 @@ import {
   getString,
 } from "@/lib/admin/parse";
 import { revalidateForTable } from "@/lib/admin/revalidate";
+import { fastApiAdminSaveTeam, fastApiAdminDeleteTeam } from "@/lib/fastapi";
 
 export async function saveTeamMember(formData: FormData) {
   if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
@@ -28,6 +29,31 @@ export async function saveTeamMember(formData: FormData) {
   };
 
   if (!name || !role) return { error: "Lengkapi field wajib" };
+
+  const token = await getAdminToken();
+  if (token) {
+    try {
+      const saved = await fastApiAdminSaveTeam(
+        token,
+        {
+          name,
+          role,
+          bio,
+          photo_url,
+          social_links: social,
+          order_index,
+          is_active,
+        },
+        id || undefined
+      );
+      if (saved) {
+        revalidateForTable("team_members");
+        return;
+      }
+    } catch {
+      // fallback
+    }
+  }
 
   try {
     if (id) {
@@ -53,10 +79,24 @@ export async function saveTeamMember(formData: FormData) {
 
 export async function deleteTeamMember(id: string) {
   if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
+
+  const token = await getAdminToken();
+  if (token) {
+    try {
+      const ok = await fastApiAdminDeleteTeam(token, id);
+      if (ok) {
+        revalidateForTable("team_members");
+        return;
+      }
+    } catch {
+      // fallback
+    }
+  }
+
   try {
     await query("DELETE FROM team_members WHERE id = $1", [id]);
     revalidateForTable("team_members");
   } catch (error) {
-    return { error: error instanceof Error ? error.message : "Gagal menghapus data tim" };
+    return { error: error instanceof Error ? error.message : "Gagal menghapus data anggota tim" };
   }
 }

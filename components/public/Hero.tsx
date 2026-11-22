@@ -60,7 +60,8 @@ export default function Hero({ settings }: { settings: SiteSettings | null }) {
             transition={{ duration: 0.6, delay: 0.08 }}
             className="mx-auto mt-6 lg:mt-8 max-w-2xl lg:max-w-3xl xl:max-w-4xl text-base sm:text-xl lg:text-2xl leading-relaxed text-steel-soft font-normal"
           >
-            Bangun platform digital andal, otomatisasi alur kerja, dan percepat pertumbuhan bisnis Anda tanpa kerumitan teknis.
+            {settings?.tagline ??
+              "Bangun platform digital andal, otomatisasi alur kerja, dan percepat pertumbuhan bisnis Anda tanpa kerumitan teknis."}
           </motion.p>
 
           {/* Call to Action Buttons */}

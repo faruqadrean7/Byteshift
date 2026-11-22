@@ -15,3 +15,10 @@ next-env.d.ts
 .neon
 .playwright-mcp
 .superpowers/
+
+# Python & Virtualenv
+backend/venv/
+**/__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/

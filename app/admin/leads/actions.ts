@@ -2,13 +2,29 @@
 
 import { revalidatePath } from "next/cache";
 import { query } from "@/lib/db";
-import { requireAdmin } from "@/lib/auth";
+import { requireAdmin, getAdminToken } from "@/lib/auth";
+import { fastApiAdminUpdateLead, fastApiAdminDeleteLead } from "@/lib/fastapi";
 
 export async function updateLead(
   id: string,
   patch: { status?: string; notes?: string }
 ) {
   if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
+
+  const token = await getAdminToken();
+  if (token) {
+    try {
+      const updated = await fastApiAdminUpdateLead(token, id, patch);
+      if (updated) {
+        revalidatePath("/admin/leads");
+        revalidatePath("/admin");
+        return;
+      }
+    } catch {
+      // fallback
+    }
+  }
+
   try {
     if (patch.status !== undefined && patch.notes !== undefined) {
       await query(
@@ -35,6 +51,21 @@ export async function updateLead(
 
 export async function deleteLead(id: string) {
   if (!(await requireAdmin())) return { error: "Tidak diizinkan. Silakan login ulang." };
+
+  const token = await getAdminToken();
+  if (token) {
+    try {
+      const ok = await fastApiAdminDeleteLead(token, id);
+      if (ok) {
+        revalidatePath("/admin/leads");
+        revalidatePath("/admin");
+        return;
+      }
+    } catch {
+      // fallback
+    }
+  }
+
   try {
     await query("DELETE FROM leads WHERE id = $1", [id]);
     revalidatePath("/admin/leads");

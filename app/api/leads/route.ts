@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { queryOne } from "@/lib/db";
+import { fastApiSubmitLead } from "@/lib/fastapi";
 import { leadSchema, projectTypes, budgetRanges } from "@/lib/validations/lead";
 import { getClientIp, rateLimit } from "@/lib/rate-limit";
 import { normalizePhoneWa } from "@/lib/utils";
@@ -62,22 +63,36 @@ export async function POST(request: Request) {
 
   let leadId = "lead-demo";
   try {
-    const row = await queryOne<{ id: string }>(
-      `INSERT INTO leads (name, email, phone_wa, project_type, budget_range, message, source)
-       VALUES ($1, $2, $3, $4, $5, $6, $7)
-       RETURNING id`,
-      [
-        parsed.data.name,
-        parsed.data.email || null,
-        normalizedPhone,
-        parsed.data.project_type,
-        parsed.data.budget_range || null,
-        parsed.data.message || null,
-        parsed.data.source ?? "website",
-      ]
-    );
-    if (row?.id) {
-      leadId = row.id;
+    const apiLead = await fastApiSubmitLead({
+      name: parsed.data.name,
+      email: parsed.data.email || null,
+      phone_wa: normalizedPhone,
+      project_type: parsed.data.project_type,
+      budget_range: parsed.data.budget_range || null,
+      message: parsed.data.message || null,
+      source: parsed.data.source ?? "website",
+    });
+
+    if (apiLead?.id) {
+      leadId = String(apiLead.id);
+    } else {
+      const row = await queryOne<{ id: string }>(
+        `INSERT INTO leads (name, email, phone_wa, project_type, budget_range, message, source)
+         VALUES ($1, $2, $3, $4, $5, $6, $7)
+         RETURNING id`,
+        [
+          parsed.data.name,
+          parsed.data.email || null,
+          normalizedPhone,
+          parsed.data.project_type,
+          parsed.data.budget_range || null,
+          parsed.data.message || null,
+          parsed.data.source ?? "website",
+        ]
+      );
+      if (row?.id) {
+        leadId = row.id;
+      }
     }
   } catch (error) {
     console.error("Neon DB Lead insert error:", error);

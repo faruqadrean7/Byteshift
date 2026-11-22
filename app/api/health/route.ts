@@ -7,6 +7,16 @@ export async function GET() {
   const start = Date.now();
   let dbStatus = "healthy";
   let dbLatencyMs = 0;
+  let fastApiStatus = "unreachable";
+
+  try {
+    const fastApiUrl = (process.env.FASTAPI_URL || "http://127.0.0.1:8000").replace(/\/$/, "");
+    const res = await fetch(`${fastApiUrl}/health`, {
+      cache: "no-store",
+      signal: AbortSignal.timeout(1000),
+    });
+    if (res.ok) fastApiStatus = "healthy";
+  } catch {}
 
   try {
     const dbStart = Date.now();
@@ -30,6 +40,9 @@ export async function GET() {
       database: {
         status: dbStatus,
         latency: `${dbLatencyMs}ms`,
+      },
+      fastapi: {
+        status: fastApiStatus,
       },
       system: {
         memory_rss_mb: Math.round(memoryUsage.rss / 1024 / 1024),
